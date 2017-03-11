@@ -85,4 +85,35 @@ Usage
  instead.
   
   
-https://choosealicense.com/licenses/apache-2.0/
+  Project support
+  ===============
+  
+   `DateTimeTemplate` is free software and you can use it fully free of charge in any of your projects, open source or 
+   commercial, however if you feel it prevent you from reinventing the wheel, helped having your projects done or simply
+   saved you time and money  then then feel free to donate to the project by sending some BTC to 
+   `1LbfbmZ1KfSNNTGAEHtP63h7FPDEPTa3Yo`.
+  
+   ![BTC](img/btc.png)
+  
+  
+  
+  Contributing
+  ============
+  
+   Please report any issue spotted using [GitHub's project tracker](https://github.com/MarcinOrlowski/datetimetemplate/issues).
+   
+   If you'd like to contribute to the this project, please [open new ticket](https://github.com/MarcinOrlowski/datetimetemplate/issues) 
+   **before doing any work**. This will help us save your time in case I'd not be able to accept such changes. But if all is good and 
+   clear then follow common routine:
+  
+   * fork the project
+   * create new branch
+   * do your changes
+   * send pull request
+  
+  
+  License
+  =======
+  
+   * Written and copyrighted &copy;2013-2017 by Marcin Orlowski <mail (#) marcinorlowski (.) com>
+   * DateTimeTemplate is open-sourced software licensed under the Apache license
