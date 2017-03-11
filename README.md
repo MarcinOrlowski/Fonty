@@ -4,8 +4,8 @@ Fonty
  `Fonty` is Android library allowing you to easily change the typeface 
  of your UI elements. Contrary to other implementations `Fonty` is 
  designed with the assumption that if you want to change the font for your
- app, then you change it **globally**, to achieve consistency across your
- Fragments or Activities.
+ app, then you change it **globally** per whole application, to achieve 
+ consistency across your Fragments or Activities.
  
  This means that using `Fonty` will require **no change** to your layout files.
  All you need to do is to initialie the library and specify what typeface
@@ -32,8 +32,8 @@ Installation
  For recent value of `<VERSION>` consult [library releases](https://github.com/MarcinOrlowski/fonty/releases)
  or jitpack badge: [![Release](https://jitpack.io/v/MarcinOrlowski/fonty.svg)](https://jitpack.io/#MarcinOrlowski/fonty)
 
-Usage
-=====
+Usage in code
+=============
 
  Put your `TTF` font files into module's `asset/fonts` folder, which usually is:
  `<MODULE>/src/main/assets/fonts` folder, where `<MODULE>` equals `app`.
@@ -82,9 +82,16 @@ Usage
   
      Fonty.setFonts((ViewGroup)binding.getRoot());
 
- instead.
-  
-  
+
+Layout files
+============
+
+ Once `Fonty` is properly initialied and applied, all supported widgets will automatically
+ be convinced to use fonts of your choice. By default font set by `setRegularFont()` applies
+ and to switch to boldface, simply set `android:textStyle="bold"` to element of 
+ choice.
+
+
 Project support
 ===============
   
@@ -95,14 +102,28 @@ Project support
   
  ![BTC](img/btc.png)
   
+
+Limitations
+===========
+
+ While `Fonty` perfectly fits my needs, it may not fit yours as due to
+ design or implementation shortages some features may not be available.
+
+ - Currently `Fonty` supports the following widgets and derrivatives:
+   * TextView
+   * EditText
+   * Button
+   * NavigationView
+ - You can only have `regular` and `bold` attributes supported (`italic` is
+ not yet supported).
   
-  
+
 Contributing
 ============
   
- Please report any issue spotted using [GitHub's project tracker](https://github.com/MarcinOrlowski/datetimetemplate/issues).
+ Please report any issue spotted using [GitHub's project tracker](https://github.com/MarcinOrlowski/fonty/issues).
    
- If you'd like to contribute to the this project, please [open new ticket](https://github.com/MarcinOrlowski/datetimetemplate/issues) 
+ If you'd like to contribute to the this project, please [open new ticket](https://github.com/MarcinOrlowski/fonty/issues) 
  **before doing any work**. This will help us save your time in case I'd not be able to accept such changes. But if all is good and 
  clear then follow common routine:
   
@@ -116,4 +137,4 @@ License
 =======
   
   * Written and copyrighted &copy;2013-2017 by Marcin Orlowski <mail (#) marcinorlowski (.) com>
-  * DateTimeTemplate is open-sourced software licensed under the Apache license
+  * `Fonty` is open-sourced library licensed under the Apache 2.0 license
