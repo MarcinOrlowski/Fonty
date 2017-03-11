@@ -70,17 +70,21 @@ Usage in code
  
     Fonty.setFonts(this);
 
- Same for `Fragments`, add your `onCreateView()` implementation:
+ Same for `Fragments`, add to your `onCreateView()` implementation:
  
-     Fonty.setfonts(this);
-     
- Not much complex is to use it with `RecyclerView`. Simply add the following to your `onCreateViewHolder()`:
+     Fonty.setfonts(view);
+ 
+ where `view` is the `View` is what you just inflated.
+
+ Not much complex is to use it with `RecyclerView`, edit your `onCreateViewHolder()` and
+ add:
  
      Fonty.setFonts(view);
      
- where `view` means first argument passed to your `onCreateViewHolder()` method.
+ where `view` stands for first argument passed to your `onCreateViewHolder()` method.
      
- If you are using DataBinding, then your call should be like that:
+ If you are using [Android Data Binding library](https://developer.android.com/topic/libraries/data-binding/index.html),
+ then you just need to call:
   
      Fonty.setFonts((ViewGroup)binding.getRoot());
 
