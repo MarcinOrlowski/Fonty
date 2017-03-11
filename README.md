@@ -13,6 +13,8 @@ Fonty
  
  ![Screenshot](img/shot.png)
  
+ Download demo application APK from [releases section](https://github.com/MarcinOrlowski/fonty/releases). Source code in project's [app/](https://github.com/MarcinOrlowski/fonty/tree/master/app/src/main) module.
+ 
 Installation
 ============
 
@@ -89,7 +91,18 @@ Layout files
  Once `Fonty` is properly initialied and applied, all supported widgets will automatically
  be convinced to use fonts of your choice. By default font set by `setRegularFont()` applies
  and to switch to boldface, simply set `android:textStyle="bold"` to element of 
- choice.
+ choice:
+ 
+
+        <TextView
+            android:text="This will use regular typeface" 
+            ... />
+
+        <EditText
+            android:text="This will use boldfaced typeface"
+            android:textStyle="bold"
+            ... />
+
 
 
 Project support
