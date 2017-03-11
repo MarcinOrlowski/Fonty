@@ -206,7 +206,7 @@ public class Fonty {
 	public static void setFonts(@Nullable ViewGroup viewGroup) {
 		if ((viewGroup != null)
 				&& (viewGroup.getContext().getResources().getDisplayMetrics().densityDpi >= DisplayMetrics.DENSITY_MEDIUM)) {
-			setCustomFontsRaw(viewGroup);
+			setFontsRaw(viewGroup);
 		}
 	}
 
@@ -215,12 +215,12 @@ public class Fonty {
 	 *
 	 * @param viewGroup we alter all known children of this group
 	 */
-	protected static void setCustomFontsRaw(@NonNull ViewGroup viewGroup) {
+	protected static void setFontsRaw(@NonNull ViewGroup viewGroup) {
 
 		Cache fc = Cache.getInstance();
-		Typeface tf;
 		Typeface tfregular = fc.get(TYPE_REGULAR);
 		Typeface tfbold = fc.get(TYPE_BOLD);
+		Typeface tf;
 
 		for (int i = 0; i < viewGroup.getChildCount(); i++) {
 			View view = viewGroup.getChildAt(i);
@@ -253,14 +253,14 @@ public class Fonty {
 				// change font in header (if any)
 				int headerCount = nv.getHeaderCount();
 				for (int headerIndex = 0; headerIndex < headerCount; headerIndex++) {
-					setCustomFontsRaw((ViewGroup)nv.getHeaderView(headerIndex));
+					setFontsRaw((ViewGroup)nv.getHeaderView(headerIndex));
 				}
 
 				// then modify menu items
-				setCustomFontsMenu(nv.getMenu());
+				setFontsMenu(nv.getMenu());
 
 			} else if (ViewGroup.class.isInstance(view)) {
-				setCustomFontsRaw((ViewGroup)view);
+				setFontsRaw((ViewGroup)view);
 			}
 		}
 	}
@@ -270,7 +270,7 @@ public class Fonty {
 	 *
 	 * @param menu Menu to work on
 	 */
-	protected static void setCustomFontsMenu(Menu menu) {
+	protected static void setFontsMenu(Menu menu) {
 		for (int menuIndex = 0; menuIndex < menu.size(); menuIndex++) {
 			MenuItem menuItem = menu.getItem(menuIndex);
 			if ((menuItem != null) && (menuItem.getTitle() != null)) {
@@ -281,7 +281,7 @@ public class Fonty {
 				menuItem.setTitle(spannableString);
 
 				if (menuItem.hasSubMenu()) {
-					setCustomFontsMenu(menuItem.getSubMenu());
+					setFontsMenu(menuItem.getSubMenu());
 				}
 			}
 		}
