@@ -1,6 +1,8 @@
 Fonty
 =====
 
+ [![Release](https://jitpack.io/v/MarcinOrlowski/fonty.svg)](https://jitpack.io/#MarcinOrlowski/fonty)
+
  `Fonty` is Android library allowing you to easily change the typeface 
  of your UI elements. Contrary to other implementations `Fonty` is 
  designed with the assumption that if you want to change the font for your
@@ -14,6 +16,18 @@ Fonty
  ![Screenshot](img/shot.png)
  
  Download demo application APK from [releases section](https://github.com/MarcinOrlowski/fonty/releases). Source code in project's [app/](https://github.com/MarcinOrlowski/fonty/tree/master/app/src/main) module.
+
+Features
+========
+
+ - Fast and lightweight
+ - Simple API
+ - Supports the following widgets:
+   * TextView
+   * EditText
+   * Button
+ - Handles navigation menu items too
+
  
 Installation
 ============
@@ -108,6 +122,39 @@ Layout files
             ... />
 
 
+Fonty and Toolbars
+==================
+
+ Unfortunately changing `Toolbar`/`ActionBar` title and subtitle fonts cannot be handled automatically
+ `Fonty`. This is due to `Toolbar` internals as it simply have not instance of `TextView` 
+ created unless title or subtitle is set, so there's nothing `Fonty` can manipulate in advance.
+ So to change `Toolbar` fonts too we need some code (add this to your base activity class):
+ 
+     private Toolbar mActivityActionBarToolbar;
+    
+     @Override
+     public void setSupportActionBar(@Nullable Toolbar toolbar) {
+        super.setSupportActionBar(toolbar);
+        mActivityActionBarToolbar = toolbar;
+     }
+     
+     @Override
+     public void setTitle(CharSequence title) {
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+           ab.setTitle(title);
+           Fonty.setFonts(mActivityActionBarToolbar);
+        }
+     }
+    
+     public void setSubtitle(CharSequence subtitle) {
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+           ab.setSubtitle(subtitle);
+           Fonty.setFonts(mActivityActionBarToolbar);
+        }
+    }
+
 
 Project support
 ===============
@@ -123,14 +170,6 @@ Project support
 Limitations
 ===========
 
- While `Fonty` perfectly fits my needs, it may not fit yours as due to
- design or implementation shortages some features may not be available.
-
- - Currently `Fonty` supports the following widgets and derrivatives:
-   * TextView
-   * EditText
-   * Button
-   * NavigationView
  - You can only have `regular` and `bold` attributes supported (`italic` is
  not yet supported).
   
