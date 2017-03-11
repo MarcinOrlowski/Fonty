@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Fonty by Marcin Orlowski\nLibrary to easily change applications' fonts"/>
+            android:text="Fonty Demo by Marcin Orlowski\nEasily change fonts of your app!"/>
 
         <android.support.v4.widget.Space
             android:layout_width="match_parent"
@@ -27,23 +27,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Regular text"/>
+            android:text="TextView using regular font style"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bold faced text"
-            android:textStyle="bold"
-            />
+            android:text="TextView using 'bold' textStyle"
+            android:textStyle="bold"/>
 
         <EditText
-            android:text="EditText using regular fonts"
+            android:text="EditText using regular font style"
             android:textStyle="normal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <EditText
-            android:text="EditText using boldfaced fonts"
+            android:text="EditText using bold faced style"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
