@@ -85,8 +85,8 @@ Usage
  instead.
   
   
- Project support
- ===============
+Project support
+===============
   
  `Fonty` is free software and you can use it fully free of charge in any of your projects, open source or 
  commercial, however if you feel it prevent you from reinventing the wheel, helped having your projects done or simply
@@ -97,8 +97,8 @@ Usage
   
   
   
- Contributing
- ============
+Contributing
+============
   
  Please report any issue spotted using [GitHub's project tracker](https://github.com/MarcinOrlowski/datetimetemplate/issues).
    
@@ -112,8 +112,8 @@ Usage
   * send pull request
  
   
- License
- =======
+License
+=======
   
   * Written and copyrighted &copy;2013-2017 by Marcin Orlowski <mail (#) marcinorlowski (.) com>
   * DateTimeTemplate is open-sourced software licensed under the Apache license
