@@ -8,7 +8,7 @@ Fonty
  consistency across your Fragments or Activities.
  
  This means that using `Fonty` will require **no change** to your layout files.
- All you need to do is to initialie the library and specify what typeface
+ All you need to do is to initialize the library and specify what typeface
  you want to be used for regular text and what for boldfaced ones. That's it.
  
  ![Screenshot](img/shot.png)
