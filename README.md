@@ -64,21 +64,21 @@ Usage
  This sets up font sustitution but we still need to apply it. It basically means
  that all you need to do is to call `setFonts()`.
   
- For Activity add this as last entry in your `onCreate()`:
+ For `Activity` add this as last entry in your `onCreate()`:
  
     Fonty.setFonts(this);
 
- For Fragments, add the following in your `onCreateView()`:
+ Same for `Fragments`, add your `onCreateView()` implementation:
  
      Fonty.setfonts(this);
      
- For RecyclerView, add the following to your `onCreateViewHolder()`:
+ Not much complex is to use it with `RecyclerView`. Simply add the following to your `onCreateViewHolder()`:
  
      Fonty.setFonts(view);
      
  where `view` means first argument passed to your `onCreateViewHolder()` method.
      
- If you are using DataBinding, the you need to call:
+ If you are using DataBinding, then your call should be like that:
   
      Fonty.setFonts((ViewGroup)binding.getRoot());
 
