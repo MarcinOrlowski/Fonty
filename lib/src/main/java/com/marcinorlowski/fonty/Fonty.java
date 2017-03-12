@@ -19,6 +19,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.design.widget.NavigationView;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -83,15 +84,19 @@ public class Fonty {
 
 
 	/**
-	 * Sets font path (relative to your "assets" folder) to be used to find the font files
+	 * Sets font path (relative to your "assets" folder) to be used to find the font files.
 	 *
 	 * @param fontDir the font dir **relative** to your "assets" folder.
 	 *
 	 * @return instance of Fonty object for easy chaining
 	 */
-	public Fonty fontDir(@NonNull String fontDir) {
-		if (!fontDir.substring(fontDir.length()-1).equals("/")) {
-			fontDir = fontDir + "/";
+	public Fonty fontDir(@Nullable String fontDir) {
+		if (fontDir != null) {
+			if (!fontDir.substring(fontDir.length() - 1).equals("/")) {
+				fontDir = fontDir + "/";
+			}
+		} else {
+			fontDir = "";
 		}
 		mFontFolderName = fontDir;
 
@@ -106,7 +111,7 @@ public class Fonty {
 	 * @return instance of Fonty object for easy chaining
 	 */
 	public Fonty boldTypeface(@SuppressWarnings ("SameParameterValue") @NonNull String fileName) {
-		return addTypeface(TYPE_BOLD, fileName);
+		return add(TYPE_BOLD, fileName);
 	}
 
 	/**
@@ -117,7 +122,7 @@ public class Fonty {
 	 * @return instance of Fonty object for easy chaining
 	 */
 	public Fonty boldTypeface(int fileNameId) {
-		return addTypeface(TYPE_BOLD, fileNameId);
+		return add(TYPE_BOLD, fileNameId);
 	}
 
 	/**
@@ -128,7 +133,7 @@ public class Fonty {
 	 * @return instance of Fonty object for easy chaining
 	 */
 	public Fonty regularTypeface(@SuppressWarnings ("SameParameterValue") @NonNull String fileName) {
-		return addTypeface(TYPE_REGULAR, fileName);
+		return add(TYPE_REGULAR, fileName);
 	}
 
 	/**
@@ -139,13 +144,13 @@ public class Fonty {
 	 * @return instance of Fonty object for easy chaining
 	 */
 	public Fonty regularTypeface(int fileNameId) {
-		return addTypeface(TYPE_REGULAR, fileNameId);
+		return add(TYPE_REGULAR, fileNameId);
 	}
 
 	/**
 	 * Add typeface to Fonty's cache
 	 *
-	 * @param alias    the typeface alias
+	 * @param alias        the typeface alias
 	 * @param fontFileName the file name of TTF asset. Can contain folder names too (i.e. "fnt/foo.ttf"). It will be
 	 *                     automatically "glued" with font folder name (see @fontDir()). If you do not want this to happen
 	 *                     add "/" to fontFileName, i.e. "/foo.ttf" or "/foo/other-folder/foo.ttf". In such case
@@ -153,7 +158,7 @@ public class Fonty {
 	 *
 	 * @return instance of Fonty object for easy chaining
 	 */
-	protected Fonty addTypeface(@NonNull String alias, @NonNull String fontFileName) {
+	protected Fonty add(@NonNull String alias, @NonNull String fontFileName) {
 		if (fontFileName.substring(0, 1).equals("/")) {
 			// strip leading "/"
 			fontFileName = fontFileName.substring(1);
@@ -173,8 +178,23 @@ public class Fonty {
 	 *
 	 * @return instance of Fonty object for easy chaining
 	 */
-	protected Fonty addTypeface(@NonNull String alias, int fileNameId) {
-		Cache.getInstance().add(mContext, alias, mContext.getResources().getString(fileNameId));
+	protected Fonty add(@NonNull String alias, @StringRes int fileNameId) {
+		Cache.getInstance()
+			 .add(mContext, alias, mContext.getResources().getString(fileNameId));
+		return this;
+	}
+
+	/**
+	 * Add typeface to cache
+	 *
+	 * @param aliasId    the typeface alias string resource Id
+	 * @param fileNameId string resource id that holds TTF asset file name
+	 *
+	 * @return instance of Fonty object for easy chaining
+	 */
+	protected Fonty add(@StringRes int aliasId, @StringRes int fileNameId) {
+		Cache.getInstance()
+			 .add(mContext, mContext.getResources().getString(aliasId), mContext.getResources().getString(fileNameId));
 		return this;
 	}
 

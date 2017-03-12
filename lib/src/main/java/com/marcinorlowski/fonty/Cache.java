@@ -1,11 +1,5 @@
 package com.marcinorlowski.fonty;
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.support.annotation.NonNull;
-
-import java.util.Hashtable;
-
 /*
  ******************************************************************************
  *
@@ -19,6 +13,13 @@ import java.util.Hashtable;
  *
  ******************************************************************************
  */
+
+import android.content.Context;
+import android.graphics.Typeface;
+import android.support.annotation.NonNull;
+
+import java.util.Hashtable;
+
 public class Cache {
 
 	// we cache used typefaces to avoid memory leaks due to framework bug #9904:
@@ -31,6 +32,12 @@ public class Cache {
 
 	protected static Cache _instance;
 
+
+	/**
+	 * Returns instance of typeface cache (singleton)
+	 *
+	 * @return the instance
+	 */
 	public static Cache getInstance() {
 		if (_instance == null) {
 			_instance = new Cache();
@@ -39,6 +46,15 @@ public class Cache {
 		return _instance;
 	}
 
+	/**
+	 * Add typeface to font cache.
+	 *
+	 * @param context  application context
+	 * @param alias    typeface alias
+	 * @param fileName path to font asset
+	 *
+	 * @return the cache
+	 */
 	public Cache add(@NonNull Context context, String alias, String fileName) {
 		synchronized (mTypefaceCache) {
 			if (mTypefaceCache.containsKey(alias) == false) {
@@ -50,6 +66,13 @@ public class Cache {
 		}
 	}
 
+	/**
+	 * Returns typeface referenced by given alias. Throws RuntimeException when alias is invalid
+	 *
+	 * @param alias typeface alias
+	 *
+	 * @return the typeface
+	 */
 	public Typeface get(@NonNull String alias) {
 		synchronized (mTypefaceCache) {
 			if (mTypefaceCache.containsKey(alias)) {

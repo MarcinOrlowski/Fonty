@@ -1,5 +1,9 @@
 apply plugin: 'com.android.library'
 
+// jitpack
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.MarcinOrlowski'
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
