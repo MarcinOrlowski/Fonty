@@ -2,6 +2,7 @@ Fonty
 =====
 
  [![Release](https://jitpack.io/v/MarcinOrlowski/fonty.svg)](https://jitpack.io/#MarcinOrlowski/fonty)
+ [![Dependency Status](https://dependencyci.com/github/MarcinOrlowski/Fonty/badge)](https://dependencyci.com/github/MarcinOrlowski/Fonty)
 
  `Fonty` is Android library allowing you to easily change the typeface 
  of your UI elements. Contrary to other implementations `Fonty` is 
