@@ -33,21 +33,6 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		findViewById(R.id.github).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				try {
-					startActivity(
-							new Intent(Intent.ACTION_VIEW,
-									Uri.parse("https://github.com/MarcinOrlowski/fonty/")
-							)
-					);
-				} catch (Exception e) {
-					Toast.makeText(MainActivity.this, "Failed to open browser", Toast.LENGTH_SHORT).show();
-				}
-			}
-		});
-
 		// apply our font replacement
 		Fonty.setFonts(this);
 
@@ -57,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 		}
 	}
 
+
+	protected Handler mHandler = new Handler();
 
 	protected View.OnClickListener mOnClickListener = new View.OnClickListener() {
 		@Override
@@ -72,15 +59,15 @@ public class MainActivity extends AppCompatActivity {
 
 					mHandler.removeCallbacks(mRunnable);
 					mHandler.postDelayed(mRunnable, 3 * 1000);
-
 					break;
 
 				case R.id.github:
-					Intent intent = new Intent(Intent.ACTION_VIEW);
-					intent.setData(Uri.parse("https://github.com/MarcinOrlowski/Fonty"));
-					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					try {
-						startActivity(intent);
+						startActivity(
+								new Intent(Intent.ACTION_VIEW,
+										Uri.parse("https://github.com/MarcinOrlowski/fonty/")
+								)
+						);
 					} catch (ActivityNotFoundException e) {
 						Toast.makeText(MainActivity.this, "Failed to launch Web Browser", Toast.LENGTH_SHORT).show();
 					}
@@ -89,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
 		}
 	};
 
+
+	// Runnable that hides TIL's error messages
 	protected Runnable mRunnable = new Runnable() {
 		@Override
 		public void run() {
