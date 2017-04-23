@@ -2,7 +2,7 @@ Changelog
 =========
 
  * v1.2.0 (2017-04-23)
-   - Added support for `TextInputLayout`
+   - [#2] Added support for `TextInputLayout`
 
  * v1.1.0 (2017-03-12)
    - Fefault font dir is `fonts/`
