@@ -21,6 +21,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TextInputLayout;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.util.DisplayMetrics;
@@ -248,7 +249,7 @@ public class Fonty {
 			tf = tfregular;
 
 			if (EditText.class.isInstance(view)) {
-				Typeface oldTf = ((TextView)view).getTypeface();
+				Typeface oldTf = ((EditText)view).getTypeface();
 				if ((oldTf != null) && (oldTf.isBold())) {
 					tf = tfbold;
 				}
@@ -262,7 +263,7 @@ public class Fonty {
 				((TextView)view).setTypeface(tf);
 
 			} else if (Button.class.isInstance(view)) {
-				Typeface oldTf = ((TextView)view).getTypeface();
+				Typeface oldTf = ((Button)view).getTypeface();
 				if ((oldTf != null) && (oldTf.isBold())) {
 					tf = tfbold;
 				}
@@ -279,11 +280,22 @@ public class Fonty {
 				// then modify menu items
 				setFontsMenu(nv.getMenu());
 
+			} else if (TextInputLayout.class.isInstance(view)) {
+				EditText et = ((TextInputLayout)view).getEditText();
+				if (et != null) {
+					Typeface oldTf = et.getTypeface();
+					if ((oldTf != null) && (oldTf.isBold())) {
+						tf = tfbold;
+					}
+					((TextInputLayout)view).setTypeface(tf);
+				}
+
 			} else if (ViewGroup.class.isInstance(view)) {
 				setFontsRaw((ViewGroup)view);
 			}
 		}
 	}
+
 
 	/**
 	 * Sets custom fonts for menu items (and sub-menus too) using custom TypefaceSpan
