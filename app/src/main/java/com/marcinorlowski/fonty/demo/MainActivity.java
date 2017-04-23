@@ -60,8 +60,6 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 
-	protected boolean mTil2FontyApplied = false;
-
 	protected View.OnClickListener mOnClickListener = new View.OnClickListener() {
 		@Override
 		public void onClick(View view) {
