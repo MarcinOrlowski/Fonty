@@ -28,8 +28,6 @@ import com.marcinorlowski.fonty.Fonty;
 
 public class MainActivity extends AppCompatActivity {
 
-	protected Handler mHandler = new Handler();
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
