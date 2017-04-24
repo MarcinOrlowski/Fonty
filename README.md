@@ -65,9 +65,7 @@ Usage in code
     Fonty
         .context(this)
 	    .regularTypeface("Xenotron.ttf")
-        .boldTypeface("XPED.ttf")
-
-	}
+        .boldTypeface("XPED.ttf");
 
  The above sets up `Xenotron.ttf` to be used whenever regular font should be rendered
  and `XPED.ttf` to be used if your UI elements sets `android:textStyle="bold"` attribute.
@@ -80,7 +78,6 @@ Usage in code
         .fontDir("my-fonts")
 	    .regularTypeface("Xenotron.ttf")
         .boldTypeface("XPED.ttf");
-	}
 
  and put your font files into `<MODULE>/src/main/assets/my-fonts` folder.
 
