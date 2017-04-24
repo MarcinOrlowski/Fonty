@@ -24,9 +24,11 @@ public class Application extends android.app.Application {
 
 		Fonty
 			.context(this)
+//			.fontDir("otherFolder")
 			.regularTypeface("Exo-Regular.ttf")
 			.italicsTypeface("Aramis-Italic.ttf")
-			.boldTypeface("Capture_it.ttf");
+			.boldTypeface("Capture_it.ttf")
+			.done();
 	}
 
 }

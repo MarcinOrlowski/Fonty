@@ -66,6 +66,8 @@ public class Fonty {
 
 	protected static Fonty _instance;
 
+	// --------------------------------------------------------------------------------------------
+
 	/**
 	 * Init font tools context. Must be called as first thin in setup chain! Throws
 	 * RuntimeException is context is `null` and IllegalArgumentException if passed
@@ -91,6 +93,8 @@ public class Fonty {
 		return _instance;
 	}
 
+	// --------------------------------------------------------------------------------------------
+
 	/**
 	 * Sets font path (relative to your "assets" folder) to be used to find the font files.
 	 *
@@ -110,6 +114,8 @@ public class Fonty {
 
 		return this;
 	}
+
+	// --------------------------------------------------------------------------------------------
 
 	/**
 	 * Set typeface to be used for BOLD
@@ -133,6 +139,8 @@ public class Fonty {
 		return add(TYPE_BOLD, fileNameId);
 	}
 
+	// --------------------------------------------------------------------------------------------
+
 	/**
 	 * Set typeface to be used for REGULAR/NORMAL
 	 *
@@ -155,6 +163,8 @@ public class Fonty {
 		return add(TYPE_ITALICS, fileNameId);
 	}
 
+	// --------------------------------------------------------------------------------------------
+
 	/**
 	 * Set typeface to be used for ITALICS
 	 *
@@ -176,6 +186,8 @@ public class Fonty {
 	public Fonty regularTypeface(int fileNameId) {
 		return add(TYPE_REGULAR, fileNameId);
 	}
+
+	// --------------------------------------------------------------------------------------------
 
 	/**
 	 * Add typeface to cache. Throws RuntimeException if Fonty's context is not set up.
@@ -209,7 +221,6 @@ public class Fonty {
 		Resources res = mContext.getResources();
 		return add(res.getString(aliasId), res.getString(fileNameId));
 	}
-
 
 	/**
 	 * Add typeface to Fonty's cache. Throws RuntimeException if Fonty's context is not set up,
@@ -251,6 +262,7 @@ public class Fonty {
 		return this;
 	}
 
+	// --------------------------------------------------------------------------------------------
 
 	/**
 	 * Get typeface.
@@ -286,6 +298,7 @@ public class Fonty {
 		}
 	}
 
+	// --------------------------------------------------------------------------------------------
 
 	/**
 	 * Selects substitution typeface based on old tf's style

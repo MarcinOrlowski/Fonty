@@ -4,6 +4,8 @@ Changelog
  * @dev
    - `init()` is now `context()`
    - Improved public methods argument validation
+   - Added italics support
+   - Now falls back to regular typeface for widgets requesting BOLD or ITALICS when such is not configured.
 
  * v1.2.0 (2017-04-23)
    - [#2] Added support for `TextInputLayout`
