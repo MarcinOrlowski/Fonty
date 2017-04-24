@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 					}
 
 					mHandler.removeCallbacks(mRunnable);
-					mHandler.postDelayed(mRunnable, 3 * 1000);
+					mHandler.postDelayed(mRunnable, 6 * 1000);
 					break;
 
 				case R.id.github:

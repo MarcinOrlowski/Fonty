@@ -27,6 +27,14 @@
             android:text="Easily change fonts of your app!"
             android:textStyle="bold"/>
 
+        <TextView
+            android:text="Deep Paulo Cohelo motto comes here..."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="italic"/>
+
+
         <android.support.v4.widget.Space
             android:layout_width="match_parent"
             android:layout_height="16dp"/>
