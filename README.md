@@ -4,19 +4,20 @@ Fonty
  [![Release](https://jitpack.io/v/MarcinOrlowski/fonty.svg)](https://jitpack.io/#MarcinOrlowski/fonty)
  [![Dependency Status](https://dependencyci.com/github/MarcinOrlowski/Fonty/badge)](https://dependencyci.com/github/MarcinOrlowski/Fonty)
 
- `Fonty` is Android library allowing you to easily change the typeface
- of your UI elements. Contrary to other implementations `Fonty` is
- designed with the assumption that if you want to change the font for your
- app, then you change it **globally** per whole application, to achieve
- consistency across your Fragments or Activities.
+ `Fonty` is simple Android library allowing you to easily change the typeface
+ of your UI elements. Contrary to other implementations `Fonty` is designed with
+ the assumption that if you want to change the font for your  app, then you change
+ it **globally** per whole application, to achieve consistency across your Fragments
+ or Activities.
 
- This means that using `Fonty` will require **no change** to your layout files.
- All you need to do is to initialize the library and specify what typeface
- you want to be used for regular text and what for boldfaced ones. That's it.
+ Using `Fonty` requires **no change** to be made to your layout files and
+ all you need to do is to initialize the library and specify what typeface
+ you want to be used as regular and boldfaced ones. That's it.
 
  ![Screenshot](img/shot.png)
 
- Download demo application APK from [releases section](https://github.com/MarcinOrlowski/fonty/releases). Source code in project's [app/](https://github.com/MarcinOrlowski/fonty/tree/master/app/src/main) module.
+ Download demo application APK from [releases section](https://github.com/MarcinOrlowski/fonty/releases).
+ Source code in project's [app/](https://github.com/MarcinOrlowski/fonty/tree/master/app/src/main) module.
 
 Features
 ========
@@ -29,6 +30,7 @@ Features
    * EditText
    * Button
  - Handles navigation menu items too
+ - Can be used in libraries as well
 
 
 Installation
@@ -53,8 +55,8 @@ Installation
 Usage in code
 =============
 
- Put your `TTF` font files into module's `asset/fonts` folder, which usually is:
- `<MODULE>/src/main/assets/fonts` folder, where `<MODULE>` equals `app`.
+ Put your `TTF` font files into module's `asset/fonts` folder (`<MODULE>/src/main/assets/fonts`
+ folder, where `<MODULE>` usually equals `app`).
 
  Then add the following lines to your custom Application's class' `onCreate()`
  method (if you do not use own `Application` subclass, see demo app for how
@@ -65,7 +67,7 @@ Usage in code
         .boldTypeface("XPED.ttf");
 	}
 
- The above sets up `Xenotron.ttf` to be used whenever regular font is used (most cases)
+ The above sets up `Xenotron.ttf` to be used whenever regular font should be rendered
  and `XPED.ttf` to be used if your UI elements sets `android:textStyle="bold"` attribute.
 
  If you prefer to have font files stored elsewhere than in assets' `fonts/` subfolder use `fontDir()`
@@ -79,20 +81,19 @@ Usage in code
 
  and put your font files into `<MODULE>/src/main/assets/my-fonts` folder.
 
- This sets up font sustitution but we still need to apply it. It basically means
- that all you need to do is to call `setFonts()`.
+ This sets up font substitution but we yet need to apply fonts to widgets.
 
  For `Activity` add this as last entry in your `onCreate()`:
 
     Fonty.setFonts(this);
 
- Same for `Fragments`, add to your `onCreateView()` implementation:
+ Same for `Fragments`, add the following to your `onCreateView()`:
 
      Fonty.setfonts(view);
 
  where `view` is the `View` is what you just inflated.
 
- Not much complex is to use it with `RecyclerView`, edit your `onCreateViewHolder()` and
+ Using it with `RecyclerView` is also pretty simple. Edit your `onCreateViewHolder()` and
  add:
 
      Fonty.setFonts(view);
@@ -108,10 +109,10 @@ Usage in code
 Layout files
 ============
 
- Once `Fonty` is properly initialied and applied, all supported widgets will automatically
- be convinced to use fonts of your choice. By default font set by `setRegularFont()` applies
- and to switch to boldface, simply set `android:textStyle="bold"` to element of
- choice:
+ Once `Fonty` is properly initialized and applied, all supported widgets will automatically
+ be convinced to use fonts of your choice. Font specified with `setRegularFont()` is used
+ as default, and if widget sets `android:textStyle="bold"` then font set with `boldTypeface()`
+ is applied:
 
 
         <TextView
@@ -128,9 +129,9 @@ Fonty and Toolbars
 ==================
 
  Unfortunately changing `Toolbar`/`ActionBar` title and subtitle fonts cannot be handled automatically
- `Fonty`. This is due to `Toolbar` internals as it simply have not instance of `TextView`
+ by `Fonty` in some cases. This is due to `Toolbar`'s internals as it simply have not instance of `TextView`
  created unless title or subtitle is set, so there's nothing `Fonty` can manipulate in advance.
- So to change `Toolbar` fonts too we need some code (add this to your base activity class):
+ To work that around add this to your base activity class:
 
      private Toolbar mActivityActionBarToolbar;
 
@@ -161,18 +162,18 @@ Fonty and Toolbars
 TextInputLayout
 ===============
 
- If you your TextInputLayout's error message feature (text shown below the `EditText` widget), then you must
- set `app:errorEnabled="true"` in the XML layout file if you want error text typeface to be changed by Fonty.
- This is because of `TextInputLayout` internals.
+ If you use `TextInputLayout` and its error message feature (text shown below the `EditText` widget),
+ then you must set `app:errorEnabled="true"` in the XML file if you want error text typeface to be
+ changed by `Fonty`. This is because of `TextInputLayout` internals.
 
 
 Project support
 ===============
 
  `Fonty` is free software and you can use it fully free of charge in any of your projects, open source or
- commercial, however if you feel it prevent you from reinventing the wheel, helped having your projects done or simply
- saved you time and money  then then feel free to donate to the project by sending some BTC to
- `1LbfbmZ1KfSNNTGAEHtP63h7FPDEPTa3Yo`.
+ commercial, however if you feel it prevent you from reinventing the wheel, helped having your projects
+ done or simply saved you time and money  then then feel free to donate to the project by sending some
+ spare BTC to `1LbfbmZ1KfSNNTGAEHtP63h7FPDEPTa3Yo`.
 
  ![BTC](img/btc.png)
 
