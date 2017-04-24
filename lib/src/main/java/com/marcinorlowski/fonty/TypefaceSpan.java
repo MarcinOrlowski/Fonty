@@ -16,17 +16,24 @@ package com.marcinorlowski.fonty;
 
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.support.annotation.NonNull;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
 
 public class TypefaceSpan extends MetricAffectingSpan {
-	private final Cache mFontCache;
+	private final boolean mFallback;
+	private final int mItemId;
+	private final String mClassName;
 
 	/**
-	 * @param fontCache An instance of Cache.
+	 * @param fallback
+	 * @param className
+	 * @param itemId
 	 */
-	public TypefaceSpan(Cache fontCache) {
-		mFontCache = fontCache;
+	public TypefaceSpan(boolean fallback, @NonNull String className, int itemId) {
+		mFallback = fallback;
+		mClassName = className;
+		mItemId = itemId;
 	}
 
 	@Override
@@ -40,13 +47,7 @@ public class TypefaceSpan extends MetricAffectingSpan {
 	}
 
 	private void apply(Paint paint) {
-		Typeface tf = mFontCache.get("regular");
-
 		Typeface oldTf = paint.getTypeface();
-		if ((oldTf != null) && (oldTf.isBold())) {
-			tf = mFontCache.get("bold");
-		}
-
-		paint.setTypeface(tf);
+		paint.setTypeface(Utils.substituteTypeface(oldTf, mFallback, mClassName, mItemId));
 	}
 }

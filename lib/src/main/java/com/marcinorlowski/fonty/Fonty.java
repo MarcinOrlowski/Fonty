@@ -81,7 +81,7 @@ public class Fonty {
 	 */
 	public static Fonty context(@NonNull Context context) {
 		if (context != null) {
-			if ( !Context.class.isInstance(context) ) {
+			if (!Context.class.isInstance(context)) {
 				throw new IllegalArgumentException("Invalid context object passed");
 			}
 
@@ -306,7 +306,7 @@ public class Fonty {
 
 	// --------------------------------------------------------------------------------------------
 
-	protected static boolean mTypefaceFallback = false;
+	protected static boolean fallback = false;
 
 	/**
 	 * Controls typeface fallback mechanism. When widget requires BOLD or ITALICS font and such
@@ -315,10 +315,11 @@ public class Fonty {
 	 * and Fonty will fall back to REGULAR typeface.
 	 *
 	 * @param mode @true to enable strict mode (default), @false to
+	 *
 	 * @return
 	 */
 	public Fonty typefaceFallback(boolean mode) {
-		mTypefaceFallback = mode;
+		fallback = mode;
 
 		return _instance;
 	}
@@ -349,15 +350,21 @@ public class Fonty {
 
 			if (EditText.class.isInstance(view)) {
 				Typeface oldTf = ((EditText)view).getTypeface();
-				((EditText)view).setTypeface(Utils.substituteTypeface(oldTf, view.getId(), mTypefaceFallback));
+				((EditText)view).setTypeface(
+						Utils.substituteTypeface(oldTf, fallback, view.getClass().getName(), view.getId())
+				);
 
 			} else if (TextView.class.isInstance(view)) {
 				Typeface oldTf = ((TextView)view).getTypeface();
-				((TextView)view).setTypeface(Utils.substituteTypeface(oldTf, view.getId(), mTypefaceFallback));
+				((TextView)view).setTypeface(
+						Utils.substituteTypeface(oldTf, fallback, view.getClass().getName(), view.getId())
+				);
 
 			} else if (Button.class.isInstance(view)) {
 				Typeface oldTf = ((Button)view).getTypeface();
-				((Button)view).setTypeface(Utils.substituteTypeface(oldTf, view.getId(), mTypefaceFallback));
+				((Button)view).setTypeface(
+						Utils.substituteTypeface(oldTf, fallback, view.getClass().getName(), view.getId())
+				);
 
 			} else if (NavigationView.class.isInstance(view)) {
 				NavigationView nv = (NavigationView)view;
@@ -374,7 +381,9 @@ public class Fonty {
 				EditText et = ((TextInputLayout)view).getEditText();
 				if (et != null) {
 					Typeface oldTf = et.getTypeface();
-					((TextInputLayout)view).setTypeface(Utils.substituteTypeface(oldTf, view.getId(), mTypefaceFallback));
+					((TextInputLayout)view).setTypeface(
+							Utils.substituteTypeface(oldTf, fallback, view.getClass().getName(), view.getId())
+					);
 				}
 
 			} else if (ViewGroup.class.isInstance(view)) {
@@ -394,8 +403,10 @@ public class Fonty {
 			MenuItem menuItem = menu.getItem(menuIndex);
 			if ((menuItem != null) && (menuItem.getTitle() != null)) {
 				SpannableString spannableString = new SpannableString(menuItem.getTitle());
-				spannableString.setSpan(new TypefaceSpan(Cache.getInstance()),
-						0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				spannableString.setSpan(
+						new TypefaceSpan(fallback, menuItem.getClass().getName(), menuItem.getItemId()),
+						0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+				);
 
 				menuItem.setTitle(spannableString);
 
