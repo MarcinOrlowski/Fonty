@@ -65,13 +65,13 @@ Configuration
     Fonty
         .context(this)
 	    .regularTypeface("Xenotron.ttf")
-	    .italicsTypeface("Carramba.ttf")
+	    .italicTypeface("Carramba.ttf")
         .boldTypeface("XPED.ttf")
         .done();
 
  The above sets up `Xenotron.ttf` to be used whenever regular font should be rendered
  and `XPED.ttf` to be used if your UI elements sets `android:textStyle="bold"` attribute and
- `Carramba.ttf` for `android:textStyle="italics"`.
+ `Carramba.ttf` for `android:textStyle="italic"`.
 
  If you prefer to have font files stored elsewhere than in assets' `fonts/` subfolder use `fontDir()`
  in your builder chain:
@@ -80,7 +80,7 @@ Configuration
         .context(this)
         .fontDir("my-fonts")
 	    .regularTypeface("Xenotron.ttf")
-	    .italicsTypeface("Carramba.ttf")
+	    .italicTypeface("Carramba.ttf")
         .boldTypeface("XPED.ttf")
         .done();
 
@@ -184,7 +184,7 @@ Limitations
 ===========
 
  Due to limitations of the Android API, once fonts are replaced by `Fonty`, former style information
- (like `bold`, `regular`) is reset, so all calls to i.e. `isBold()` or `isItalics()` will always
+ (like `bold`, `regular`) is reset, so all calls to i.e. `isBold()` or `isItalic()` will always
  return `false`. At the moment there's no workaround for this issue, yet it should not really
  affect many, however because this information is gone, and `Fonty` relies on it then calling
  `Fonty.setFonts()` twice on the same layout elements will end up with wrong results (mostly

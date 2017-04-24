@@ -27,7 +27,7 @@ public class Application extends android.app.Application {
 //			.fontDir("otherFolder")
 //			.typefaceFallback(false)
 			.regularTypeface("Exo-Regular.ttf")
-			.italicsTypeface("Aramis-Italic.ttf")
+			.italicTypeface("Aramis-Italic.ttf")
 			.boldTypeface("Capture_it.ttf")
 			.done();
 	}

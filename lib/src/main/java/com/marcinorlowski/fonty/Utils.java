@@ -27,7 +27,7 @@ public class Utils {
 	 * Selects substitution typeface based on old Typeface's style
 	 *
 	 * @param currentTypeface  current Typeface of widget
-	 * @param typefaceFallback if @true, will fall back to REGULAR if request BOLD or ITALICS is not configured
+	 * @param typefaceFallback if @true, will fall back to REGULAR if request BOLD or ITALIC is not configured
 	 * @param className        name of class we are substituting typface for
 	 * @param widgetId         Id of object (widget, menuItem etc)
 	 *
@@ -51,7 +51,7 @@ public class Utils {
 					}
 				}
 			} else if (currentTypeface.isItalic()) {
-				key = Fonty.TYPE_ITALICS;
+				key = Fonty.TYPE_ITALIC;
 				if (typefaceFallback) {
 					if (!cache.has(key)) {
 						Log.e(Fonty.LOG_TAG, String.format(mWidgetLogFmt, key, widgetId, className));

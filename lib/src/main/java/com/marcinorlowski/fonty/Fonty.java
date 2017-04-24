@@ -40,7 +40,7 @@ public class Fonty {
 
 	public static final String TYPE_REGULAR = "regular";
 	public static final String TYPE_BOLD = "bold";
-	public static final String TYPE_ITALICS = "italics";
+	public static final String TYPE_ITALIC = "italic";
 
 	/**
 	 * Font file folder **relative** to your "assets" folder
@@ -155,27 +155,27 @@ public class Fonty {
 	}
 
 	/**
-	 * Set typeface to be used for ITALICS
+	 * Set typeface to be used for ITALIC style
 	 *
 	 * @param fileNameId string resource id that holds TTF asset file name
 	 *
 	 * @return instance of Fonty object for easy chaining
 	 */
-	public Fonty italicsTypeface(int fileNameId) {
-		return add(TYPE_ITALICS, fileNameId);
+	public Fonty italicTypeface(int fileNameId) {
+		return add(TYPE_ITALIC, fileNameId);
 	}
 
 	// --------------------------------------------------------------------------------------------
 
 	/**
-	 * Set typeface to be used for ITALICS
+	 * Set typeface to be used for ITALIC style
 	 *
 	 * @param fileName string resource id that holds TTF asset file name
 	 *
 	 * @return instance of Fonty object for easy chaining
 	 */
-	public Fonty italicsTypeface(@NonNull String fileName) {
-		return add(TYPE_ITALICS, fileName);
+	public Fonty italicTypeface(@NonNull String fileName) {
+		return add(TYPE_ITALIC, fileName);
 	}
 
 	/**
@@ -309,12 +309,12 @@ public class Fonty {
 	protected static boolean fallback = false;
 
 	/**
-	 * Controls typeface fallback mechanism. When widget requires BOLD or ITALICS font and such
+	 * Controls typeface fallback mechanism. When widget requires BOLD or ITALIC font and such
 	 * typeface is not configured, then: when this option is set to @true RuntimeException
 	 * will be thrown due to missing typeface. If is set to @false, then error will be logged
 	 * and Fonty will fall back to REGULAR typeface.
 	 *
-	 * @param mode @true to enable strict mode (default), @false to
+	 * @param mode @true (default) to enable font substitution fallback, @false otherwise
 	 *
 	 * @return
 	 */
