@@ -182,7 +182,7 @@ Limitations
 ===========
 
  - You can only have `regular` and `bold` attributes supported (`italic` is not yet supported).
- - Once fonts are replaced, font style information (`bold`, `regular`) is gone.
+ - Once fonts are replaced, former style information (like `bold`, `regular`) is gone.
  - Due to the above, when you call `Fonty.setFonts()` twice on the same layout you will end up with wrong results
 
 
