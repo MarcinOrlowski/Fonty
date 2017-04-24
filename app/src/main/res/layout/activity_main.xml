@@ -28,7 +28,7 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:text="Deep Paulo Cohelo motto comes here..."
+            android:text="Moving Paulo Cohelo quote here&#8230;"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -53,9 +53,8 @@
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Floating hint"
-                android:text="EditText using regular font style"
-                android:textStyle="normal"/>
+                android:hint="This is our label"
+                android:text="Normal font style"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -68,8 +67,8 @@
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Hint typeface is inherited"
-                android:text="EditText using bold faced style"
+                android:hint="Enter something bold&#8230;"
+                android:text=""
                 android:textStyle="bold"/>
 
         </android.support.design.widget.TextInputLayout>

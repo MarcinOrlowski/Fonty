@@ -7,6 +7,7 @@ Changelog
    - Improved public methods argument validation
    - Added italics support (`italicsTypeface()`)
    - Added typeface fallback feature. See `typefaceFallback()`
+   - Fixed styling of `TextInputLayout`'s `EditText` widget
 
  * v1.2.0 (2017-04-23)
    - [#2] Added support for `TextInputLayout`

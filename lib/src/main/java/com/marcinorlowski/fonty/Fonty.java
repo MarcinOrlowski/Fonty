@@ -384,6 +384,8 @@ public class Fonty {
 					((TextInputLayout)view).setTypeface(
 							Utils.substituteTypeface(oldTf, fallback, view.getClass().getName(), view.getId())
 					);
+
+					et.setTypeface(Utils.substituteTypeface(oldTf, fallback, et.getClass().getName(), et.getId()));
 				}
 
 			} else if (ViewGroup.class.isInstance(view)) {
