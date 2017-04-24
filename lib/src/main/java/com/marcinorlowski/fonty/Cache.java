@@ -86,7 +86,7 @@ public class Cache {
 	 */
 	public Typeface get(@NonNull String alias) {
 		synchronized (mTypefaceCache) {
-			if (exists(alias)) {
+			if (has(alias)) {
 				return mTypefaceCache.get(alias);
 			} else {
 				throw new RuntimeException("Font alias '" + alias + "' matches no cache entry. add() font first.");
@@ -95,13 +95,13 @@ public class Cache {
 	}
 
 	/**
-	 * Checks if given alias exists in cache
+	 * Checks if given alias has in cache
 	 *
 	 * @param alias
 	 *
 	 * @return
 	 */
-	public boolean exists(@NonNull String alias) {
+	public boolean has(@NonNull String alias) {
 		return mTypefaceCache.containsKey(alias);
 	}
 

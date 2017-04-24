@@ -38,6 +38,7 @@ public class Fonty {
 
 	public static final String TYPE_REGULAR = "regular";
 	public static final String TYPE_BOLD = "bold";
+	public static final String TYPE_ITALICS = "italics";
 
 	/**
 	 * Font file folder **relative** to your "assets" folder
@@ -133,7 +134,7 @@ public class Fonty {
 	}
 
 	/**
-	 * Set typeface to be used for REGULAR
+	 * Set typeface to be used for REGULAR/NORMAL
 	 *
 	 * @param fileName the file name of TTF asset file name
 	 *
@@ -141,6 +142,28 @@ public class Fonty {
 	 */
 	public Fonty regularTypeface(@SuppressWarnings ("SameParameterValue") @NonNull String fileName) {
 		return add(TYPE_REGULAR, fileName);
+	}
+
+	/**
+	 * Set typeface to be used for ITALICS
+	 *
+	 * @param fileNameId string resource id that holds TTF asset file name
+	 *
+	 * @return instance of Fonty object for easy chaining
+	 */
+	public Fonty italicsTypeface(int fileNameId) {
+		return add(TYPE_ITALICS, fileNameId);
+	}
+
+	/**
+	 * Set typeface to be used for ITALICS
+	 *
+	 * @param fileName string resource id that holds TTF asset file name
+	 *
+	 * @return instance of Fonty object for easy chaining
+	 */
+	public Fonty italicsTypeface(@NonNull String fileName) {
+		return add(TYPE_ITALICS, fileName);
 	}
 
 	/**
@@ -263,6 +286,31 @@ public class Fonty {
 		}
 	}
 
+
+	/**
+	 * Selects substitution typeface based on old tf's style
+	 *
+	 * @param oldTf
+	 *
+	 * @return
+	 */
+	protected static Typeface substituteTypeface(@Nullable Typeface oldTf) {
+		Cache cache = Cache.getInstance();
+
+		String key = TYPE_REGULAR;
+
+		if (oldTf != null) {
+			if (oldTf.isBold()) {
+				key = cache.has(TYPE_BOLD) ? TYPE_BOLD : TYPE_REGULAR;
+			} else if (oldTf.isItalic()) {
+				key = cache.has(TYPE_ITALICS) ? TYPE_ITALICS : TYPE_REGULAR;
+			}
+		}
+
+		return cache.get(key);
+	}
+
+
 	/**
 	 * All the font setting work is done here
 	 *
@@ -270,36 +318,20 @@ public class Fonty {
 	 */
 	protected static void setFontsRaw(@NonNull ViewGroup viewGroup) {
 
-		Cache fc = Cache.getInstance();
-		Typeface tfregular = fc.get(TYPE_REGULAR);
-		Typeface tfbold = fc.get(TYPE_BOLD);
-		Typeface tf;
-
 		for (int i = 0; i < viewGroup.getChildCount(); i++) {
 			View view = viewGroup.getChildAt(i);
 
-			tf = tfregular;
-
 			if (EditText.class.isInstance(view)) {
 				Typeface oldTf = ((EditText)view).getTypeface();
-				if ((oldTf != null) && (oldTf.isBold())) {
-					tf = tfbold;
-				}
-				((EditText)view).setTypeface(tf);
+				((EditText)view).setTypeface(substituteTypeface(oldTf));
 
 			} else if (TextView.class.isInstance(view)) {
 				Typeface oldTf = ((TextView)view).getTypeface();
-				if ((oldTf != null) && (oldTf.isBold())) {
-					tf = tfbold;
-				}
-				((TextView)view).setTypeface(tf);
+				((TextView)view).setTypeface(substituteTypeface(oldTf));
 
 			} else if (Button.class.isInstance(view)) {
 				Typeface oldTf = ((Button)view).getTypeface();
-				if ((oldTf != null) && (oldTf.isBold())) {
-					tf = tfbold;
-				}
-				((Button)view).setTypeface(tf);
+				((Button)view).setTypeface(substituteTypeface(oldTf));
 
 			} else if (NavigationView.class.isInstance(view)) {
 				NavigationView nv = (NavigationView)view;
@@ -316,10 +348,7 @@ public class Fonty {
 				EditText et = ((TextInputLayout)view).getEditText();
 				if (et != null) {
 					Typeface oldTf = et.getTypeface();
-					if ((oldTf != null) && (oldTf.isBold())) {
-						tf = tfbold;
-					}
-					((TextInputLayout)view).setTypeface(tf);
+					((TextInputLayout)view).setTypeface(substituteTypeface(oldTf));
 				}
 
 			} else if (ViewGroup.class.isInstance(view)) {
