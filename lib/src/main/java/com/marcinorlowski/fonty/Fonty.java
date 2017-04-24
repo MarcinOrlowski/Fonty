@@ -49,7 +49,7 @@ public class Fonty {
 	protected Context mContext;
 
 	/**
-	 * Prevents instantiation with new operator. Use init() instead
+	 * Prevents instantiation with new operator. Use context() instead
 	 */
 	protected Fonty() {}
 
@@ -65,13 +65,13 @@ public class Fonty {
 	protected static Fonty _instance;
 
 	/**
-	 * Init font tools.
+	 * Init font tools context. Must be called as first thin in setup chain!
 	 *
 	 * @param context the context
 	 *
 	 * @return the font tools
 	 */
-	public static Fonty init(@NonNull Context context) {
+	public static Fonty context(@NonNull Context context) {
 		if (context != null) {
 			if (_instance == null) {
 				_instance = new Fonty(context);
@@ -149,7 +149,7 @@ public class Fonty {
 	}
 
 	/**
-	 * Add typeface to Fonty's cache
+	 * Add typeface to Fonty's cache. Throws RuntimeException if Fonty's context is not set up.
 	 *
 	 * @param alias        the typeface alias
 	 * @param fontFileName the file name of TTF asset. Can contain folder names too (i.e. "fnt/foo.ttf"). It will be
@@ -160,6 +160,10 @@ public class Fonty {
 	 * @return instance of Fonty object for easy chaining
 	 */
 	protected Fonty add(@NonNull String alias, @NonNull String fontFileName) {
+		if (mContext == null) {
+			throw new RuntimeException("You must call 'context()' first!");
+		}
+
 		if (fontFileName.substring(0, 1).equals("/")) {
 			// strip leading "/"
 			fontFileName = fontFileName.substring(1);
@@ -172,7 +176,7 @@ public class Fonty {
 	}
 
 	/**
-	 * Add typeface to cache
+	 * Add typeface to cache. Throws RuntimeException if Fonty's context is not set up.
 	 *
 	 * @param alias      the typeface alias
 	 * @param fileNameId string resource id that holds TTF asset file name
@@ -180,13 +184,17 @@ public class Fonty {
 	 * @return instance of Fonty object for easy chaining
 	 */
 	protected Fonty add(@NonNull String alias, @StringRes int fileNameId) {
+		if (mContext == null) {
+			throw new RuntimeException("You must call 'context()' first!");
+		}
+
 		Cache.getInstance()
 			 .add(mContext, alias, mContext.getResources().getString(fileNameId));
 		return this;
 	}
 
 	/**
-	 * Add typeface to cache
+	 * Add typeface to cache. Throws RuntimeException if Fonty's context is not set up.
 	 *
 	 * @param aliasId    the typeface alias string resource Id
 	 * @param fileNameId string resource id that holds TTF asset file name
@@ -194,6 +202,10 @@ public class Fonty {
 	 * @return instance of Fonty object for easy chaining
 	 */
 	protected Fonty add(@StringRes int aliasId, @StringRes int fileNameId) {
+		if (mContext == null) {
+			throw new RuntimeException("You must call 'context()' first!");
+		}
+
 		Cache.getInstance()
 			 .add(mContext, mContext.getResources().getString(aliasId), mContext.getResources().getString(fileNameId));
 		return this;

@@ -64,7 +64,8 @@ Usage in code
 
     Fonty.init(this)
 	    .regularTypeface("Xenotron.ttf")
-        .boldTypeface("XPED.ttf");
+        .boldTypeface("XPED.ttf")
+
 	}
 
  The above sets up `Xenotron.ttf` to be used whenever regular font should be rendered
@@ -73,7 +74,8 @@ Usage in code
  If you prefer to have font files stored elsewhere than in assets' `fonts/` subfolder use `fontDir()`
  in your builder chain:
 
-    Fonty.init(this)
+    Fonty
+        .context(this)
         .fontDir("my-fonts")
 	    .regularTypeface("Xenotron.ttf")
         .boldTypeface("XPED.ttf");

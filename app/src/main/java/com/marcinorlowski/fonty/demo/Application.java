@@ -22,9 +22,10 @@ public class Application extends android.app.Application {
 	public void onCreate() {
 		super.onCreate();
 
-		Fonty.init(this)
-			 .regularTypeface("Exo-Regular.ttf")
-			 .boldTypeface("Capture_it.ttf");
+		Fonty
+			.context(this)
+			.regularTypeface("Exo-Regular.ttf")
+			.boldTypeface("Capture_it.ttf");
 	}
 
 }
