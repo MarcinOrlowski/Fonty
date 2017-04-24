@@ -52,7 +52,7 @@ Installation
  For recent value of `<VERSION>` consult [library releases](https://github.com/MarcinOrlowski/fonty/releases)
  or jitpack badge: [![Release](https://jitpack.io/v/MarcinOrlowski/fonty.svg)](https://jitpack.io/#MarcinOrlowski/fonty)
 
-Usage in code
+Configuration
 =============
 
  Put your [TrueType](https://en.wikipedia.org/wiki/TrueType) font files into module's `asset/fonts`
@@ -65,6 +65,7 @@ Usage in code
     Fonty
         .context(this)
 	    .regularTypeface("Xenotron.ttf")
+	    .italicsTypeface("Carramba.ttf")
         .boldTypeface("XPED.ttf");
 
  The above sets up `Xenotron.ttf` to be used whenever regular font should be rendered
@@ -77,9 +78,18 @@ Usage in code
         .context(this)
         .fontDir("my-fonts")
 	    .regularTypeface("Xenotron.ttf")
+	    .italicsTypeface("Carramba.ttf")
         .boldTypeface("XPED.ttf");
 
  and put your font files into `<MODULE>/src/main/assets/my-fonts` folder.
+
+ **NOTE: ** You MUST call `fontDir()` **before** invoking `xxxTypeface()` in your setup chain,
+ otherwise `xxxTypeface()` with try to look for fonts in default location and most likely end
+ up throwing exception due to missing typeface file.
+
+
+Font substitution
+=================
 
  This sets up font substitution but we yet need to apply fonts to widgets.
 
@@ -181,9 +191,12 @@ Project support
 Limitations
 ===========
 
- - You can only have `regular` and `bold` attributes supported (`italic` is not yet supported).
- - Once fonts are replaced, former style information (like `bold`, `regular`) is gone.
- - Due to the above, when you call `Fonty.setFonts()` twice on the same layout you will end up with wrong results
+ Due to limitations of the Android API, once fonts are replaced by `Fonty`, former style information
+ (like `bold`, `regular`) is reset, so all calls to i.e. `isBold()` or `isItalics()` will always
+ return `false`. At the moment there's no workaround for this issue, yet it should not really
+ affect many, however because this information is gone, and `Fonty` relies on it then calling
+ `Fonty.setFonts()` twice on the same layout elements will end up with wrong results (mostly
+ all widgets will be using REGULAR typeface).
 
 
 Contributing
