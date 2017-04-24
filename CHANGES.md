@@ -2,11 +2,12 @@ Changelog
 =========
 
  * @dev
-   - `init()` is now `context()`
+   - Renamed `init()` method to `context()`
+   - Configuration chain now must end with `done()`.
    - Improved public methods argument validation
    - Added italics support (`italicsTypeface()`)
-   - Now falls back to regular typeface for widgets requesting BOLD or ITALICS when such is not configured.
-   - Configuration chain now must end with `done()`
+   - Added typeface fallback feature. See `typefaceFallback()`
+
 
  * v1.2.0 (2017-04-23)
    - [#2] Added support for `TextInputLayout`

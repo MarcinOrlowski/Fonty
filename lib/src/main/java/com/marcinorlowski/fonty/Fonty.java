@@ -36,6 +36,8 @@ import android.widget.TextView;
 
 public class Fonty {
 
+	public static final String LOG_TAG = "Fonty";
+
 	public static final String TYPE_REGULAR = "regular";
 	public static final String TYPE_BOLD = "bold";
 	public static final String TYPE_ITALICS = "italics";
@@ -304,37 +306,36 @@ public class Fonty {
 
 	// --------------------------------------------------------------------------------------------
 
+	protected static boolean mTypefaceFallback = false;
+
+	/**
+	 * Controls typeface fallback mechanism. When widget requires BOLD or ITALICS font and such
+	 * typeface is not configured, then: when this option is set to @true RuntimeException
+	 * will be thrown due to missing typeface. If is set to @false, then error will be logged
+	 * and Fonty will fall back to REGULAR typeface.
+	 *
+	 * @param mode @true to enable strict mode (default), @false to
+	 * @return
+	 */
+	public Fonty typefaceFallback(boolean mode) {
+		mTypefaceFallback = mode;
+
+		return _instance;
+	}
+
+
+	// --------------------------------------------------------------------------------------------
+
 	protected static boolean mConfigured = false;
 
+	/**
+	 * Concludes configuration phase. Must be called as last method of Fonty config call chain
+	 */
 	public void done() {
 		mConfigured = true;
 	}
 
 	// --------------------------------------------------------------------------------------------
-
-	/**
-	 * Selects substitution typeface based on old tf's style
-	 *
-	 * @param oldTf
-	 *
-	 * @return
-	 */
-	protected static Typeface substituteTypeface(@Nullable Typeface oldTf) {
-		Cache cache = Cache.getInstance();
-
-		String key = TYPE_REGULAR;
-
-		if (oldTf != null) {
-			if (oldTf.isBold()) {
-				key = cache.has(TYPE_BOLD) ? TYPE_BOLD : TYPE_REGULAR;
-			} else if (oldTf.isItalic()) {
-				key = cache.has(TYPE_ITALICS) ? TYPE_ITALICS : TYPE_REGULAR;
-			}
-		}
-
-		return cache.get(key);
-	}
-
 
 	/**
 	 * All the font setting work is done here
@@ -348,15 +349,15 @@ public class Fonty {
 
 			if (EditText.class.isInstance(view)) {
 				Typeface oldTf = ((EditText)view).getTypeface();
-				((EditText)view).setTypeface(substituteTypeface(oldTf));
+				((EditText)view).setTypeface(Utils.substituteTypeface(oldTf, view.getId(), mTypefaceFallback));
 
 			} else if (TextView.class.isInstance(view)) {
 				Typeface oldTf = ((TextView)view).getTypeface();
-				((TextView)view).setTypeface(substituteTypeface(oldTf));
+				((TextView)view).setTypeface(Utils.substituteTypeface(oldTf, view.getId(), mTypefaceFallback));
 
 			} else if (Button.class.isInstance(view)) {
 				Typeface oldTf = ((Button)view).getTypeface();
-				((Button)view).setTypeface(substituteTypeface(oldTf));
+				((Button)view).setTypeface(Utils.substituteTypeface(oldTf, view.getId(), mTypefaceFallback));
 
 			} else if (NavigationView.class.isInstance(view)) {
 				NavigationView nv = (NavigationView)view;
@@ -373,7 +374,7 @@ public class Fonty {
 				EditText et = ((TextInputLayout)view).getEditText();
 				if (et != null) {
 					Typeface oldTf = et.getTypeface();
-					((TextInputLayout)view).setTypeface(substituteTypeface(oldTf));
+					((TextInputLayout)view).setTypeface(Utils.substituteTypeface(oldTf, view.getId(), mTypefaceFallback));
 				}
 
 			} else if (ViewGroup.class.isInstance(view)) {
