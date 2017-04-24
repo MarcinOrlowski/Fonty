@@ -71,7 +71,7 @@ Configuration
 
  The above sets up `Xenotron.ttf` to be used whenever regular font should be rendered
  and `XPED.ttf` to be used if your UI elements sets `android:textStyle="bold"` attribute and
- `Carramba.ttf` for ndroid:textStyle="italics"`.
+ `Carramba.ttf` for `android:textStyle="italics"`.
 
  If you prefer to have font files stored elsewhere than in assets' `fonts/` subfolder use `fontDir()`
  in your builder chain:
@@ -175,19 +175,9 @@ TextInputLayout
 ===============
 
  If you use `TextInputLayout` and its error message feature (text shown below the `EditText` widget),
- then you must set `app:errorEnabled="true"` in the XML file if you want error text typeface to be
- changed by `Fonty`. This is because of `TextInputLayout` internals.
-
-
-Project support
-===============
-
- `Fonty` is free software and you can use it fully free of charge in any of your projects, open source or
- commercial, however if you feel it prevent you from reinventing the wheel, helped having your projects
- done or simply saved you time and money  then then feel free to donate to the project by sending some
- spare BTC to `1LbfbmZ1KfSNNTGAEHtP63h7FPDEPTa3Yo`.
-
- ![BTC](img/btc.png)
+ and you want error text typeface to be changed by `Fonty` as well, then you must either set
+ `app:errorEnabled="true"` in the XML layout or call `setErrorEnabled(true)` on the object
+ **prior** calling `Fonty.setFonts()`. This is because of how `TextInputLayout` works internally.
 
 
 Limitations
@@ -199,6 +189,17 @@ Limitations
  affect many, however because this information is gone, and `Fonty` relies on it then calling
  `Fonty.setFonts()` twice on the same layout elements will end up with wrong results (mostly
  all widgets will be using REGULAR typeface).
+
+
+Project support
+===============
+
+ `Fonty` is free software and you can use it fully free of charge in any of your projects, open source or
+ commercial, however if you feel it prevent you from reinventing the wheel, helped having your projects
+ done or simply saved you time and money  then then feel free to donate to the project by sending some
+ spare BTC to `1LbfbmZ1KfSNNTGAEHtP63h7FPDEPTa3Yo`.
+
+ ![BTC](img/btc.png)
 
 
 Contributing
