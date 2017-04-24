@@ -66,10 +66,12 @@ Configuration
         .context(this)
 	    .regularTypeface("Xenotron.ttf")
 	    .italicsTypeface("Carramba.ttf")
-        .boldTypeface("XPED.ttf");
+        .boldTypeface("XPED.ttf")
+        .done();
 
  The above sets up `Xenotron.ttf` to be used whenever regular font should be rendered
- and `XPED.ttf` to be used if your UI elements sets `android:textStyle="bold"` attribute.
+ and `XPED.ttf` to be used if your UI elements sets `android:textStyle="bold"` attribute and
+ `Carramba.ttf` for ndroid:textStyle="italics"`.
 
  If you prefer to have font files stored elsewhere than in assets' `fonts/` subfolder use `fontDir()`
  in your builder chain:
@@ -79,14 +81,14 @@ Configuration
         .fontDir("my-fonts")
 	    .regularTypeface("Xenotron.ttf")
 	    .italicsTypeface("Carramba.ttf")
-        .boldTypeface("XPED.ttf");
+        .boldTypeface("XPED.ttf")
+        .done();
 
  and put your font files into `<MODULE>/src/main/assets/my-fonts` folder.
 
  **NOTE: ** You MUST call `fontDir()` **before** invoking `xxxTypeface()` in your setup chain,
  otherwise `xxxTypeface()` with try to look for fonts in default location and most likely end
  up throwing exception due to missing typeface file.
-
 
 Font substitution
 =================

@@ -292,10 +292,22 @@ public class Fonty {
 	 * @param viewGroup the view group
 	 */
 	public static void setFonts(@Nullable ViewGroup viewGroup) {
-		if ((viewGroup != null)
-				&& (viewGroup.getContext().getResources().getDisplayMetrics().densityDpi >= DisplayMetrics.DENSITY_MEDIUM)) {
-			setFontsRaw(viewGroup);
+		if (mConfigured) {
+			if ((viewGroup != null)
+					&& (viewGroup.getContext().getResources().getDisplayMetrics().densityDpi >= DisplayMetrics.DENSITY_MEDIUM)) {
+				setFontsRaw(viewGroup);
+			}
+		} else {
+			throw new RuntimeException("You must conclude your configuration chain with done()");
 		}
+	}
+
+	// --------------------------------------------------------------------------------------------
+
+	protected static boolean mConfigured = false;
+
+	public void done() {
+		mConfigured = true;
 	}
 
 	// --------------------------------------------------------------------------------------------

@@ -6,6 +6,7 @@ Changelog
    - Improved public methods argument validation
    - Added italics support
    - Now falls back to regular typeface for widgets requesting BOLD or ITALICS when such is not configured.
+   - Configuration chain now must end with `done()`
 
  * v1.2.0 (2017-04-23)
    - [#2] Added support for `TextInputLayout`
