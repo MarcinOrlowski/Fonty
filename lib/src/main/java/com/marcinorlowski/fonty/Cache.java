@@ -3,7 +3,7 @@ package com.marcinorlowski.fonty;
 /*
  ******************************************************************************
  *
- * Copyright 2013-2017 Marcin Orłowski
+ * Copyright 2013-2017 Marcin Orlowski
  *
  * Licensed under the Apache License 2.0
  *
@@ -46,12 +46,23 @@ public class Cache {
 		return _instance;
 	}
 
+
+	public Cache add(String alias, Typeface typeface) {
+		if (mTypefaceCache.containsKey(alias)) {
+			throw new RuntimeException("Typeface '" + alias + "' already in cache");
+		}
+
+		mTypefaceCache.put(alias, typeface);
+
+		return this;
+	}
+
 	/**
 	 * Add typeface to font cache.
 	 *
-	 * @param context  application context
-	 * @param alias    typeface alias
-	 * @param fileName path to font asset
+	 * @param context       application context
+	 * @param alias         typeface alias
+	 * @param fileName      path to font asset
 	 *
 	 * @return the cache
 	 */
@@ -75,12 +86,23 @@ public class Cache {
 	 */
 	public Typeface get(@NonNull String alias) {
 		synchronized (mTypefaceCache) {
-			if (mTypefaceCache.containsKey(alias)) {
+			if (has(alias)) {
 				return mTypefaceCache.get(alias);
 			} else {
 				throw new RuntimeException("Font alias '" + alias + "' matches no cache entry. add() font first.");
 			}
 		}
+	}
+
+	/**
+	 * Checks if given alias has in cache
+	 *
+	 * @param alias
+	 *
+	 * @return
+	 */
+	public boolean has(@NonNull String alias) {
+		return mTypefaceCache.containsKey(alias);
 	}
 
 }

@@ -3,7 +3,7 @@ package com.marcinorlowski.fonty;
 /*
  ******************************************************************************
  *
- * Copyright 2013-2017 Marcin Orłowski
+ * Copyright 2013-2017 Marcin Orlowski
  *
  * Licensed under the Apache License 2.0
  *
@@ -16,6 +16,7 @@ package com.marcinorlowski.fonty;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -35,8 +36,11 @@ import android.widget.TextView;
 
 public class Fonty {
 
+	public static final String LOG_TAG = "Fonty";
+
 	public static final String TYPE_REGULAR = "regular";
 	public static final String TYPE_BOLD = "bold";
+	public static final String TYPE_ITALIC = "italic";
 
 	/**
 	 * Font file folder **relative** to your "assets" folder
@@ -49,7 +53,7 @@ public class Fonty {
 	protected Context mContext;
 
 	/**
-	 * Prevents instantiation with new operator. Use init() instead
+	 * Prevents instantiation with new operator. Use context() instead
 	 */
 	protected Fonty() {}
 
@@ -64,25 +68,34 @@ public class Fonty {
 
 	protected static Fonty _instance;
 
+	// --------------------------------------------------------------------------------------------
+
 	/**
-	 * Init font tools.
+	 * Init font tools context. Must be called as first thin in setup chain! Throws
+	 * RuntimeException is context is `null` and IllegalArgumentException if passed
+	 * object is not a Context subclass.
 	 *
-	 * @param context the context
+	 * @param context the context to use with Fonty. Preferably application context.
 	 *
-	 * @return the font tools
+	 * @return instance of Fonty object for easy chaining
 	 */
-	public static Fonty init(@NonNull Context context) {
+	public static Fonty context(@NonNull Context context) {
 		if (context != null) {
+			if (!Context.class.isInstance(context)) {
+				throw new IllegalArgumentException("Invalid context object passed");
+			}
+
 			if (_instance == null) {
 				_instance = new Fonty(context);
 			}
 		} else {
-			throw new NullPointerException("Context cannot be null");
+			throw new RuntimeException("Context cannot be null");
 		}
 
 		return _instance;
 	}
 
+	// --------------------------------------------------------------------------------------------
 
 	/**
 	 * Sets font path (relative to your "assets" folder) to be used to find the font files.
@@ -103,6 +116,8 @@ public class Fonty {
 
 		return this;
 	}
+
+	// --------------------------------------------------------------------------------------------
 
 	/**
 	 * Set typeface to be used for BOLD
@@ -126,8 +141,10 @@ public class Fonty {
 		return add(TYPE_BOLD, fileNameId);
 	}
 
+	// --------------------------------------------------------------------------------------------
+
 	/**
-	 * Set typeface to be used for REGULAR
+	 * Set typeface to be used for REGULAR/NORMAL
 	 *
 	 * @param fileName the file name of TTF asset file name
 	 *
@@ -135,6 +152,30 @@ public class Fonty {
 	 */
 	public Fonty regularTypeface(@SuppressWarnings ("SameParameterValue") @NonNull String fileName) {
 		return add(TYPE_REGULAR, fileName);
+	}
+
+	/**
+	 * Set typeface to be used for ITALIC style
+	 *
+	 * @param fileNameId string resource id that holds TTF asset file name
+	 *
+	 * @return instance of Fonty object for easy chaining
+	 */
+	public Fonty italicTypeface(int fileNameId) {
+		return add(TYPE_ITALIC, fileNameId);
+	}
+
+	// --------------------------------------------------------------------------------------------
+
+	/**
+	 * Set typeface to be used for ITALIC style
+	 *
+	 * @param fileName string resource id that holds TTF asset file name
+	 *
+	 * @return instance of Fonty object for easy chaining
+	 */
+	public Fonty italicTypeface(@NonNull String fileName) {
+		return add(TYPE_ITALIC, fileName);
 	}
 
 	/**
@@ -148,8 +189,43 @@ public class Fonty {
 		return add(TYPE_REGULAR, fileNameId);
 	}
 
+	// --------------------------------------------------------------------------------------------
+
 	/**
-	 * Add typeface to Fonty's cache
+	 * Add typeface to cache. Throws RuntimeException if Fonty's context is not set up.
+	 *
+	 * @param alias      the typeface alias
+	 * @param fileNameId string resource id that holds TTF asset file name
+	 *
+	 * @return instance of Fonty object for easy chaining
+	 */
+	protected Fonty add(@NonNull String alias, @StringRes int fileNameId) {
+		if (mContext == null) {
+			throw new RuntimeException("You must call 'context()' first");
+		}
+
+		return add(alias, mContext.getResources().getString(fileNameId));
+	}
+
+	/**
+	 * Add typeface to cache. Throws RuntimeException if Fonty's context is not set up.
+	 *
+	 * @param aliasId    the typeface alias string resource Id
+	 * @param fileNameId string resource id that holds TTF asset file name
+	 *
+	 * @return instance of Fonty object for easy chaining
+	 */
+	protected Fonty add(@StringRes int aliasId, @StringRes int fileNameId) {
+		if (mContext == null) {
+			throw new RuntimeException("You must call 'context()' first");
+		}
+
+		Resources res = mContext.getResources();
+		return add(res.getString(aliasId), res.getString(fileNameId));
+	}
+
+	/**
+	 * Add typeface to Fonty's cache. Throws RuntimeException if Fonty's context is not set up,
 	 *
 	 * @param alias        the typeface alias
 	 * @param fontFileName the file name of TTF asset. Can contain folder names too (i.e. "fnt/foo.ttf"). It will be
@@ -160,6 +236,22 @@ public class Fonty {
 	 * @return instance of Fonty object for easy chaining
 	 */
 	protected Fonty add(@NonNull String alias, @NonNull String fontFileName) {
+		if (mContext == null) {
+			throw new RuntimeException("You must call 'context()' first");
+		}
+
+		if (alias == null) {
+			throw new RuntimeException("Typeface alias cannot be null");
+		} else if (alias.length() == 0) {
+			throw new RuntimeException("Typeface alias cannot be empty string");
+		}
+
+		if (fontFileName == null) {
+			throw new RuntimeException("Typeface filename cannot be null");
+		} else if (fontFileName.length() == 0) {
+			throw new RuntimeException("Typeface filename cannot be empty string");
+		}
+
 		if (fontFileName.substring(0, 1).equals("/")) {
 			// strip leading "/"
 			fontFileName = fontFileName.substring(1);
@@ -168,36 +260,11 @@ public class Fonty {
 		}
 
 		Cache.getInstance().add(mContext, alias, fontFileName);
+
 		return this;
 	}
 
-	/**
-	 * Add typeface to cache
-	 *
-	 * @param alias      the typeface alias
-	 * @param fileNameId string resource id that holds TTF asset file name
-	 *
-	 * @return instance of Fonty object for easy chaining
-	 */
-	protected Fonty add(@NonNull String alias, @StringRes int fileNameId) {
-		Cache.getInstance()
-			 .add(mContext, alias, mContext.getResources().getString(fileNameId));
-		return this;
-	}
-
-	/**
-	 * Add typeface to cache
-	 *
-	 * @param aliasId    the typeface alias string resource Id
-	 * @param fileNameId string resource id that holds TTF asset file name
-	 *
-	 * @return instance of Fonty object for easy chaining
-	 */
-	protected Fonty add(@StringRes int aliasId, @StringRes int fileNameId) {
-		Cache.getInstance()
-			 .add(mContext, mContext.getResources().getString(aliasId), mContext.getResources().getString(fileNameId));
-		return this;
-	}
+	// --------------------------------------------------------------------------------------------
 
 	/**
 	 * Get typeface.
@@ -209,6 +276,8 @@ public class Fonty {
 	public static Typeface get(@NonNull String alias) {
 		return Cache.getInstance().get(alias);
 	}
+
+	// --------------------------------------------------------------------------------------------
 
 	/**
 	 * Sets custom fonts.
@@ -225,11 +294,49 @@ public class Fonty {
 	 * @param viewGroup the view group
 	 */
 	public static void setFonts(@Nullable ViewGroup viewGroup) {
-		if ((viewGroup != null)
-				&& (viewGroup.getContext().getResources().getDisplayMetrics().densityDpi >= DisplayMetrics.DENSITY_MEDIUM)) {
-			setFontsRaw(viewGroup);
+		if (mConfigured) {
+			if ((viewGroup != null)
+					&& (viewGroup.getContext().getResources().getDisplayMetrics().densityDpi >= DisplayMetrics.DENSITY_MEDIUM)) {
+				setFontsRaw(viewGroup);
+			}
+		} else {
+			throw new RuntimeException("You must conclude your configuration chain with done()");
 		}
 	}
+
+	// --------------------------------------------------------------------------------------------
+
+	protected static boolean fallback = false;
+
+	/**
+	 * Controls typeface fallback mechanism. When widget requires BOLD or ITALIC font and such
+	 * typeface is not configured, then: when this option is set to @true RuntimeException
+	 * will be thrown due to missing typeface. If is set to @false, then error will be logged
+	 * and Fonty will fall back to REGULAR typeface.
+	 *
+	 * @param mode @true (default) to enable font substitution fallback, @false otherwise
+	 *
+	 * @return
+	 */
+	public Fonty typefaceFallback(boolean mode) {
+		fallback = mode;
+
+		return _instance;
+	}
+
+
+	// --------------------------------------------------------------------------------------------
+
+	protected static boolean mConfigured = false;
+
+	/**
+	 * Concludes configuration phase. Must be called as last method of Fonty config call chain
+	 */
+	public void done() {
+		mConfigured = true;
+	}
+
+	// --------------------------------------------------------------------------------------------
 
 	/**
 	 * All the font setting work is done here
@@ -238,36 +345,26 @@ public class Fonty {
 	 */
 	protected static void setFontsRaw(@NonNull ViewGroup viewGroup) {
 
-		Cache fc = Cache.getInstance();
-		Typeface tfregular = fc.get(TYPE_REGULAR);
-		Typeface tfbold = fc.get(TYPE_BOLD);
-		Typeface tf;
-
 		for (int i = 0; i < viewGroup.getChildCount(); i++) {
 			View view = viewGroup.getChildAt(i);
 
-			tf = tfregular;
-
 			if (EditText.class.isInstance(view)) {
 				Typeface oldTf = ((EditText)view).getTypeface();
-				if ((oldTf != null) && (oldTf.isBold())) {
-					tf = tfbold;
-				}
-				((EditText)view).setTypeface(tf);
+				((EditText)view).setTypeface(
+						Utils.substituteTypeface(oldTf, fallback, view.getClass().getName(), view.getId())
+				);
 
 			} else if (TextView.class.isInstance(view)) {
 				Typeface oldTf = ((TextView)view).getTypeface();
-				if ((oldTf != null) && (oldTf.isBold())) {
-					tf = tfbold;
-				}
-				((TextView)view).setTypeface(tf);
+				((TextView)view).setTypeface(
+						Utils.substituteTypeface(oldTf, fallback, view.getClass().getName(), view.getId())
+				);
 
 			} else if (Button.class.isInstance(view)) {
 				Typeface oldTf = ((Button)view).getTypeface();
-				if ((oldTf != null) && (oldTf.isBold())) {
-					tf = tfbold;
-				}
-				((Button)view).setTypeface(tf);
+				((Button)view).setTypeface(
+						Utils.substituteTypeface(oldTf, fallback, view.getClass().getName(), view.getId())
+				);
 
 			} else if (NavigationView.class.isInstance(view)) {
 				NavigationView nv = (NavigationView)view;
@@ -284,10 +381,11 @@ public class Fonty {
 				EditText et = ((TextInputLayout)view).getEditText();
 				if (et != null) {
 					Typeface oldTf = et.getTypeface();
-					if ((oldTf != null) && (oldTf.isBold())) {
-						tf = tfbold;
-					}
-					((TextInputLayout)view).setTypeface(tf);
+					((TextInputLayout)view).setTypeface(
+							Utils.substituteTypeface(oldTf, fallback, view.getClass().getName(), view.getId())
+					);
+
+					et.setTypeface(Utils.substituteTypeface(oldTf, fallback, et.getClass().getName(), et.getId()));
 				}
 
 			} else if (ViewGroup.class.isInstance(view)) {
@@ -307,8 +405,10 @@ public class Fonty {
 			MenuItem menuItem = menu.getItem(menuIndex);
 			if ((menuItem != null) && (menuItem.getTitle() != null)) {
 				SpannableString spannableString = new SpannableString(menuItem.getTitle());
-				spannableString.setSpan(new TypefaceSpan(Cache.getInstance()),
-						0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+				spannableString.setSpan(
+						new TypefaceSpan(fallback, menuItem.getClass().getName(), menuItem.getItemId()),
+						0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+				);
 
 				menuItem.setTitle(spannableString);
 

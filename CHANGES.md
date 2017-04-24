@@ -1,6 +1,15 @@
 Changelog
 =========
 
+ * v2.0.0 (2017-04-24)
+   - Renamed `init()` method to `context()`
+   - Configuration chain now must end with `done()`
+   - Improved public methods argument validation
+   - [#1] Added italic support (`italicTypeface()`)
+   - Added typeface fallback feature. See `typefaceFallback()`
+   - Fixed styling of `TextInputLayout`'s `EditText` widget
+   - Added `NavigationDrawer` and `Toolbar` to demo app
+
  * v1.2.0 (2017-04-23)
    - [#2] Added support for `TextInputLayout`
 

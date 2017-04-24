@@ -3,7 +3,7 @@ package com.marcinorlowski.fonty.demo;
 /*
  ******************************************************************************
  *
- * Copyright 2013-2017 Marcin Orłowski
+ * Copyright 2013-2017 Marcin Orlowski
  *
  * Licensed under the Apache License 2.0
  *
@@ -20,7 +20,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
@@ -28,10 +32,40 @@ import com.marcinorlowski.fonty.Fonty;
 
 public class MainActivity extends AppCompatActivity {
 
+	ActionBarDrawerToggle mDrawerToggle;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+		toolbar.setTitle("Fonty by Marcin Orlowski");
+		toolbar.setSubtitle("Easily change fonts of your app!");
+		setSupportActionBar(toolbar);
+
+		final ActionBar actionBar = getSupportActionBar();
+
+		if (actionBar != null) {
+			DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+
+			actionBar.setDisplayHomeAsUpEnabled(true);
+			mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.toggle_opend, R.string.toggle_closed) {
+				public void onDrawerClosed(View view) {
+					supportInvalidateOptionsMenu();
+				}
+
+				public void onDrawerOpened(View drawerView) {
+					supportInvalidateOptionsMenu();
+				}
+			};
+			mDrawerToggle.setDrawerIndicatorEnabled(true);
+
+			drawerLayout.setDrawerListener(mDrawerToggle);
+
+			mDrawerToggle.syncState();
+		}
+
 
 		// apply our font replacement
 		Fonty.setFonts(this);
@@ -58,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 					}
 
 					mHandler.removeCallbacks(mRunnable);
-					mHandler.postDelayed(mRunnable, 3 * 1000);
+					mHandler.postDelayed(mRunnable, 6 * 1000);
 					break;
 
 				case R.id.github:

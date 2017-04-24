@@ -29,8 +29,8 @@ Features
    * TextView
    * EditText
    * Button
- - Handles navigation menu items too
- - Can be used in libraries as well
+ - Handles navigation menu items
+ - Can be used in libraries
 
 
 Installation
@@ -49,37 +49,49 @@ Installation
 
     compile 'com.github.MarcinOrlowski:fonty:<VERSION>'
 
- For recent value of `<VERSION>` consult [library releases](https://github.com/MarcinOrlowski/fonty/releases)
- or jitpack badge: [![Release](https://jitpack.io/v/MarcinOrlowski/fonty.svg)](https://jitpack.io/#MarcinOrlowski/fonty)
+ For right value of `<VERSION>` consult [release section](https://github.com/MarcinOrlowski/fonty/releases)
+ or see [jitpack page](https://jitpack.io/#MarcinOrlowski/fonty).
 
-Usage in code
+Configuration
 =============
 
- Put your `TTF` font files into module's `asset/fonts` folder (`<MODULE>/src/main/assets/fonts`
- folder, where `<MODULE>` usually equals `app`).
+ Put your [TrueType](https://en.wikipedia.org/wiki/TrueType) font files into module's `asset/fonts`
+ folder (`<MODULE>/src/main/assets/fonts` folder, where `<MODULE>` usually equals `app`).
 
  Then add the following lines to your custom Application's class' `onCreate()`
  method (if you do not use own `Application` subclass, see demo app for how
  to make one and how it should be referenced form your `AndroidManifest.xml` file):
 
-    Fonty.init(this)
+    Fonty
+        .context(this)
 	    .regularTypeface("Xenotron.ttf")
-        .boldTypeface("XPED.ttf");
-	}
+	    .italicTypeface("Carramba.ttf")
+        .boldTypeface("XPED.ttf")
+        .done();
 
  The above sets up `Xenotron.ttf` to be used whenever regular font should be rendered
- and `XPED.ttf` to be used if your UI elements sets `android:textStyle="bold"` attribute.
+ and `XPED.ttf` to be used if your UI elements sets `android:textStyle="bold"` attribute and
+ `Carramba.ttf` for `android:textStyle="italic"`.
 
  If you prefer to have font files stored elsewhere than in assets' `fonts/` subfolder use `fontDir()`
  in your builder chain:
 
-    Fonty.init(this)
+    Fonty
+        .context(this)
         .fontDir("my-fonts")
 	    .regularTypeface("Xenotron.ttf")
-        .boldTypeface("XPED.ttf");
-	}
+	    .italicTypeface("Carramba.ttf")
+        .boldTypeface("XPED.ttf")
+        .done();
 
  and put your font files into `<MODULE>/src/main/assets/my-fonts` folder.
+
+ **NOTE: ** You MUST call `fontDir()` **before** invoking `xxxTypeface()` in your setup chain,
+ otherwise `xxxTypeface()` with try to look for fonts in default location and most likely end
+ up throwing exception due to missing typeface file.
+
+Font substitution
+=================
 
  This sets up font substitution but we yet need to apply fonts to widgets.
 
@@ -163,8 +175,20 @@ TextInputLayout
 ===============
 
  If you use `TextInputLayout` and its error message feature (text shown below the `EditText` widget),
- then you must set `app:errorEnabled="true"` in the XML file if you want error text typeface to be
- changed by `Fonty`. This is because of `TextInputLayout` internals.
+ and you want error text typeface to be changed by `Fonty` as well, then you must either set
+ `app:errorEnabled="true"` in the XML layout or call `setErrorEnabled(true)` on the object
+ **prior** calling `Fonty.setFonts()`. This is because of how `TextInputLayout` works internally.
+
+
+Limitations
+===========
+
+ Due to limitations of the Android API, once fonts are replaced by `Fonty`, former style information
+ (like `bold`, `regular`) is reset, so all calls to i.e. `isBold()` or `isItalic()` will always
+ return `false`. At the moment there's no workaround for this issue, yet it should not really
+ affect many, however because this information is gone, and `Fonty` relies on it then calling
+ `Fonty.setFonts()` twice on the same layout elements will end up with wrong results (mostly
+ all widgets will be using REGULAR typeface).
 
 
 Project support
@@ -176,14 +200,6 @@ Project support
  spare BTC to `1LbfbmZ1KfSNNTGAEHtP63h7FPDEPTa3Yo`.
 
  ![BTC](img/btc.png)
-
-
-Limitations
-===========
-
- - You can only have `regular` and `bold` attributes supported (`italic` is not yet supported).
- - Once fonts are replaced, font style information (`bold`, `regular`) is gone.
- - Due to the above, when you call `Fonty.setFonts()` twice on the same layout you will end up with wrong results
 
 
 Contributing
