@@ -29,7 +29,8 @@ Features
    * TextView
    * EditText
    * Button
- - Handles navigation menu items
+   * Toolbar
+   * Navigation Drawer
  - Can be used in libraries
 
 
