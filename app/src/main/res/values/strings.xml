@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Fonty Demo</string>
+
+    <string name="toggle_opend">Opened</string>
+    <string name="toggle_closed">Closeed</string>
 </resources>

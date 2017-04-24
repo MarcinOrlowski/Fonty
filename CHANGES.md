@@ -8,6 +8,7 @@ Changelog
    - Added italic support (`italicTypeface()`)
    - Added typeface fallback feature. See `typefaceFallback()`
    - Fixed styling of `TextInputLayout`'s `EditText` widget
+   - Added `NavigationDrawer` and `Toolbar` to demo app
 
  * v1.2.0 (2017-04-23)
    - [#2] Added support for `TextInputLayout`
