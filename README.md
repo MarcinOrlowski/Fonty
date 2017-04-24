@@ -49,8 +49,8 @@ Installation
 
     compile 'com.github.MarcinOrlowski:fonty:<VERSION>'
 
- For recent value of `<VERSION>` consult [library releases](https://github.com/MarcinOrlowski/fonty/releases)
- or jitpack badge: [![Release](https://jitpack.io/v/MarcinOrlowski/fonty.svg)](https://jitpack.io/#MarcinOrlowski/fonty)
+ For right value of `<VERSION>` consult [release section](https://github.com/MarcinOrlowski/fonty/releases)
+ or see [jitpack page](https://jitpack.io/#MarcinOrlowski/fonty).
 
 Configuration
 =============
