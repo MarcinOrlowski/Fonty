@@ -3,6 +3,7 @@ Changelog
 
  * @dev
    - `init()` is now `context()`
+   - Improved public methods argument validation
 
  * v1.2.0 (2017-04-23)
    - [#2] Added support for `TextInputLayout`

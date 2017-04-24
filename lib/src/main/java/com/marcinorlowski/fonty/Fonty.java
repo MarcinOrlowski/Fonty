@@ -16,6 +16,7 @@ package com.marcinorlowski.fonty;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -65,24 +66,29 @@ public class Fonty {
 	protected static Fonty _instance;
 
 	/**
-	 * Init font tools context. Must be called as first thin in setup chain!
+	 * Init font tools context. Must be called as first thin in setup chain! Throws
+	 * RuntimeException is context is `null` and IllegalArgumentException if passed
+	 * object is not a Context subclass.
 	 *
-	 * @param context the context
+	 * @param context the context to use with Fonty. Preferably application context.
 	 *
-	 * @return the font tools
+	 * @return instance of Fonty object for easy chaining
 	 */
 	public static Fonty context(@NonNull Context context) {
 		if (context != null) {
+			if ( !Context.class.isInstance(context) ) {
+				throw new IllegalArgumentException("Invalid context object passed");
+			}
+
 			if (_instance == null) {
 				_instance = new Fonty(context);
 			}
 		} else {
-			throw new NullPointerException("Context cannot be null");
+			throw new RuntimeException("Context cannot be null");
 		}
 
 		return _instance;
 	}
-
 
 	/**
 	 * Sets font path (relative to your "assets" folder) to be used to find the font files.
@@ -149,33 +155,6 @@ public class Fonty {
 	}
 
 	/**
-	 * Add typeface to Fonty's cache. Throws RuntimeException if Fonty's context is not set up.
-	 *
-	 * @param alias        the typeface alias
-	 * @param fontFileName the file name of TTF asset. Can contain folder names too (i.e. "fnt/foo.ttf"). It will be
-	 *                     automatically "glued" with font folder name (see @fontDir()). If you do not want this to happen
-	 *                     add "/" to fontFileName, i.e. "/foo.ttf" or "/foo/other-folder/foo.ttf". In such case
-	 *                     fontDir is not used.
-	 *
-	 * @return instance of Fonty object for easy chaining
-	 */
-	protected Fonty add(@NonNull String alias, @NonNull String fontFileName) {
-		if (mContext == null) {
-			throw new RuntimeException("You must call 'context()' first!");
-		}
-
-		if (fontFileName.substring(0, 1).equals("/")) {
-			// strip leading "/"
-			fontFileName = fontFileName.substring(1);
-		} else {
-			fontFileName = mFontFolderName + fontFileName;
-		}
-
-		Cache.getInstance().add(mContext, alias, fontFileName);
-		return this;
-	}
-
-	/**
 	 * Add typeface to cache. Throws RuntimeException if Fonty's context is not set up.
 	 *
 	 * @param alias      the typeface alias
@@ -185,12 +164,10 @@ public class Fonty {
 	 */
 	protected Fonty add(@NonNull String alias, @StringRes int fileNameId) {
 		if (mContext == null) {
-			throw new RuntimeException("You must call 'context()' first!");
+			throw new RuntimeException("You must call 'context()' first");
 		}
 
-		Cache.getInstance()
-			 .add(mContext, alias, mContext.getResources().getString(fileNameId));
-		return this;
+		return add(alias, mContext.getResources().getString(fileNameId));
 	}
 
 	/**
@@ -203,13 +180,54 @@ public class Fonty {
 	 */
 	protected Fonty add(@StringRes int aliasId, @StringRes int fileNameId) {
 		if (mContext == null) {
-			throw new RuntimeException("You must call 'context()' first!");
+			throw new RuntimeException("You must call 'context()' first");
 		}
 
-		Cache.getInstance()
-			 .add(mContext, mContext.getResources().getString(aliasId), mContext.getResources().getString(fileNameId));
+		Resources res = mContext.getResources();
+		return add(res.getString(aliasId), res.getString(fileNameId));
+	}
+
+
+	/**
+	 * Add typeface to Fonty's cache. Throws RuntimeException if Fonty's context is not set up,
+	 *
+	 * @param alias        the typeface alias
+	 * @param fontFileName the file name of TTF asset. Can contain folder names too (i.e. "fnt/foo.ttf"). It will be
+	 *                     automatically "glued" with font folder name (see @fontDir()). If you do not want this to happen
+	 *                     add "/" to fontFileName, i.e. "/foo.ttf" or "/foo/other-folder/foo.ttf". In such case
+	 *                     fontDir is not used.
+	 *
+	 * @return instance of Fonty object for easy chaining
+	 */
+	protected Fonty add(@NonNull String alias, @NonNull String fontFileName) {
+		if (mContext == null) {
+			throw new RuntimeException("You must call 'context()' first");
+		}
+
+		if (alias == null) {
+			throw new RuntimeException("Typeface alias cannot be null");
+		} else if (alias.length() == 0) {
+			throw new RuntimeException("Typeface alias cannot be empty string");
+		}
+
+		if (fontFileName == null) {
+			throw new RuntimeException("Typeface filename cannot be null");
+		} else if (fontFileName.length() == 0) {
+			throw new RuntimeException("Typeface filename cannot be empty string");
+		}
+
+		if (fontFileName.substring(0, 1).equals("/")) {
+			// strip leading "/"
+			fontFileName = fontFileName.substring(1);
+		} else {
+			fontFileName = mFontFolderName + fontFileName;
+		}
+
+		Cache.getInstance().add(mContext, alias, fontFileName);
+
 		return this;
 	}
+
 
 	/**
 	 * Get typeface.
@@ -221,6 +239,8 @@ public class Fonty {
 	public static Typeface get(@NonNull String alias) {
 		return Cache.getInstance().get(alias);
 	}
+
+	// --------------------------------------------------------------------------------------------
 
 	/**
 	 * Sets custom fonts.

@@ -46,12 +46,23 @@ public class Cache {
 		return _instance;
 	}
 
+
+	public Cache add(String alias, Typeface typeface) {
+		if (mTypefaceCache.containsKey(alias)) {
+			throw new RuntimeException("Typeface '" + alias + "' already in cache");
+		}
+
+		mTypefaceCache.put(alias, typeface);
+
+		return this;
+	}
+
 	/**
 	 * Add typeface to font cache.
 	 *
-	 * @param context  application context
-	 * @param alias    typeface alias
-	 * @param fileName path to font asset
+	 * @param context       application context
+	 * @param alias         typeface alias
+	 * @param fileName      path to font asset
 	 *
 	 * @return the cache
 	 */

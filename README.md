@@ -29,8 +29,8 @@ Features
    * TextView
    * EditText
    * Button
- - Handles navigation menu items too
- - Can be used in libraries as well
+ - Handles navigation menu items
+ - Can be used in libraries
 
 
 Installation
@@ -55,14 +55,15 @@ Installation
 Usage in code
 =============
 
- Put your `TTF` font files into module's `asset/fonts` folder (`<MODULE>/src/main/assets/fonts`
- folder, where `<MODULE>` usually equals `app`).
+ Put your [TrueType](https://en.wikipedia.org/wiki/TrueType) font files into module's `asset/fonts`
+ folder (`<MODULE>/src/main/assets/fonts` folder, where `<MODULE>` usually equals `app`).
 
  Then add the following lines to your custom Application's class' `onCreate()`
  method (if you do not use own `Application` subclass, see demo app for how
  to make one and how it should be referenced form your `AndroidManifest.xml` file):
 
-    Fonty.init(this)
+    Fonty
+        .context(this)
 	    .regularTypeface("Xenotron.ttf")
         .boldTypeface("XPED.ttf")
 
