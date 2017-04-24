@@ -4,6 +4,8 @@ Fonty
  [![Release](https://jitpack.io/v/MarcinOrlowski/fonty.svg)](https://jitpack.io/#MarcinOrlowski/fonty)
  ![Downloads](https://jitpack.io/v/MarcinOrlowski/Fonty/month.svg)
  [![Dependency Status](https://dependencyci.com/github/MarcinOrlowski/Fonty/badge)](https://dependencyci.com/github/MarcinOrlowski/Fonty)
+ [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Fonty-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5489)
+
 
  `Fonty` is simple Android library allowing you to easily change the typeface
  of your UI elements. Contrary to other implementations `Fonty` is designed with
