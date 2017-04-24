@@ -4,7 +4,7 @@ Changelog
  * @dev
    - `init()` is now `context()`
    - Improved public methods argument validation
-   - Added italics support
+   - Added italics support (`italicsTypeface()`)
    - Now falls back to regular typeface for widgets requesting BOLD or ITALICS when such is not configured.
    - Configuration chain now must end with `done()`
 
