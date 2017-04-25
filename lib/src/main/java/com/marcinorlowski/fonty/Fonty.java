@@ -155,14 +155,14 @@ public class Fonty {
 	}
 
 	/**
-	 * Set typeface to be used for ITALIC style
+	 * Set typeface to be used for REGULAR
 	 *
 	 * @param fileNameId string resource id that holds TTF asset file name
 	 *
 	 * @return instance of Fonty object for easy chaining
 	 */
-	public Fonty italicTypeface(int fileNameId) {
-		return add(TYPE_ITALIC, fileNameId);
+	public Fonty regularTypeface(int fileNameId) {
+		return add(TYPE_REGULAR, fileNameId);
 	}
 
 	// --------------------------------------------------------------------------------------------
@@ -179,14 +179,14 @@ public class Fonty {
 	}
 
 	/**
-	 * Set typeface to be used for REGULAR
+	 * Set typeface to be used for ITALIC style
 	 *
 	 * @param fileNameId string resource id that holds TTF asset file name
 	 *
 	 * @return instance of Fonty object for easy chaining
 	 */
-	public Fonty regularTypeface(int fileNameId) {
-		return add(TYPE_REGULAR, fileNameId);
+	public Fonty italicTypeface(int fileNameId) {
+		return add(TYPE_ITALIC, fileNameId);
 	}
 
 	// --------------------------------------------------------------------------------------------
