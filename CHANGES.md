@@ -3,6 +3,7 @@ Changelog
 
  * @dev
    - `regularTypeface()` is now deprecated. Use `normalTypeface()
+   - typeface fallback feature is now enabled by default
    - Updated demo app
 
  * v2.0.0 (2017-04-24)
