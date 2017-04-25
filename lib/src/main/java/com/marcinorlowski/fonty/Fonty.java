@@ -325,8 +325,8 @@ public class Fonty {
 
 	/**
 	 * Controls typeface fallback mechanism. When widget requires BOLD or ITALIC font and such
-	 * typeface is not configured, then: when this option is set to @true RuntimeException
-	 * will be thrown due to missing typeface. If is set to @false, then error will be logged
+	 * typeface is not configured, then: when this option is set to @false RuntimeException
+	 * will be thrown due to missing typeface. If is set to @true, then error will be logged
 	 * and Fonty will fall back to NORMAL typeface.
 	 *
 	 * @param mode @true (default) to enable font substitution fallback, @false otherwise
