@@ -38,7 +38,7 @@ public class Fonty {
 
 	public static final String LOG_TAG = "Fonty";
 
-	public static final String TYPE_REGULAR = "regular";
+	public static final String TYPE_NORMAL = "normal";
 	public static final String TYPE_BOLD = "bold";
 	public static final String TYPE_ITALIC = "italic";
 
@@ -144,25 +144,40 @@ public class Fonty {
 	// --------------------------------------------------------------------------------------------
 
 	/**
-	 * Set typeface to be used for REGULAR/NORMAL
+	 * @deprecated 2.1.0 use normalTypeface() instead
+	 */
+	public Fonty regularTypeface(@SuppressWarnings ("SameParameterValue") @NonNull String fileName) {
+		return normalTypeface(fileName);
+	}
+
+	/**
+	 * @deprecated 2.1.0 use normalTypeface() instead
+	 */
+	public Fonty regularTypeface(int fileNameId) {
+		return normalTypeface(fileNameId);
+	}
+
+
+	/**
+	 * Set typeface to be used for NORMAL style
 	 *
 	 * @param fileName the file name of TTF asset file name
 	 *
 	 * @return instance of Fonty object for easy chaining
 	 */
-	public Fonty regularTypeface(@SuppressWarnings ("SameParameterValue") @NonNull String fileName) {
-		return add(TYPE_REGULAR, fileName);
+	public Fonty normalTypeface(@SuppressWarnings ("SameParameterValue") @NonNull String fileName) {
+		return add(TYPE_NORMAL, fileName);
 	}
 
 	/**
-	 * Set typeface to be used for REGULAR
+	 * Set typeface to be used for NORMAL
 	 *
 	 * @param fileNameId string resource id that holds TTF asset file name
 	 *
 	 * @return instance of Fonty object for easy chaining
 	 */
-	public Fonty regularTypeface(int fileNameId) {
-		return add(TYPE_REGULAR, fileNameId);
+	public Fonty normalTypeface(int fileNameId) {
+		return add(TYPE_NORMAL, fileNameId);
 	}
 
 	// --------------------------------------------------------------------------------------------
@@ -312,7 +327,7 @@ public class Fonty {
 	 * Controls typeface fallback mechanism. When widget requires BOLD or ITALIC font and such
 	 * typeface is not configured, then: when this option is set to @true RuntimeException
 	 * will be thrown due to missing typeface. If is set to @false, then error will be logged
-	 * and Fonty will fall back to REGULAR typeface.
+	 * and Fonty will fall back to NORMAL typeface.
 	 *
 	 * @param mode @true (default) to enable font substitution fallback, @false otherwise
 	 *

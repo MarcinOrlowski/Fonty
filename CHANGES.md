@@ -1,6 +1,9 @@
 Changelog
 =========
 
+ * @dev
+   - `regularTypeface()` is now deprecated. Use `normalTypeface()`
+
  * v2.0.0 (2017-04-24)
    - Renamed `init()` method to `context()`
    - Configuration chain now must end with `done()`

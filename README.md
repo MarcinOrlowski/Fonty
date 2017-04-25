@@ -13,7 +13,7 @@ Fonty
 
  Using `Fonty` requires **no change** to be made to your layout files and
  all you need to do is to initialize the library and specify what typeface
- you want to be used as regular and boldfaced ones. That's it.
+ you want to be used as normal, italic orboldfaced ones. That's it.
 
  ![Screenshot](img/shot.png)
 
@@ -66,12 +66,12 @@ Configuration
 
     Fonty
         .context(this)
-	    .regularTypeface("Xenotron.ttf")
+	    .normalTypeface("Xenotron.ttf")
 	    .italicTypeface("Carramba.ttf")
         .boldTypeface("XPED.ttf")
         .done();
 
- The above sets up `Xenotron.ttf` to be used whenever regular font should be rendered
+ The above sets up `Xenotron.ttf` to be used whenever NORMAL font should be rendered
  and `XPED.ttf` to be used if your UI elements sets `android:textStyle="bold"` attribute and
  `Carramba.ttf` for `android:textStyle="italic"`.
 
@@ -81,7 +81,7 @@ Configuration
     Fonty
         .context(this)
         .fontDir("my-fonts")
-	    .regularTypeface("Xenotron.ttf")
+	    .normalTypeface("Xenotron.ttf")
 	    .italicTypeface("Carramba.ttf")
         .boldTypeface("XPED.ttf")
         .done();
@@ -130,7 +130,7 @@ Layout files
 
 
         <TextView
-            android:text="This will use regular typeface"
+            android:text="This will use normal typeface"
             ... />
 
         <EditText
@@ -206,11 +206,11 @@ Limitations
 ===========
 
  Due to limitations of the Android API, once fonts are replaced by `Fonty`, former style information
- (like `bold`, `regular`) is reset, so all calls to i.e. `isBold()` or `isItalic()` will always
+ (like `bold`, `normal`) is reset, so all calls to i.e. `isBold()` or `isItalic()` will always
  return `false`. At the moment there's no workaround for this issue, yet it should not really
  affect many, however because this information is gone, and `Fonty` relies on it then calling
  `Fonty.setFonts()` twice on the same layout elements will end up with wrong results (mostly
- all widgets will be using regular typeface).
+ all widgets will be using normal typeface).
 
 
 Project support
