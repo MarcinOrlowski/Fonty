@@ -2,8 +2,8 @@ Changelog
 =========
 
  * @dev
-   - `regularTypeface()` is now deprecated. Use `normalTypeface()
-   - typeface fallback feature is now enabled by default
+   - `regularTypeface()` is now deprecated. Use `normalTypeface()`
+   - typeface fallback is now enabled by default
    - Updated demo app
 
  * v2.0.0 (2017-04-24)
@@ -19,7 +19,7 @@ Changelog
    - [#2] Added support for `TextInputLayout`
 
  * v1.1.0 (2017-03-12)
-   - Fefault font dir is `fonts/`
+   - Default font dir is `fonts/`
    - `fontDir()` accepts `null` as argument
    - `addTypeface()` is now `add()`
 
