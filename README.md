@@ -1,8 +1,9 @@
 Fonty
 =====
 
- [![Release](https://jitpack.io/v/MarcinOrlowski/fonty.svg)](https://jitpack.io/#MarcinOrlowski/fonty)
- ![Downloads](https://jitpack.io/v/MarcinOrlowski/Fonty/month.svg)
+ [![Repository](https://img.shields.io/badge/repo-Github-green.svg)](https://github.com/MarcinOrlowski/fonty)
+ [![Curent Release](https://jitpack.io/v/MarcinOrlowski/fonty.svg)](https://jitpack.io/#MarcinOrlowski/fonty)
+ ![jitpack Downloads](https://jitpack.io/v/MarcinOrlowski/Fonty/month.svg)
  [![Dependency Status](https://dependencyci.com/github/MarcinOrlowski/Fonty/badge)](https://dependencyci.com/github/MarcinOrlowski/Fonty)
 
  `Fonty` is simple Android library allowing you to easily change the typeface
