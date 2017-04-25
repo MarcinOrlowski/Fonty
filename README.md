@@ -88,7 +88,7 @@ Configuration
 
  and put your font files into `<MODULE>/src/main/assets/my-fonts` folder.
 
- **NOTE: ** You MUST call `fontDir()` **before** invoking `xxxTypeface()` in your setup chain,
+ **NOTE:** You MUST call `fontDir()` **before** invoking `xxxTypeface()` in your setup chain,
  otherwise `xxxTypeface()` with try to look for fonts in default location and most likely end
  up throwing exception due to missing typeface file.
 
@@ -125,8 +125,8 @@ Layout files
 
  Once `Fonty` is properly initialized and applied, all supported widgets will automatically
  be convinced to use fonts of your choice. Font specified with `setRegularFont()` is used
- as default, and if widget sets `android:textStyle="bold"` then font set with `boldTypeface()`
- is applied:
+ as default, if widget sets `android:textStyle="bold"` then font set with `boldTypeface()`
+ is applied and if `android:textStyle="italic"` is used then `italicTypeface()` applies.
 
 
         <TextView
@@ -139,13 +139,33 @@ Layout files
             ... />
 
 
-Fonty and Toolbars
-==================
+Toolbars
+========
 
  Unfortunately changing `Toolbar`/`ActionBar` title and subtitle fonts cannot be handled automatically
  by `Fonty` in some cases. This is due to `Toolbar`'s internals as it simply have not instance of `TextView`
  created unless title or subtitle is set, so there's nothing `Fonty` can manipulate in advance.
- To work that around add this to your base activity class:
+ 
+ The simples solution is to set toolbar title (and/or subtitle) in `onCreate()` causing `EditText` 
+ creation prior calling `Fonty.setFonts()`:
+ 
+     @Override
+     protected void onCreate(Bundle state) {
+         super.onCreate(bundle);
+         setContentView(...);
+         
+         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+         toolbar.setTitle(...);
+         toolbar.setSubtitle(...);
+         
+         setSupportActionBar(toolbar);
+         
+         ...
+         
+         Fonty.setFonts(this);
+     }
+ 
+  Alternatively, you can edit/create base activity class for your app with the following code:
 
      private Toolbar mActivityActionBarToolbar;
 
@@ -190,7 +210,7 @@ Limitations
  return `false`. At the moment there's no workaround for this issue, yet it should not really
  affect many, however because this information is gone, and `Fonty` relies on it then calling
  `Fonty.setFonts()` twice on the same layout elements will end up with wrong results (mostly
- all widgets will be using REGULAR typeface).
+ all widgets will be using regular typeface).
 
 
 Project support
