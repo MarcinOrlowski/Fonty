@@ -2,7 +2,8 @@ Changelog
 =========
 
  * @dev
-   - `regularTypeface()` is now deprecated. Use `normalTypeface()`
+   - `regularTypeface()` is now deprecated. Use `normalTypeface()
+   - Updated demo app
 
  * v2.0.0 (2017-04-24)
    - Renamed `init()` method to `context()`

@@ -51,18 +51,19 @@ public class MainActivity extends AppCompatActivity {
 
 			actionBar.setDisplayHomeAsUpEnabled(true);
 			mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.toggle_opend, R.string.toggle_closed) {
-				public void onDrawerClosed(View view) {
+				public void onDrawerClosed(View drawerView) {
+					super.onDrawerClosed(drawerView);
 					supportInvalidateOptionsMenu();
 				}
 
 				public void onDrawerOpened(View drawerView) {
+					super.onDrawerOpened(drawerView);
 					supportInvalidateOptionsMenu();
 				}
 			};
 			mDrawerToggle.setDrawerIndicatorEnabled(true);
 
-			drawerLayout.setDrawerListener(mDrawerToggle);
-
+			drawerLayout.addDrawerListener(mDrawerToggle);
 			mDrawerToggle.syncState();
 		}
 
