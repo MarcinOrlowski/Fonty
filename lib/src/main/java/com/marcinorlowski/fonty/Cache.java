@@ -36,7 +36,7 @@ public class Cache {
 	/**
 	 * Returns instance of typeface cache (singleton)
 	 *
-	 * @return the instance
+	 * @return instance of Cache for easy chaining
 	 */
 	public static Cache getInstance() {
 		if (_instance == null) {
@@ -47,9 +47,17 @@ public class Cache {
 	}
 
 
+	/**
+	 * Adds new typeface to the cache. Throws RuntimeException if given alias already exists
+	 *
+	 * @param alias    font name alias
+	 * @param typeface typeface to cache
+	 *
+	 * @return instance of Cache for easy chaining
+	 */
 	public Cache add(String alias, Typeface typeface) {
 		if (mTypefaceCache.containsKey(alias)) {
-			throw new RuntimeException("Typeface '" + alias + "' already in cache");
+			throw new RuntimeException("Typeface '" + alias + "' already exists in cache");
 		}
 
 		mTypefaceCache.put(alias, typeface);
@@ -60,11 +68,11 @@ public class Cache {
 	/**
 	 * Add typeface to font cache.
 	 *
-	 * @param context       application context
-	 * @param alias         typeface alias
-	 * @param fileName      path to font asset
+	 * @param context  application context
+	 * @param alias    typeface alias
+	 * @param fileName path to font asset
 	 *
-	 * @return the cache
+	 * @return instance of Cache for easy chaining
 	 */
 	public Cache add(@NonNull Context context, String alias, String fileName) {
 		synchronized (mTypefaceCache) {
@@ -89,7 +97,7 @@ public class Cache {
 			if (has(alias)) {
 				return mTypefaceCache.get(alias);
 			} else {
-				throw new RuntimeException("Font alias '" + alias + "' matches no cache entry. add() font first.");
+				throw new RuntimeException("Font alias '" + alias + "' not found.");
 			}
 		}
 	}
@@ -97,9 +105,9 @@ public class Cache {
 	/**
 	 * Checks if given alias has in cache
 	 *
-	 * @param alias
+	 * @param alias typeface alias to look for
 	 *
-	 * @return
+	 * @return @true if alias is cached, @false otherwise
 	 */
 	public boolean has(@NonNull String alias) {
 		return mTypefaceCache.containsKey(alias);
