@@ -2,8 +2,11 @@ Fonty
 =====
 
  [![Repository](https://img.shields.io/badge/repo-GitHub-blue.svg)](https://github.com/MarcinOrlowski/fonty)
+ ![License](https://img.shields.io/github/license/MarcinOrlowski/fonty.svg)
+ 
  [![Curent Release](https://jitpack.io/v/MarcinOrlowski/fonty.svg)](https://jitpack.io/#MarcinOrlowski/fonty)
  ![jitpack Downloads](https://jitpack.io/v/MarcinOrlowski/Fonty/month.svg)
+ 
  [![Dependency Status](https://dependencyci.com/github/MarcinOrlowski/Fonty/badge)](https://dependencyci.com/github/MarcinOrlowski/Fonty)
 
  `Fonty` is simple Android library allowing you to easily change the typeface
@@ -12,9 +15,8 @@ Fonty
  it **globally** per whole application, to achieve consistency across your Fragments
  or Activities.
 
- Using `Fonty` requires **no change** to be made to your layout files and
- all you need to do is to initialize the library and specify what typeface
- you want to be used as normal, italic orboldfaced ones. That's it.
+ Using `Fonty` requires **no change** to your layout files and all you need to do is to initialize 
+ the library and specify what typeface you want to be used as normal, italic or boldfaced ones.
 
  ![Screenshot](img/shot.png)
 
@@ -28,11 +30,11 @@ Features
  - Simple API
  - Supports the following UI elements and its subclasses:
    * TextInputLayout (see [notes](#textinputlayout) below!)
+   * Navigation Drawer
+   * Toolbar
    * TextView
    * EditText
    * Button
-   * Toolbar
-   * Navigation Drawer
  - Can be used in libraries
 
 
@@ -201,6 +203,8 @@ TextInputLayout
  and you want error text typeface to be changed by `Fonty` as well, then you must either set
  `app:errorEnabled="true"` in the XML layout or call `setErrorEnabled(true)` on the object
  **prior** calling `Fonty.setFonts()`. This is because of how `TextInputLayout` works internally.
+ 
+ **NOTE:** Typeface used for hints and error messages will be derrived from `EditText`.
 
 
 Limitations
