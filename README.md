@@ -90,7 +90,7 @@ Configuration
 
  and put your font files into `<MODULE>/src/main/assets/my-fonts` folder.
 
- **NOTE: ** You MUST call `fontDir()` **before** invoking `xxxTypeface()` in your setup chain,
+ **NOTE:** You **MUST** call `fontDir()` **before** invoking `xxxTypeface()` in your setup chain,
  otherwise `xxxTypeface()` with try to look for fonts in default location and most likely end
  up throwing exception due to missing typeface file.
 
