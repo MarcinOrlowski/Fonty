@@ -59,7 +59,7 @@ Installation
 Configuration
 =============
 
- Put your [TrueType](https://en.wikipedia.org/wiki/TrueType) font files into module's `asset/fonts`
+ Put your [TrueType](https://en.wikipedia.org/wiki/TrueType) font files into module's `assets/fonts`
  folder (`<MODULE>/src/main/assets/fonts` folder, where `<MODULE>` usually equals `app`).
 
  Then add the following lines to your custom Application's class' `onCreate()`
