@@ -195,16 +195,6 @@ Limitations
  all widgets will be using REGULAR typeface).
 
 
-Project support
-===============
-
- `Fonty` is free software and you can use it fully free of charge in any of your projects, open source or
- commercial, however if you feel it prevent you from reinventing the wheel, helped having your projects
- done or simply saved you time and money  then then feel free to donate to the project by sending some
- spare BTC to `1LbfbmZ1KfSNNTGAEHtP63h7FPDEPTa3Yo`.
-
- ![BTC](img/btc.png)
-
 
 Contributing
 ============
