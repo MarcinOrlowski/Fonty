@@ -183,6 +183,18 @@ public class Fonty {
 	// --------------------------------------------------------------------------------------------
 
 	/**
+	 * @param fontName font name string
+	 *
+	 * @return instance of Fonty object for easy chaining
+	 */
+	public Fonty normalDownloadableTypeface(@NonNull String fontName) {
+
+		return this;
+	}
+
+	// --------------------------------------------------------------------------------------------
+
+	/**
 	 * Set typeface to be used for ITALIC style
 	 *
 	 * @param fileName string resource id that holds TTF asset file name
