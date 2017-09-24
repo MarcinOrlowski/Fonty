@@ -5,11 +5,13 @@ apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.MarcinOrlowski'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 25
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
         versionCode 20170424
         versionName '1.2.0'
 
@@ -27,12 +29,11 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    ext.supportLibsVersion = "25.2.0"
-    compile "com.android.support:design:$supportLibsVersion"
-    compile "com.android.support:appcompat-v7:$supportLibsVersion" 
-    testCompile 'junit:junit:4.12'
+    implementation "com.android.support:design:$supportLibsVersion"
+    implementation "com.android.support:appcompat-v7:$supportLibsVersion"
+    testImplementation 'junit:junit:4.12'
 }
