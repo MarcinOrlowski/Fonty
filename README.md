@@ -1,8 +1,12 @@
 Fonty
 =====
 
- [![Release](https://jitpack.io/v/MarcinOrlowski/fonty.svg)](https://jitpack.io/#MarcinOrlowski/fonty)
- ![Downloads](https://jitpack.io/v/MarcinOrlowski/Fonty/month.svg)
+ [![Repository](https://img.shields.io/badge/repo-GitHub-blue.svg)](https://github.com/MarcinOrlowski/fonty)
+ ![License](https://img.shields.io/github/license/MarcinOrlowski/fonty.svg)
+ 
+ [![Curent Release](https://jitpack.io/v/MarcinOrlowski/fonty.svg)](https://jitpack.io/#MarcinOrlowski/fonty)
+ ![jitpack Downloads](https://jitpack.io/v/MarcinOrlowski/Fonty/month.svg)
+ 
  [![Dependency Status](https://dependencyci.com/github/MarcinOrlowski/Fonty/badge)](https://dependencyci.com/github/MarcinOrlowski/Fonty)
  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Fonty-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5489)
 
@@ -13,9 +17,8 @@ Fonty
  it **globally** per whole application, to achieve consistency across your Fragments
  or Activities.
 
- Using `Fonty` requires **no change** to be made to your layout files and
- all you need to do is to initialize the library and specify what typeface
- you want to be used as regular and boldfaced ones. That's it.
+ Using `Fonty` requires **no change** to your layout files and all you need to do is to initialize 
+ the library and specify what typeface you want to be used as normal, italic or boldfaced ones.
 
  ![Screenshot](img/shot.png)
 
@@ -26,14 +29,14 @@ Features
 ========
 
  - Fast and lightweight
+ - No odd dependencies
  - Simple API
- - Supports the following UI elements and its subclasses:
+ - Supports the following UI elements and all subclasses:
    * TextInputLayout (see [notes](#textinputlayout) below!)
-   * TextView
-   * EditText
-   * Button
+   * Navigation Drawer (including drawer's header view)
    * Toolbar
-   * Navigation Drawer
+   * TextView (incl. Checkbox, EditText, CheckedTextView, Chronometer, DigitalClock, TextClock...)
+   * Button (incl. Switch, RadioButton, CompoundButton, ...)
  - Can be used in libraries
 
 
@@ -68,12 +71,12 @@ Configuration
 
     Fonty
         .context(this)
-	    .regularTypeface("Xenotron.ttf")
+	    .normalTypeface("Xenotron.ttf")
 	    .italicTypeface("Carramba.ttf")
         .boldTypeface("XPED.ttf")
         .done();
 
- The above sets up `Xenotron.ttf` to be used whenever regular font should be rendered
+ The above sets up `Xenotron.ttf` to be used whenever NORMAL font should be rendered
  and `XPED.ttf` to be used if your UI elements sets `android:textStyle="bold"` attribute and
  `Carramba.ttf` for `android:textStyle="italic"`.
 
@@ -83,7 +86,7 @@ Configuration
     Fonty
         .context(this)
         .fontDir("my-fonts")
-	    .regularTypeface("Xenotron.ttf")
+	    .normalTypeface("Xenotron.ttf")
 	    .italicTypeface("Carramba.ttf")
         .boldTypeface("XPED.ttf")
         .done();
@@ -127,12 +130,12 @@ Layout files
 
  Once `Fonty` is properly initialized and applied, all supported widgets will automatically
  be convinced to use fonts of your choice. Font specified with `setRegularFont()` is used
- as default, and if widget sets `android:textStyle="bold"` then font set with `boldTypeface()`
- is applied:
+ as default, if widget sets `android:textStyle="bold"` then font set with `boldTypeface()`
+ is applied and if `android:textStyle="italic"` is used then `italicTypeface()` applies.
 
 
         <TextView
-            android:text="This will use regular typeface"
+            android:text="This will use normal typeface"
             ... />
 
         <EditText
@@ -141,13 +144,33 @@ Layout files
             ... />
 
 
-Fonty and Toolbars
-==================
+Toolbars
+========
 
  Unfortunately changing `Toolbar`/`ActionBar` title and subtitle fonts cannot be handled automatically
  by `Fonty` in some cases. This is due to `Toolbar`'s internals as it simply have not instance of `TextView`
  created unless title or subtitle is set, so there's nothing `Fonty` can manipulate in advance.
- To work that around add this to your base activity class:
+ 
+ The simples solution is to set toolbar title (and/or subtitle) in `onCreate()` causing `EditText` 
+ creation prior calling `Fonty.setFonts()`:
+ 
+     @Override
+     protected void onCreate(Bundle state) {
+         super.onCreate(bundle);
+         setContentView(...);
+         
+         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+         toolbar.setTitle(...);
+         toolbar.setSubtitle(...);
+         
+         setSupportActionBar(toolbar);
+         
+         ...
+         
+         Fonty.setFonts(this);
+     }
+ 
+  Alternatively, you can edit/create base activity class for your app with the following code:
 
      private Toolbar mActivityActionBarToolbar;
 
@@ -182,18 +205,19 @@ TextInputLayout
  and you want error text typeface to be changed by `Fonty` as well, then you must either set
  `app:errorEnabled="true"` in the XML layout or call `setErrorEnabled(true)` on the object
  **prior** calling `Fonty.setFonts()`. This is because of how `TextInputLayout` works internally.
+ 
+ **NOTE:** Typeface used for hints and error messages will be derrived from `EditText`.
 
 
 Limitations
 ===========
 
  Due to limitations of the Android API, once fonts are replaced by `Fonty`, former style information
- (like `bold`, `regular`) is reset, so all calls to i.e. `isBold()` or `isItalic()` will always
+ (like `bold`, `normal`) is reset, so all calls to i.e. `isBold()` or `isItalic()` will always
  return `false`. At the moment there's no workaround for this issue, yet it should not really
  affect many, however because this information is gone, and `Fonty` relies on it then calling
  `Fonty.setFonts()` twice on the same layout elements will end up with wrong results (mostly
- all widgets will be using REGULAR typeface).
-
+ all widgets will be using normal typeface).
 
 
 Contributing
@@ -214,5 +238,5 @@ Contributing
 License
 =======
 
-  * Written and copyrighted &copy;2013-2017 by Marcin Orlowski <mail (#) marcinorlowski (.) com>
+  * Written and copyrighted &copy;2013-2018 by Marcin Orlowski <mail (#) marcinorlowski (.) com>
   * `Fonty` is open-sourced library licensed under the Apache 2.0 license

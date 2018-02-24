@@ -1,6 +1,11 @@
 Changelog
 =========
 
+ * @dev
+   - `regularTypeface()` is now deprecated. Use `normalTypeface()`
+   - Typeface fallback is now enabled by default
+   - Fixed navigation drawer's header in demo app not showing any content
+
  * v2.0.0 (2017-04-24)
    - Renamed `init()` method to `context()`
    - Configuration chain now must end with `done()`
@@ -14,7 +19,7 @@ Changelog
    - [#2] Added support for `TextInputLayout`
 
  * v1.1.0 (2017-03-12)
-   - Fefault font dir is `fonts/`
+   - Default font dir is `fonts/`
    - `fontDir()` accepts `null` as argument
    - `addTypeface()` is now `add()`
 

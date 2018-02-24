@@ -3,7 +3,7 @@ package com.marcinorlowski.fonty.demo;
 /*
  ******************************************************************************
  *
- * Copyright 2013-2017 Marcin Orlowski
+ * Copyright 2013-2018 Marcin Orlowski
  *
  * Licensed under the Apache License 2.0
  *
@@ -26,7 +26,7 @@ public class Application extends android.app.Application {
 			.context(this)
 //			.fontDir("otherFolder")
 //			.typefaceFallback(false)
-			.regularTypeface("Exo-Regular.ttf")
+			.normalTypeface("Exo-Regular.ttf")
 			.italicTypeface("Aramis-Italic.ttf")
 			.boldTypeface("Capture_it.ttf")
 			.done();

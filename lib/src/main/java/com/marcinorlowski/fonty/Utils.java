@@ -27,7 +27,7 @@ public class Utils {
 	 * Selects substitution typeface based on old Typeface's style
 	 *
 	 * @param currentTypeface  current Typeface of widget
-	 * @param typefaceFallback if @true, will fall back to REGULAR if request BOLD or ITALIC is not configured
+	 * @param typefaceFallback if @true, will fall back to NORMAL if request BOLD or ITALIC is not configured
 	 * @param className        name of class we are substituting typface for
 	 * @param widgetId         Id of object (widget, menuItem etc)
 	 *
@@ -39,7 +39,7 @@ public class Utils {
 											  int widgetId) {
 		Cache cache = Cache.getInstance();
 
-		String key = Fonty.TYPE_REGULAR;
+		String key = Fonty.TYPE_NORMAL;
 
 		if (currentTypeface != null) {
 			if (currentTypeface.isBold()) {
@@ -47,7 +47,7 @@ public class Utils {
 				if (typefaceFallback) {
 					if (!cache.has(key)) {
 						Log.e(Fonty.LOG_TAG, String.format(mWidgetLogFmt, key, widgetId, className));
-						key = Fonty.TYPE_REGULAR;
+						key = Fonty.TYPE_NORMAL;
 					}
 				}
 			} else if (currentTypeface.isItalic()) {
@@ -55,7 +55,7 @@ public class Utils {
 				if (typefaceFallback) {
 					if (!cache.has(key)) {
 						Log.e(Fonty.LOG_TAG, String.format(mWidgetLogFmt, key, widgetId, className));
-						key = Fonty.TYPE_REGULAR;
+						key = Fonty.TYPE_NORMAL;
 					}
 				}
 			}
