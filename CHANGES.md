@@ -3,8 +3,8 @@ Changelog
 
  * @dev
    - `regularTypeface()` is now deprecated. Use `normalTypeface()`
-   - typeface fallback is now enabled by default
-   - Updated demo app
+   - Typeface fallback is now enabled by default
+   - Fixed navigation drawer's header in demo app not showing any content
 
  * v2.0.0 (2017-04-24)
    - Renamed `init()` method to `context()`
