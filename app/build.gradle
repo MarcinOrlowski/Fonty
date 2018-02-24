@@ -9,8 +9,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
 
-        versionCode 20170924
-        versionName '1.2.0'
+        versionCode 20180224
+        versionName '1.2.1'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -39,6 +39,11 @@ dependencies {
     implementation "com.android.support:cardview-v7:$supportLibsVersion"
     implementation "com.android.support:appcompat-v7:$supportLibsVersion"
 //    testImplementation 'junit:junit:4.12'
+
+    // ButterKnife: https://github.com/JakeWharton/butterknife
+    ext.butterknifeVersion = "8.8.1"
+    implementation "com.jakewharton:butterknife:$butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
 
     implementation project(':lib')
 }
