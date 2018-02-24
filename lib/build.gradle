@@ -13,7 +13,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
 
         versionCode 20180224
-        versionName '1.2.1'
+        versionName '2.1.0'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 

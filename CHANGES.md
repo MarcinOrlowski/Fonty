@@ -1,7 +1,7 @@
 Changelog
 =========
 
- * @dev
+ * v2.1.0 (2018-02-24)
    - `regularTypeface()` is now deprecated. Use `normalTypeface()`
    - Typeface fallback is now enabled by default
    - Fixed navigation drawer's header in demo app not showing any content
