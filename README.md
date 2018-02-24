@@ -8,6 +8,8 @@ Fonty
  ![jitpack Downloads](https://jitpack.io/v/MarcinOrlowski/Fonty/month.svg)
  
  [![Dependency Status](https://dependencyci.com/github/MarcinOrlowski/Fonty/badge)](https://dependencyci.com/github/MarcinOrlowski/Fonty)
+ [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Fonty-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5489)
+
 
  `Fonty` is simple Android library allowing you to easily change the typeface
  of your UI elements. Contrary to other implementations `Fonty` is designed with
@@ -60,7 +62,7 @@ Installation
 Configuration
 =============
 
- Put your [TrueType](https://en.wikipedia.org/wiki/TrueType) font files into module's `asset/fonts`
+ Put your [TrueType](https://en.wikipedia.org/wiki/TrueType) font files into module's `assets/fonts`
  folder (`<MODULE>/src/main/assets/fonts` folder, where `<MODULE>` usually equals `app`).
 
  Then add the following lines to your custom Application's class' `onCreate()`
@@ -216,7 +218,6 @@ Limitations
  affect many, however because this information is gone, and `Fonty` relies on it then calling
  `Fonty.setFonts()` twice on the same layout elements will end up with wrong results (mostly
  all widgets will be using normal typeface).
-
 
 
 Contributing
