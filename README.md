@@ -27,14 +27,14 @@ Features
 ========
 
  - Fast and lightweight
+ - No odd dependencies
  - Simple API
- - Supports the following UI elements and its subclasses:
+ - Supports the following UI elements and all subclasses:
    * TextInputLayout (see [notes](#textinputlayout) below!)
-   * Navigation Drawer
+   * Navigation Drawer (including drawer's header view)
    * Toolbar
-   * TextView
-   * EditText
-   * Button
+   * TextView (incl. Checkbox, EditText, CheckedTextView, Chronometer, DigitalClock, TextClock...)
+   * Button (incl. Switch, RadioButton, CompoundButton, ...)
  - Can be used in libraries
 
 
@@ -237,5 +237,5 @@ Contributing
 License
 =======
 
-  * Written and copyrighted &copy;2013-2017 by Marcin Orlowski <mail (#) marcinorlowski (.) com>
+  * Written and copyrighted &copy;2013-2018 by Marcin Orlowski <mail (#) marcinorlowski (.) com>
   * `Fonty` is open-sourced library licensed under the Apache 2.0 license
