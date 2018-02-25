@@ -35,7 +35,7 @@ Features
    * TextInputLayout (see [notes](#textinputlayout) below!)
    * Navigation Drawer (including drawer's header view)
    * Toolbar
-   * TextView (incl. Checkbox, EditText, CheckedTextView, Chronometer, DigitalClock, TextClock...)
+   * TextView (incl. Checkbox, EditText, CheckedTextView, Chronometer, DigitalClock, TextClock, ...)
    * Button (incl. Switch, RadioButton, CompoundButton, ...)
  - Can be used in libraries
 
@@ -54,7 +54,7 @@ Installation
 
  Next, edit your **module**'s `build.gradle` and the following dependency:
 
-    compile 'com.github.MarcinOrlowski:fonty:<VERSION>'
+    implements 'com.github.MarcinOrlowski:fonty:<VERSION>'
 
  For right value of `<VERSION>` consult [release section](https://github.com/MarcinOrlowski/fonty/releases)
  or see [jitpack page](https://jitpack.io/#MarcinOrlowski/fonty).
