@@ -1,7 +1,7 @@
 Changelog
 =========
 
- * dev
+ * v2.2.0 (2018-08-27)
    - `done()` is now deprecated in favor of commonly used `build()`
 
  * v2.1.0 (2018-02-24)
