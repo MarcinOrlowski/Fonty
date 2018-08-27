@@ -74,7 +74,7 @@ Configuration
 	    .normalTypeface("Xenotron.ttf")
 	    .italicTypeface("Carramba.ttf")
         .boldTypeface("XPED.ttf")
-        .done();
+        .build();
 
  The above sets up `Xenotron.ttf` to be used whenever NORMAL font should be rendered
  and `XPED.ttf` to be used if your UI elements sets `android:textStyle="bold"` attribute and
@@ -89,7 +89,7 @@ Configuration
 	    .normalTypeface("Xenotron.ttf")
 	    .italicTypeface("Carramba.ttf")
         .boldTypeface("XPED.ttf")
-        .done();
+        .build();
 
  and put your font files into `<MODULE>/src/main/assets/my-fonts` folder.
 

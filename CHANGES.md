@@ -1,6 +1,9 @@
 Changelog
 =========
 
+ * dev
+   - `done()` is now deprecated in favor of commonly used `build()`
+
  * v2.1.0 (2018-02-24)
    - `regularTypeface()` is now deprecated. Use `normalTypeface()`
    - Typeface fallback is now enabled by default
