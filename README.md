@@ -35,7 +35,7 @@ Features
    * TextInputLayout (see [notes](#textinputlayout) below!)
    * Navigation Drawer (including drawer's header view)
    * Toolbar
-   * TextView (incl. Checkbox, EditText, CheckedTextView, Chronometer, DigitalClock, TextClock...)
+   * TextView (incl. Checkbox, EditText, CheckedTextView, Chronometer, DigitalClock, TextClock, ...)
    * Button (incl. Switch, RadioButton, CompoundButton, ...)
  - Can be used in libraries
 
@@ -54,7 +54,7 @@ Installation
 
  Next, edit your **module**'s `build.gradle` and the following dependency:
 
-    compile 'com.github.MarcinOrlowski:fonty:<VERSION>'
+    implements 'com.github.MarcinOrlowski:fonty:<VERSION>'
 
  For right value of `<VERSION>` consult [release section](https://github.com/MarcinOrlowski/fonty/releases)
  or see [jitpack page](https://jitpack.io/#MarcinOrlowski/fonty).
@@ -62,7 +62,7 @@ Installation
 Configuration
 =============
 
- Put your [TrueType](https://en.wikipedia.org/wiki/TrueType) font files into module's `assets/fonts`
+ Put your [TrueType](https://en.wikipedia.org/wiki/TrueType) (`*.ttf`) font files into module's `assets/fonts`
  folder (`<MODULE>/src/main/assets/fonts` folder, where `<MODULE>` usually equals `app`).
 
  Then add the following lines to your custom Application's class' `onCreate()`
@@ -74,7 +74,7 @@ Configuration
 	    .normalTypeface("Xenotron.ttf")
 	    .italicTypeface("Carramba.ttf")
         .boldTypeface("XPED.ttf")
-        .done();
+        .build();
 
  The above sets up `Xenotron.ttf` to be used whenever NORMAL font should be rendered
  and `XPED.ttf` to be used if your UI elements sets `android:textStyle="bold"` attribute and
@@ -89,7 +89,7 @@ Configuration
 	    .normalTypeface("Xenotron.ttf")
 	    .italicTypeface("Carramba.ttf")
         .boldTypeface("XPED.ttf")
-        .done();
+        .build();
 
  and put your font files into `<MODULE>/src/main/assets/my-fonts` folder.
 
@@ -149,7 +149,8 @@ Toolbars
 
  Unfortunately changing `Toolbar`/`ActionBar` title and subtitle fonts cannot be handled automatically
  by `Fonty` in some cases. This is due to `Toolbar`'s internals as it simply have not instance of `TextView`
- created unless title or subtitle is set, so there's nothing `Fonty` can manipulate in advance.
+ created unless title or subtitle is set (even to empty string), so there's nothing `Fonty` can manipulate
+ in advance.
  
  The simples solution is to set toolbar title (and/or subtitle) in `onCreate()` causing `EditText` 
  creation prior calling `Fonty.setFonts()`:
@@ -170,7 +171,7 @@ Toolbars
          Fonty.setFonts(this);
      }
  
-  Alternatively, you can edit/create base activity class for your app with the following code:
+ Alternatively, you can edit/create base activity class for your app with the following code:
 
      private Toolbar mActivityActionBarToolbar;
 
@@ -206,7 +207,7 @@ TextInputLayout
  `app:errorEnabled="true"` in the XML layout or call `setErrorEnabled(true)` on the object
  **prior** calling `Fonty.setFonts()`. This is because of how `TextInputLayout` works internally.
  
- **NOTE:** Typeface used for hints and error messages will be derrived from `EditText`.
+ **NOTE:** Typeface used for hints and error messages will be derrived from one set for `EditText`.
 
 
 Limitations
@@ -240,3 +241,4 @@ License
 
   * Written and copyrighted &copy;2013-2018 by Marcin Orlowski <mail (#) marcinorlowski (.) com>
   * `Fonty` is open-sourced library licensed under the Apache 2.0 license
+

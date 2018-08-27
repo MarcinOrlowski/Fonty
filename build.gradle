@@ -6,7 +6,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.2.0-rc01'
 
         // https://github.com/ben-manes/gradle-versions-plugin
         // Usage: gradlew dependencyUpdates task to check dependency versions
@@ -19,11 +19,11 @@ buildscript {
 }
 
 ext {
-    compileSdkVersion = 27
-    targetSdkVersion = 27
+    compileSdkVersion = 28
+    targetSdkVersion = 28
     minSdkVersion = 16
-    buildToolsVersion = '27.0.3'
-    supportLibsVersion = '27.0.2'
+    buildToolsVersion = '28.0.2'
+    supportLibsVersion = '28.0.0-rc01'
 }
 
 allprojects {

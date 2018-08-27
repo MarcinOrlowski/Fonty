@@ -29,7 +29,7 @@ public class Application extends android.app.Application {
 			.normalTypeface("Exo-Regular.ttf")
 			.italicTypeface("Aramis-Italic.ttf")
 			.boldTypeface("Capture_it.ttf")
-			.done();
+			.build();
 	}
 
 }

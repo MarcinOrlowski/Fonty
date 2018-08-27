@@ -12,8 +12,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
 
-        versionCode 20180224
-        versionName '2.1.0'
+        versionCode 20180827
+        versionName '2.2.0'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -29,11 +29,6 @@ android {
 }
 
 dependencies {
-//    implementation fileTree(include: ['*.jar'], dir: 'libs')
-//    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
-//        exclude group: 'com.android.support', module: 'support-annotations'
-//    })
     implementation "com.android.support:design:$supportLibsVersion"
     implementation "com.android.support:appcompat-v7:$supportLibsVersion"
-//    testImplementation 'junit:junit:4.12'
 }
