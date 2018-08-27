@@ -9,8 +9,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
 
-        versionCode 20180224
-        versionName '2.1.0'
+        versionCode 20180827
+        versionName '2.2.0'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
