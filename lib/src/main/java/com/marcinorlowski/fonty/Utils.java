@@ -3,7 +3,7 @@ package com.marcinorlowski.fonty;
 /*
  ******************************************************************************
  *
- * Copyright 2013-2017 Marcin Orlowski
+ * Copyright 2013-2019 Marcin Orlowski
  *
  * Licensed under the Apache License 2.0
  *
@@ -15,9 +15,10 @@ package com.marcinorlowski.fonty;
  */
 
 import android.graphics.Typeface;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class Utils {
 

@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 
-// jitpack
+// jitpack.io
 apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.MarcinOrlowski'
 
@@ -12,11 +12,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
 
-        versionCode 20180827
-        versionName '2.2.0'
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        versionCode 20190218
+        versionName '3.0.0'
     }
     buildTypes {
         release {
@@ -29,6 +26,6 @@ android {
 }
 
 dependencies {
-    implementation "com.android.support:design:$supportLibsVersion"
-    implementation "com.android.support:appcompat-v7:$supportLibsVersion"
+    implementation "androidx.appcompat:appcompat:1.0.0"
+    implementation "com.google.android.material:material:1.0.0-rc01"
 }
