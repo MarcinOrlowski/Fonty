@@ -3,11 +3,10 @@ Fonty
 
  [![Repository](https://img.shields.io/badge/repo-GitHub-blue.svg)](https://github.com/MarcinOrlowski/fonty)
  ![License](https://img.shields.io/github/license/MarcinOrlowski/fonty.svg)
+ [![Dependency Status](https://dependencyci.com/github/MarcinOrlowski/Fonty/badge)](https://dependencyci.com/github/MarcinOrlowski/Fonty)
  
  [![Curent Release](https://jitpack.io/v/MarcinOrlowski/fonty.svg)](https://jitpack.io/#MarcinOrlowski/fonty)
  ![jitpack Downloads](https://jitpack.io/v/MarcinOrlowski/Fonty/month.svg)
- 
- [![Dependency Status](https://dependencyci.com/github/MarcinOrlowski/Fonty/badge)](https://dependencyci.com/github/MarcinOrlowski/Fonty)
  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Fonty-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5489)
 
 
@@ -239,6 +238,6 @@ Contributing
 License
 =======
 
-  * Written and copyrighted &copy;2013-2018 by Marcin Orlowski <mail (#) marcinorlowski (.) com>
+  * Written and copyrighted &copy;2013-2019 by Marcin Orlowski <mail (#) marcinorlowski (.) com>
   * `Fonty` is open-sourced library licensed under the Apache 2.0 license
 
