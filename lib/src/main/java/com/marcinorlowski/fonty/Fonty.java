@@ -3,7 +3,7 @@ package com.marcinorlowski.fonty;
 /*
  ******************************************************************************
  *
- * Copyright 2013-2017 Marcin Orlowski
+ * Copyright 2013-2019 Marcin Orlowski
  *
  * Licensed under the Apache License 2.0
  *
@@ -18,11 +18,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.TextInputLayout;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.util.DisplayMetrics;
@@ -33,6 +28,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputLayout;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 
 public class Fonty {
 

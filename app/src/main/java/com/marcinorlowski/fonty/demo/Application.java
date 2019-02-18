@@ -3,7 +3,7 @@ package com.marcinorlowski.fonty.demo;
 /*
  ******************************************************************************
  *
- * Copyright 2013-2018 Marcin Orlowski
+ * Copyright 2013-2019 Marcin Orlowski
  *
  * Licensed under the Apache License 2.0
  *

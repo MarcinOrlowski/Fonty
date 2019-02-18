@@ -1,6 +1,10 @@
 Changelog
 =========
 
+ * v3.0.0 (2019-02-18)
+   - Migrated to Jetpack (androidx.*) libraries.
+   - No longer pulls databinding library.
+
  * v2.2.0 (2018-08-27)
    - `done()` is now deprecated in favor of commonly used `build()`
 

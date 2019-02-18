@@ -3,7 +3,7 @@ package com.marcinorlowski.fonty;
 /*
  ******************************************************************************
  *
- * Copyright 2013-2017 Marcin Orlowski
+ * Copyright 2013-2019 Marcin Orlowski
  *
  * Licensed under the Apache License 2.0
  *
@@ -16,9 +16,10 @@ package com.marcinorlowski.fonty;
 
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.support.annotation.NonNull;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
+
+import androidx.annotation.NonNull;
 
 public class TypefaceSpan extends MetricAffectingSpan {
 	private final boolean mFallback;
