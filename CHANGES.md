@@ -1,5 +1,7 @@
 Changelog
 =========
+ * @dev
+   - Deprecated `done()` method is now removed.
 
  * v3.0.0 (2019-02-18)
    - Migrated to Jetpack (androidx.*) libraries.

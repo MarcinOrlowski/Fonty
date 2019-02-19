@@ -361,13 +361,7 @@ public class Fonty {
 
 	/**
 	 * Concludes configuration phase. Must be called as last method of Fonty config call chain
-	 *
-	 * @deprecated use build() instead
 	 */
-	public void done() {
-		build();
-	}
-
 	public void build() {
 		mConfigured = true;
 	}
