@@ -1,21 +1,16 @@
 package com.marcinorlowski.fonty.demo
 
-/*
+import com.marcinorlowski.fonty.Fonty
+
+/**
  ******************************************************************************
  *
- * Copyright 2013-2019 Marcin Orlowski
+ * Copyright 2013-2019 Marcin Orlowski <github@MarcinOrlowski.com>
  *
  * Licensed under the Apache License 2.0
  *
  ******************************************************************************
- *
- * @author Marcin Orlowski <mail@MarcinOrlowski.com>
- *
- ******************************************************************************
  */
-
-import com.marcinorlowski.fonty.Fonty
-
 class Application : android.app.Application() {
 
     override fun onCreate() {

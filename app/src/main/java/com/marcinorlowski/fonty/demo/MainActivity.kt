@@ -1,19 +1,5 @@
 package com.marcinorlowski.fonty.demo
 
-/*
- ******************************************************************************
- *
- * Copyright 2013-2019 Marcin Orlowski
- *
- * Licensed under the Apache License 2.0
- *
- ******************************************************************************
- *
- * @author Marcin Orlowski <mail@MarcinOrlowski.com>
- *
- ******************************************************************************
- */
-
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
@@ -34,6 +20,15 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import butterknife.Unbinder
 
+/**
+ ******************************************************************************
+ *
+ * Copyright 2013-2019 Marcin Orlowski <github@MarcinOrlowski.com>
+ *
+ * Licensed under the Apache License 2.0
+ *
+ ******************************************************************************
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mDrawerToggle: ActionBarDrawerToggle
@@ -55,8 +50,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        toolbar.title = "Fonty by Marcin Orlowski"
-        toolbar.subtitle = "Easily change fonts of your app!"
+        toolbar.title = getString(R.string.toolbar_title)
+        toolbar.subtitle = getString(R.string.toolbar_subtitle)
         setSupportActionBar(toolbar)
 
         val actionBar = supportActionBar
@@ -68,12 +63,11 @@ class MainActivity : AppCompatActivity() {
             mDrawerToggle = object : ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.toggle_opend, R.string.toggle_closed) {
                 override fun onDrawerClosed(drawerView: View) {
                     super.onDrawerClosed(drawerView!!)
-                    supportInvalidateOptionsMenu()
+                    invalidateOptionsMenu()
                 }
-
                 override fun onDrawerOpened(drawerView: View) {
                     super.onDrawerOpened(drawerView!!)
-                    supportInvalidateOptionsMenu()
+                    invalidateOptionsMenu()
                 }
             }
             mDrawerToggle.isDrawerIndicatorEnabled = true
@@ -102,7 +96,7 @@ class MainActivity : AppCompatActivity() {
                     )
             )
         } catch (e: ActivityNotFoundException) {
-            Toast.makeText(this@MainActivity, "Failed to launch Web Browser", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@MainActivity, R.string.error_browser_failed, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -112,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         for (id in ids) {
             val til = findViewById<TextInputLayout>(id)
             til.isErrorEnabled = true
-            til.error = "Some error text"
+            til.error = getString(R.string.til_error)
         }
 
         mHandler.removeCallbacks(mRunnable)

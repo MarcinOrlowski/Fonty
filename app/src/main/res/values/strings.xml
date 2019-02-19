@@ -2,5 +2,12 @@
     <string name="app_name">Fonty Demo</string>
 
     <string name="toggle_opend">Opened</string>
-    <string name="toggle_closed">Closeed</string>
+    <string name="toggle_closed">Closed</string>
+
+    <string name="toolbar_title">Fonty by Marcin Orlowski</string>
+    <string name="toolbar_subtitle">Easily change fonts of your app!</string>
+
+    <string name="error_browser_failed">Failed to launch web browser application!</string>
+
+    <string name="til_error">Some error text</string>
 </resources>
