@@ -2,6 +2,7 @@ Changelog
 =========
  * @dev
    - Deprecated `done()` method is now removed.
+   - Demo app converted to Kotlin
 
  * v3.0.0 (2019-02-18)
    - Migrated to Jetpack (androidx.*) libraries.
