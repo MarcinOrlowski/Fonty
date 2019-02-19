@@ -1,7 +1,6 @@
 package com.marcinorlowski.fonty
 
 import android.graphics.Paint
-import android.graphics.Typeface
 import android.text.TextPaint
 import android.text.style.MetricAffectingSpan
 
@@ -20,7 +19,7 @@ class TypefaceSpan
  * @param className
  * @param itemId
  */
-(private val mFallback: Boolean, private val mClassName: String, private val mItemId: Int) : MetricAffectingSpan() {
+(private val fallback: Boolean, private val className: String, private val itemId: Int) : MetricAffectingSpan() {
 
     override fun updateDrawState(textPaint: TextPaint) {
         apply(textPaint)
@@ -31,7 +30,6 @@ class TypefaceSpan
     }
 
     private fun apply(paint: Paint) {
-        val oldTf = paint.typeface
-        paint.typeface = Utils.substituteTypeface(oldTf, mFallback, mClassName, mItemId)
+        paint.typeface = Utils.substituteTypeface(paint.typeface, fallback, className, itemId)
     }
 }
