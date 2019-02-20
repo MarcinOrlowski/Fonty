@@ -31,19 +31,19 @@ class Fonty {
     /**
      * Application context
      */
-    protected var context: Context? = null
+    private var context: Context? = null
 
     /**
      * Prevents instantiation with new operator. Use context() instead
      */
-    protected constructor() {}
+    private constructor() {}
 
     /**
      * Instantiates a new FontTools object
      *
      * @param context the context
      */
-    protected constructor(context: Context) {
+    private constructor(context: Context) {
         this.context = context
     }
 
@@ -56,21 +56,43 @@ class Fonty {
      *
      * @return instance of Fonty object for easy chaining
      */
-    fun fontDir(fontDir: String?): Fonty {
-        var fontDir = fontDir
-        if (fontDir != null) {
-            if (fontDir.substring(fontDir.length - 1) != "/") {
-                fontDir = "$fontDir/"
-            }
-        } else {
-            fontDir = ""
-        }
-        fontFolderName = fontDir
+    fun fontDir(fontDir: String): Fonty {
+        failIfConfigured()
 
+        this.fontDirTmp = fontDir
         return this
     }
 
+    private var fontDirTmp: String? = null
+
+    private fun setFontDir(fontDir: String?) {
+        if (fontDir == null) {
+            return
+        }
+
+        var fontDir = fontDir
+
+        if (fontDir != "") {
+            if (fontDir.substring(fontDir.length - 1) != "/") {
+                if (fontDir != "") {
+                    fontDir = "$fontDir/"
+                }
+            }
+        }
+
+        fontFolderName = fontDir
+    }
+
+    /**
+     * Font file folder **relative** to your "assets" folder
+     */
+    private var fontFolderName = "fonts/"
+
+
     // --------------------------------------------------------------------------------------------
+
+    private var boldTypefaceNameTmp: String? = null
+    private var boldTypefaceIdTmp: Int? = null
 
     /**
      * Set typeface to be used for BOLD
@@ -80,7 +102,11 @@ class Fonty {
      * @return instance of Fonty object for easy chaining
      */
     fun boldTypeface(fileName: String): Fonty {
-        return add(TYPE_BOLD, fileName)
+        failIfConfigured()
+
+        boldTypefaceNameTmp = fileName
+        boldTypefaceIdTmp = null
+        return this
     }
 
     /**
@@ -91,10 +117,17 @@ class Fonty {
      * @return instance of Fonty object for easy chaining
      */
     fun boldTypeface(fileNameId: Int): Fonty {
-        return add(TYPE_BOLD, fileNameId)
+        failIfConfigured()
+
+        boldTypefaceIdTmp = fileNameId
+        boldTypefaceNameTmp = null
+        return this
     }
 
     // --------------------------------------------------------------------------------------------
+
+    private var normalTypefaceNameTmp: String? = null
+    private var normalTypefaceIdTmp: Int? = null
 
     /**
      * Set typeface to be used for NORMAL style
@@ -104,7 +137,11 @@ class Fonty {
      * @return instance of Fonty object for easy chaining
      */
     fun normalTypeface(fileName: String): Fonty {
-        return add(TYPE_NORMAL, fileName)
+        failIfConfigured()
+
+        normalTypefaceNameTmp = fileName!!
+        normalTypefaceIdTmp = null
+        return this
     }
 
     /**
@@ -115,22 +152,17 @@ class Fonty {
      * @return instance of Fonty object for easy chaining
      */
     fun normalTypeface(fileNameId: Int): Fonty {
-        return add(TYPE_NORMAL, fileNameId)
-    }
+        failIfConfigured()
 
-    // --------------------------------------------------------------------------------------------
-
-    /**
-     * @param fontName font name string
-     *
-     * @return instance of Fonty object for easy chaining
-     */
-    fun normalDownloadableTypeface(fontName: String): Fonty {
-
+        normalTypefaceIdTmp = fileNameId!!
+        normalTypefaceNameTmp = null
         return this
     }
 
     // --------------------------------------------------------------------------------------------
+
+    private var italicTypefaceNameTmp: String? = null
+    private var italiclTypefaceIdTmp: Int? = null
 
     /**
      * Set typeface to be used for ITALIC style
@@ -140,7 +172,11 @@ class Fonty {
      * @return instance of Fonty object for easy chaining
      */
     fun italicTypeface(fileName: String): Fonty {
-        return add(TYPE_ITALIC, fileName)
+        failIfConfigured()
+
+        italicTypefaceNameTmp = fileName!!
+        italiclTypefaceIdTmp = null
+        return this
     }
 
     /**
@@ -151,7 +187,11 @@ class Fonty {
      * @return instance of Fonty object for easy chaining
      */
     fun italicTypeface(fileNameId: Int): Fonty {
-        return add(TYPE_ITALIC, fileNameId)
+        failIfConfigured()
+
+        italiclTypefaceIdTmp = fileNameId!!
+        italicTypefaceNameTmp = null
+        return this
     }
 
     // --------------------------------------------------------------------------------------------
@@ -164,11 +204,7 @@ class Fonty {
      *
      * @return instance of Fonty object for easy chaining
      */
-    protected fun add(alias: String, @StringRes fileNameId: Int): Fonty {
-        if (context == null) {
-            throw RuntimeException("You must call 'context()' first")
-        }
-
+    private fun add(alias: String, @StringRes fileNameId: Int): Fonty {
         return add(alias, context!!.resources.getString(fileNameId))
     }
 
@@ -180,11 +216,7 @@ class Fonty {
      *
      * @return instance of Fonty object for easy chaining
      */
-    protected fun add(@StringRes aliasId: Int, @StringRes fileNameId: Int): Fonty {
-        if (context == null) {
-            throw RuntimeException("You must call 'context()' first")
-        }
-
+    private fun add(@StringRes aliasId: Int, @StringRes fileNameId: Int): Fonty {
         val res = context!!.resources
         return add(res.getString(aliasId), res.getString(fileNameId))
     }
@@ -197,32 +229,20 @@ class Fonty {
      * automatically "glued" with font folder name (see @fontDir()). If you do not want this to happen
      * add "/" to fontFileName, i.e. "/foo.ttf" or "/foo/other-folder/foo.ttf". In such case
      * fontDir is not used.
-     *
-     * @return instance of Fonty object for easy chaining
      */
-    protected fun add(alias: String, fontFileName: String): Fonty {
+    private fun add(alias: String, fontFileName: String): Fonty {
         var fontFileName = fontFileName
-        if (context == null) {
-            throw RuntimeException("You must call 'context()' first")
+
+        when {
+            alias.isEmpty() -> throw RuntimeException("Typeface alias cannot be empty string")
+            fontFileName.isEmpty() -> throw RuntimeException("Typeface filename cannot be empty string")
         }
 
-        if (alias == null) {
-            throw RuntimeException("Typeface alias cannot be null")
-        } else if (alias.length == 0) {
-            throw RuntimeException("Typeface alias cannot be empty string")
-        }
-
-        if (fontFileName == null) {
-            throw RuntimeException("Typeface filename cannot be null")
-        } else if (fontFileName.length == 0) {
-            throw RuntimeException("Typeface filename cannot be empty string")
-        }
-
-        if (fontFileName.substring(0, 1) == "/") {
-            // strip leading "/"
-            fontFileName = fontFileName.substring(1)
+        // strip leading "/" if present
+        fontFileName = if (fontFileName.substring(0, 1) == "/") {
+            fontFileName.substring(1)
         } else {
-            fontFileName = fontFolderName + fontFileName
+            fontFolderName + fontFileName
         }
 
         Cache.instance.add(context!!, alias, fontFileName)
@@ -239,36 +259,71 @@ class Fonty {
      *
      * @param mode @true (default) to enable font substitution fallback, @false otherwise
      *
-     * @return
+     * @return instance of Fonty object for easy chaining
      */
     fun typefaceFallback(mode: Boolean): Fonty? {
-        fallback = mode
+        failIfConfigured()
 
-        return instance_
+        fallback = mode
+        return this
     }
+
+
+    // --------------------------------------------------------------------------------------------
 
     /**
      * Concludes configuration phase. Must be called as last method of Fonty config call chain
      */
     fun build() {
-        mConfigured = true
+        failIfConfigured()
+
+        setFontDir(fontDirTmp)
+
+        if (normalTypefaceNameTmp != null) {
+            add(TYPE_NORMAL, normalTypefaceNameTmp!!)
+        } else if (normalTypefaceIdTmp != null) {
+            add(TYPE_NORMAL, normalTypefaceIdTmp!!)
+        }
+
+        if (boldTypefaceNameTmp != null) {
+            add(TYPE_BOLD, boldTypefaceNameTmp!!)
+        } else if (boldTypefaceIdTmp != null) {
+            add(TYPE_BOLD, boldTypefaceIdTmp!!)
+        }
+
+        if (italicTypefaceNameTmp != null) {
+            add(TYPE_ITALIC, italicTypefaceNameTmp!!)
+        } else if (italiclTypefaceIdTmp != null) {
+            add(TYPE_ITALIC, italiclTypefaceIdTmp!!)
+        }
+
+
+        alreadyConfigured = true
     }
 
+    // --------------------------------------------------------------------------------------------
+
     companion object {
+        const val LOG_TAG = "Fonty"
+        const val TYPE_NORMAL = "normal"
+        const val TYPE_BOLD = "bold"
+        const val TYPE_ITALIC = "italic"
 
-        val LOG_TAG = "Fonty"
+        // --------------------------------------------------------------------------------------------
 
-        val TYPE_NORMAL = "normal"
-        val TYPE_BOLD = "bold"
-        val TYPE_ITALIC = "italic"
+        fun initWithContext(context: Context): Fonty {
+            if (!Context::class.java.isInstance(context!!)) {
+                throw IllegalArgumentException("Invalid Context object passed.")
+            }
 
-        /**
-         * Font file folder **relative** to your "assets" folder
-         */
-        protected var fontFolderName = "fonts/"
+            if (instance_ == null) {
+                instance_ = Fonty(context!!)
+            }
 
-        protected var instance_: Fonty? = null
+            return instance_!!
+        }
 
+        private var instance_: Fonty? = null
         // --------------------------------------------------------------------------------------------
 
         /**
@@ -281,19 +336,9 @@ class Fonty {
          * @return instance of Fonty object for easy chaining
          */
         fun context(context: Context): Fonty {
-            if (context != null) {
-                if (!Context::class.java.isInstance(context)) {
-                    throw IllegalArgumentException("Invalid context object passed")
-                }
-            } else {
-                throw RuntimeException("Context cannot be null")
-            }
+            failIfConfigured()
 
-            if (instance_ == null) {
-                instance_ = Fonty(context)
-            }
-
-            return instance_!!
+            return initWithContext(context)
         }
 
         // --------------------------------------------------------------------------------------------
@@ -317,6 +362,7 @@ class Fonty {
          * @param activity the activity
          */
         fun setFonts(activity: Activity) {
+            failIfNotReady()
             setFonts((activity.findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup)
         }
 
@@ -326,23 +372,30 @@ class Fonty {
          * @param viewGroup the view group
          */
         fun setFonts(viewGroup: ViewGroup?) {
-            if (mConfigured) {
-                if (viewGroup != null && viewGroup.context.resources.displayMetrics.densityDpi >= DisplayMetrics.DENSITY_MEDIUM) {
-                    setFontsRaw(viewGroup)
-                }
-            } else {
-                throw RuntimeException("You must conclude your configuration chain with done()")
+            failIfNotReady()
+            if (viewGroup != null && viewGroup.context.resources.displayMetrics.densityDpi >= DisplayMetrics.DENSITY_MEDIUM) {
+                setFontsRaw(viewGroup)
             }
         }
 
         // --------------------------------------------------------------------------------------------
 
-        protected var fallback = true
-
+        private var fallback = true
+        private var alreadyConfigured = false
 
         // --------------------------------------------------------------------------------------------
 
-        protected var mConfigured = false
+        private fun failIfConfigured() {
+            if (alreadyConfigured) {
+                throw RuntimeException("Already configured. build() must be last invoked method.")
+            }
+        }
+
+        private fun failIfNotReady() {
+            if (!alreadyConfigured) {
+                throw RuntimeException("Not configured. You must call build() first.")
+            }
+        }
 
         // --------------------------------------------------------------------------------------------
 
@@ -351,8 +404,7 @@ class Fonty {
          *
          * @param viewGroup we alter all known children of this group
          */
-        protected fun setFontsRaw(viewGroup: ViewGroup) {
-
+        private fun setFontsRaw(viewGroup: ViewGroup) {
             for (i in 0 until viewGroup.childCount) {
                 val view = viewGroup.getChildAt(i)
 
@@ -400,7 +452,9 @@ class Fonty {
          *
          * @param menu Menu to work on
          */
-        protected fun setFontsMenu(menu: Menu) {
+        private fun setFontsMenu(menu: Menu) {
+            failIfNotReady()
+
             for (menuIndex in 0 until menu.size()) {
                 val menuItem = menu.getItem(menuIndex)
                 if (menuItem != null && menuItem.title != null) {
@@ -419,7 +473,6 @@ class Fonty {
             }
         }
     }
-
 
     // end of class
 }

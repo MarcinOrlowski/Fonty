@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
                     super.onDrawerClosed(drawerView!!)
                     invalidateOptionsMenu()
                 }
+
                 override fun onDrawerOpened(drawerView: View) {
                     super.onDrawerOpened(drawerView!!)
                     invalidateOptionsMenu()
