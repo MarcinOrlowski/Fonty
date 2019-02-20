@@ -362,6 +362,7 @@ class Fonty {
          *
          * @param activity the activity
          */
+        @JvmStatic
         fun setFonts(activity: Activity) {
             failIfNotReady()
             setFonts((activity.findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup)
@@ -372,6 +373,7 @@ class Fonty {
          *
          * @param viewGroup the view group
          */
+        @JvmStatic
         fun setFonts(viewGroup: ViewGroup?) {
             failIfNotReady()
             if (viewGroup != null && viewGroup.context.resources.displayMetrics.densityDpi >= DisplayMetrics.DENSITY_MEDIUM) {
