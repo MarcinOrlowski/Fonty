@@ -31,7 +31,7 @@ class Fonty {
     /**
      * Application context
      */
-    private var context: Context? = null
+    private var mContext: Context? = null
 
     /**
      * Prevents instantiation with new operator. Use context() instead
@@ -44,7 +44,7 @@ class Fonty {
      * @param context the context
      */
     private constructor(context: Context) {
-        this.context = context
+        mContext = context
     }
 
     // --------------------------------------------------------------------------------------------
@@ -205,7 +205,7 @@ class Fonty {
      * @return instance of Fonty object for easy chaining
      */
     private fun add(alias: String, @StringRes fileNameId: Int): Fonty {
-        return add(alias, context!!.resources.getString(fileNameId))
+        return add(alias, mContext!!.resources.getString(fileNameId))
     }
 
     /**
@@ -217,7 +217,7 @@ class Fonty {
      * @return instance of Fonty object for easy chaining
      */
     private fun add(@StringRes aliasId: Int, @StringRes fileNameId: Int): Fonty {
-        val res = context!!.resources
+        val res = mContext!!.resources
         return add(res.getString(aliasId), res.getString(fileNameId))
     }
 
@@ -245,7 +245,7 @@ class Fonty {
             fontFolderName + fontFileName
         }
 
-        Cache.instance.add(context!!, alias, fontFileName)
+        Cache.instance.add(mContext!!, alias, fontFileName)
 
         return this
     }
@@ -335,6 +335,7 @@ class Fonty {
          *
          * @return instance of Fonty object for easy chaining
          */
+        @JvmStatic
         fun context(context: Context): Fonty {
             failIfConfigured()
 
@@ -472,6 +473,7 @@ class Fonty {
                 }
             }
         }
+
     }
 
     // end of class
