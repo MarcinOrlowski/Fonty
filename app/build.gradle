@@ -13,8 +13,9 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
 
-        versionCode 20190218
-        versionName '3.0.0'
+        //noinspection HighAppVersionCode
+        versionCode 2019021901
+        versionName '3.1.2'
     }
     buildTypes {
         release {
