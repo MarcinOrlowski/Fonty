@@ -1,7 +1,7 @@
 Changelog
 =========
  * @dev
-   - Updated to use Jetpack (androidx.*) libraries.
+   - Fixed demo app using wrong widget classes and crashing.
    - Deprecated `done()`, `regularTypeface()` methods are now removed.
    - Converted library and demo app converted to Kotlin.
    - `fontDir()` no longer accepts `null` arguments.
