@@ -1,6 +1,6 @@
 Changelog
 =========
- * @dev
+ * v3.1.0 (2019-02-19)
    - Fixed demo app using wrong widget classes and crashing.
    - Deprecated `done()`, `regularTypeface()` methods are now removed.
    - Converted library and demo app converted to Kotlin.
