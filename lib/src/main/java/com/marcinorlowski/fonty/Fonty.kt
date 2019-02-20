@@ -31,7 +31,7 @@ class Fonty {
     /**
      * Application context
      */
-    protected var mContext: Context? = null
+    protected var context: Context? = null
 
     /**
      * Prevents instantiation with new operator. Use context() instead
@@ -44,7 +44,7 @@ class Fonty {
      * @param context the context
      */
     protected constructor(context: Context) {
-        mContext = context
+        this.context = context
     }
 
     // --------------------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ class Fonty {
         } else {
             fontDir = ""
         }
-        mFontFolderName = fontDir
+        fontFolderName = fontDir
 
         return this
     }
@@ -95,19 +95,6 @@ class Fonty {
     }
 
     // --------------------------------------------------------------------------------------------
-
-
-    @Deprecated("2.1.0 use normalTypeface() instead")
-    fun regularTypeface(fileName: String): Fonty {
-        return normalTypeface(fileName)
-    }
-
-
-    @Deprecated("2.1.0 use normalTypeface() instead")
-    fun regularTypeface(fileNameId: Int): Fonty {
-        return normalTypeface(fileNameId)
-    }
-
 
     /**
      * Set typeface to be used for NORMAL style
@@ -178,11 +165,11 @@ class Fonty {
      * @return instance of Fonty object for easy chaining
      */
     protected fun add(alias: String, @StringRes fileNameId: Int): Fonty {
-        if (mContext == null) {
+        if (context == null) {
             throw RuntimeException("You must call 'context()' first")
         }
 
-        return add(alias, mContext!!.resources.getString(fileNameId))
+        return add(alias, context!!.resources.getString(fileNameId))
     }
 
     /**
@@ -194,11 +181,11 @@ class Fonty {
      * @return instance of Fonty object for easy chaining
      */
     protected fun add(@StringRes aliasId: Int, @StringRes fileNameId: Int): Fonty {
-        if (mContext == null) {
+        if (context == null) {
             throw RuntimeException("You must call 'context()' first")
         }
 
-        val res = mContext!!.resources
+        val res = context!!.resources
         return add(res.getString(aliasId), res.getString(fileNameId))
     }
 
@@ -215,7 +202,7 @@ class Fonty {
      */
     protected fun add(alias: String, fontFileName: String): Fonty {
         var fontFileName = fontFileName
-        if (mContext == null) {
+        if (context == null) {
             throw RuntimeException("You must call 'context()' first")
         }
 
@@ -235,10 +222,10 @@ class Fonty {
             // strip leading "/"
             fontFileName = fontFileName.substring(1)
         } else {
-            fontFileName = mFontFolderName + fontFileName
+            fontFileName = fontFolderName + fontFileName
         }
 
-        Cache.instance.add(mContext!!, alias, fontFileName)
+        Cache.instance.add(context!!, alias, fontFileName)
 
         return this
     }
@@ -278,7 +265,7 @@ class Fonty {
         /**
          * Font file folder **relative** to your "assets" folder
          */
-        protected var mFontFolderName = "fonts/"
+        protected var fontFolderName = "fonts/"
 
         protected var instance_: Fonty? = null
 

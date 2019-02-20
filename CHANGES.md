@@ -1,7 +1,7 @@
 Changelog
 =========
  * @dev
-   - Deprecated `done()` method is now removed.
+   - Deprecated `done()`, `regularTypeface()` methods are now removed.
    - Converted library and demo app converted to Kotlin.
 
  * v3.0.0 (2019-02-18)
