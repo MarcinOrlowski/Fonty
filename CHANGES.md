@@ -1,5 +1,12 @@
 Changelog
 =========
+ * @dev
+   - Fixed demo app using wrong widget classes and crashing.
+   - Deprecated `done()`, `regularTypeface()` methods are now removed.
+   - Converted library and demo app converted to Kotlin.
+   - `fontDir()` no longer accepts `null` arguments.
+   - Reworked builder, config methods can now be called in any order.
+   - Added some extra sanity checks.
 
  * v3.0.0 (2019-02-18)
    - Migrated to Jetpack (androidx.*) libraries.
