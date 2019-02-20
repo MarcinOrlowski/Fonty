@@ -1,5 +1,8 @@
 Changelog
 =========
+ * v3.1.2 (2019-02-19)
+   - Corrected `versionCode` and `versionName`.
+
  * v3.1.1 (2019-02-19)
    - Fixed Java interface.
    - Portion of demo app is back in Java (for testing purposes).
