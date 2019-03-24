@@ -27,17 +27,16 @@ Fonty
 Features
 ========
 
- - Fast and lightweight
- - No odd dependencies
- - Simple API
- - Supports the following UI elements and all subclasses:
-   * TextInputLayout (see [notes](#textinputlayout) below!)
-   * Navigation Drawer (including drawer's header view)
-   * Toolbar
-   * TextView (incl. Checkbox, EditText, CheckedTextView, Chronometer, DigitalClock, TextClock, ...)
-   * Button (incl. Switch, RadioButton, CompoundButton, ...)
- - Can be used in libraries
-
+ - Fast and lightweight,
+ - No extra dependencies,
+ - Simple API,
+ - Supports the following UI elements and all subclasses:,
+   * `TextInputLayout` (see [notes](#textinputlayout) below!),
+   * `Navigation Drawer` (including drawer's header view),
+   * `Toolbar`
+   * `TextView` (incl. `Checkbox`, `EditText`, `CheckedTextView`, `Chronometer`, `DigitalClock`, `TextClock`, ...),
+   * `Button` (incl. `Switch`, `RadioButton`, `CompoundButton`, ...),
+ - Can be used in libraries.
 
 Installation
 ============
@@ -91,10 +90,6 @@ Configuration
         .build();
 
  and put your font files into `<MODULE>/src/main/assets/my-fonts` folder.
-
- **NOTE:** You **MUST** call `fontDir()` **before** invoking `xxxTypeface()` in your setup chain,
- otherwise `xxxTypeface()` will try to look for fonts in default location and end
- up failing throwing exception due to missing typeface file.
 
 Font substitution
 =================
