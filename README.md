@@ -10,11 +10,11 @@ Fonty
  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Fonty-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5489)
 
 
- `Fonty` is simple Android library allowing you to easily change the typeface
- of your UI elements. Contrary to other implementations `Fonty` is designed with
- the assumption that if you want to change the font for your  app, then you change
- it **globally** per whole application, to achieve consistency across your Fragments
- or Activities.
+ `Fonty` is simple Android library allowing you to easily change the typeface of your UI elements.
+ Contrary to other libraries of that type, `Fonty` is designed with the assumption that if you want
+ to change the font for your app, then you change it **globally** per whole application, to achieve
+ consistency across your Fragments or Activities. If you want different fonts per each widget, then
+ `Fonty` is most likely not what you need.
 
  Using `Fonty` requires **no change** to your layout files and all you need to do is to initialize 
  the library and specify what typeface you want to be used as normal, italic or boldfaced ones.
@@ -27,17 +27,17 @@ Fonty
 Features
 ========
 
- - Fast and lightweight
- - No odd dependencies
- - Simple API
- - Supports the following UI elements and all subclasses:
-   * TextInputLayout (see [notes](#textinputlayout) below!)
-   * Navigation Drawer (including drawer's header view)
-   * Toolbar
-   * TextView (incl. Checkbox, EditText, CheckedTextView, Chronometer, DigitalClock, TextClock, ...)
-   * Button (incl. Switch, RadioButton, CompoundButton, ...)
- - Can be used in libraries
-
+ - Does not require any changes to your layout XML files,
+ - Fast and lightweight,
+ - No extra dependencies,
+ - Simple API,
+ - Supports the following UI elements and all their subclasses:
+   * `TextInputLayout` (see [notes](#textinputlayout) below!),
+   * `Navigation Drawer` (including drawer's header view),
+   * `Toolbar`
+   * `TextView` (incl. `Checkbox`, `EditText`, `CheckedTextView`, `Chronometer`, `DigitalClock`, `TextClock`, ...),
+   * `Button` (incl. `Switch`, `RadioButton`, `CompoundButton`, ...),
+ - Can be used in libraries.
 
 Installation
 ============
@@ -61,8 +61,9 @@ Installation
 Configuration
 =============
 
- Put your [TrueType](https://en.wikipedia.org/wiki/TrueType) (`*.ttf`) font files into module's `assets/fonts`
- folder (`<MODULE>/src/main/assets/fonts` folder, where `<MODULE>` usually equals `app`).
+ Put your [TrueType](https://en.wikipedia.org/wiki/TrueType) (`*.ttf`) font files into module's
+ `assets/fonts` folder (`<MODULE>/src/main/assets/fonts` folder, where `<MODULE>` usually equals
+ to `app`).
 
  Then add the following lines to your custom Application's class' `onCreate()`
  method (if you do not use own `Application` subclass, see demo app for how
@@ -91,10 +92,6 @@ Configuration
         .build();
 
  and put your font files into `<MODULE>/src/main/assets/my-fonts` folder.
-
- **NOTE:** You **MUST** call `fontDir()` **before** invoking `xxxTypeface()` in your setup chain,
- otherwise `xxxTypeface()` will try to look for fonts in default location and end
- up failing throwing exception due to missing typeface file.
 
 Font substitution
 =================
@@ -213,11 +210,11 @@ Limitations
 ===========
 
  Due to limitations of the Android API, once fonts are replaced by `Fonty`, former style information
- (like `bold`, `normal`) is reset, so all calls to i.e. `isBold()` or `isItalic()` will always
- return `false`. At the moment there's no workaround for this issue, yet it should not really
- affect many, however because this information is gone, and `Fonty` relies on it then calling
+ (like `bold`, `normal`) is lost, so all calls to i.e. `isBold()` or `isItalic()` will always
+ return `false`. However because this information is gone, and `Fonty` relies on it, calling
  `Fonty.setFonts()` twice on the same layout elements will end up with wrong results (mostly
- all widgets will be using normal typeface).
+ all widgets will be using normal typeface). At the moment there's no workaround for this except
+ for not calling `setFonts()` more than once. Hopefuly IRL scenarios this should not affect many.
 
 
 Contributing
@@ -226,8 +223,8 @@ Contributing
  Please report any issue spotted using [GitHub's project tracker](https://github.com/MarcinOrlowski/fonty/issues).
 
  If you'd like to contribute to the this project, please [open new ticket](https://github.com/MarcinOrlowski/fonty/issues)
- **before doing any work**. This will help us save your time in case I'd not be able to accept such changes. But if all is good and
- clear then follow common routine:
+ **before doing any work**. This will help us save your time in case I'd not be able to accept such
+ changes. But if all is good and clear then follow common routine:
 
   * fork the project
   * create new branch

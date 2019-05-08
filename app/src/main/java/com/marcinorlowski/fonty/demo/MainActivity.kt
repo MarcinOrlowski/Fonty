@@ -62,12 +62,12 @@ class MainActivity : AppCompatActivity() {
             actionBar.setDisplayHomeAsUpEnabled(true)
             mDrawerToggle = object : ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.toggle_opend, R.string.toggle_closed) {
                 override fun onDrawerClosed(drawerView: View) {
-                    super.onDrawerClosed(drawerView!!)
+                    super.onDrawerClosed(drawerView)
                     invalidateOptionsMenu()
                 }
 
                 override fun onDrawerOpened(drawerView: View) {
-                    super.onDrawerOpened(drawerView!!)
+                    super.onDrawerOpened(drawerView)
                     invalidateOptionsMenu()
                 }
             }

@@ -70,17 +70,17 @@ class Fonty {
             return
         }
 
-        var fontDir = fontDir
+        var dir = fontDir
 
-        if (fontDir != "") {
-            if (fontDir.substring(fontDir.length - 1) != "/") {
-                if (fontDir != "") {
-                    fontDir = "$fontDir/"
+        if (dir != "") {
+            if (dir.substring(dir.length - 1) != "/") {
+                if (dir != "") {
+                    dir = "$dir/"
                 }
             }
         }
 
-        fontFolderName = fontDir
+        fontFolderName = dir
     }
 
     /**
@@ -139,7 +139,7 @@ class Fonty {
     fun normalTypeface(fileName: String): Fonty {
         failIfConfigured()
 
-        normalTypefaceNameTmp = fileName!!
+        normalTypefaceNameTmp = fileName
         normalTypefaceIdTmp = null
         return this
     }
@@ -154,7 +154,7 @@ class Fonty {
     fun normalTypeface(fileNameId: Int): Fonty {
         failIfConfigured()
 
-        normalTypefaceIdTmp = fileNameId!!
+        normalTypefaceIdTmp = fileNameId
         normalTypefaceNameTmp = null
         return this
     }
@@ -174,7 +174,7 @@ class Fonty {
     fun italicTypeface(fileName: String): Fonty {
         failIfConfigured()
 
-        italicTypefaceNameTmp = fileName!!
+        italicTypefaceNameTmp = fileName
         italiclTypefaceIdTmp = null
         return this
     }
@@ -189,7 +189,7 @@ class Fonty {
     fun italicTypeface(fileNameId: Int): Fonty {
         failIfConfigured()
 
-        italiclTypefaceIdTmp = fileNameId!!
+        italiclTypefaceIdTmp = fileNameId
         italicTypefaceNameTmp = null
         return this
     }
@@ -231,21 +231,21 @@ class Fonty {
      * fontDir is not used.
      */
     private fun add(alias: String, fontFileName: String): Fonty {
-        var fontFileName = fontFileName
-
         when {
             alias.isEmpty() -> throw RuntimeException("Typeface alias cannot be empty string")
             fontFileName.isEmpty() -> throw RuntimeException("Typeface filename cannot be empty string")
         }
 
+        var fontFile = fontFileName
+
         // strip leading "/" if present
-        fontFileName = if (fontFileName.substring(0, 1) == "/") {
-            fontFileName.substring(1)
+        fontFile = if (fontFile.substring(0, 1) == "/") {
+            fontFile.substring(1)
         } else {
-            fontFolderName + fontFileName
+            fontFolderName + fontFile
         }
 
-        Cache.instance.add(mContext!!, alias, fontFileName)
+        Cache.instance.add(mContext!!, alias, fontFile)
 
         return this
     }
@@ -312,12 +312,12 @@ class Fonty {
         // --------------------------------------------------------------------------------------------
 
         fun initWithContext(context: Context): Fonty {
-            if (!Context::class.java.isInstance(context!!)) {
+            if (!Context::class.java.isInstance(context)) {
                 throw IllegalArgumentException("Invalid Context object passed.")
             }
 
             if (instance_ == null) {
-                instance_ = Fonty(context!!)
+                instance_ = Fonty(context)
             }
 
             return instance_!!
@@ -351,6 +351,7 @@ class Fonty {
          *
          * @return the typeface
          */
+        @JvmStatic
         operator fun get(alias: String): Typeface? {
             return Cache.instance[alias]
         }
