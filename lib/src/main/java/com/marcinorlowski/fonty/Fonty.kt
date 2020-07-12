@@ -20,7 +20,7 @@ import androidx.annotation.StringRes
 /**
  ******************************************************************************
  *
- * Copyright 2013-2019 Marcin Orlowski <github@MarcinOrlowski.com>
+ * Copyright 2013-2020 Marcin Orlowski <github@MarcinOrlowski.com>
  *
  * Licensed under the Apache License 2.0
  *

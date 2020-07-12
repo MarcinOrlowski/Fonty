@@ -4,13 +4,13 @@ package com.marcinorlowski.fonty.demo;
 import com.marcinorlowski.fonty.Fonty;
 
 /**
- * *****************************************************************************
- * <p>
- * Copyright 2013-2019 Marcin Orlowski <github@MarcinOrlowski.com>
- * <p>
+ ******************************************************************************
+ *
+ * Copyright 2013-2020 Marcin Orlowski <github@MarcinOrlowski.com>
+ *
  * Licensed under the Apache License 2.0
- * <p>
- * *****************************************************************************
+ *
+ ******************************************************************************
  */
 public class Application extends android.app.Application {
 
