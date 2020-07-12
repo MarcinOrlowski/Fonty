@@ -3,8 +3,7 @@ Fonty
 
  [![Repository](https://img.shields.io/badge/repo-GitHub-blue.svg)](https://github.com/MarcinOrlowski/fonty)
  ![License](https://img.shields.io/github/license/MarcinOrlowski/fonty.svg)
- [![Dependency Status](https://dependencyci.com/github/MarcinOrlowski/Fonty/badge)](https://dependencyci.com/github/MarcinOrlowski/Fonty)
- 
+
  [![Curent Release](https://jitpack.io/v/MarcinOrlowski/fonty.svg)](https://jitpack.io/#MarcinOrlowski/fonty)
  ![jitpack Downloads](https://jitpack.io/v/MarcinOrlowski/Fonty/month.svg)
  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Fonty-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/5489)
@@ -16,7 +15,7 @@ Fonty
  consistency across your Fragments or Activities. If you want different fonts per each widget, then
  `Fonty` is most likely not what you need.
 
- Using `Fonty` requires **no change** to your layout files and all you need to do is to initialize 
+ Using `Fonty` requires **no change** to your layout files and all you need to do is to initialize
  the library and specify what typeface you want to be used as normal, italic or boldfaced ones.
 
  ![Screenshot](img/shot.png)
@@ -147,10 +146,10 @@ Toolbars
  by `Fonty` in some cases. This is due to `Toolbar`'s internals as it simply have not instance of `TextView`
  created unless title or subtitle is set (even to empty string), so there's nothing `Fonty` can manipulate
  in advance.
- 
- The simples solution is to set toolbar title (and/or subtitle) in `onCreate()` causing `EditText` 
+
+ The simples solution is to set toolbar title (and/or subtitle) in `onCreate()` causing `EditText`
  creation prior calling `Fonty.setFonts()`:
- 
+
      @Override
      protected void onCreate(Bundle state) {
          super.onCreate(bundle);
@@ -166,7 +165,7 @@ Toolbars
          
          Fonty.setFonts(this);
      }
- 
+
  Alternatively, you can edit/create base activity class for your app with the following code:
 
      private Toolbar mActivityActionBarToolbar;
@@ -202,7 +201,7 @@ TextInputLayout
  and you want error text typeface to be changed by `Fonty` as well, then you must either set
  `app:errorEnabled="true"` in the XML layout or call `setErrorEnabled(true)` on the object
  **prior** calling `Fonty.setFonts()`. This is because of how `TextInputLayout` works internally.
- 
+
  **NOTE:** Typeface used for hints and error messages will be derrived from one set for `EditText`.
 
 
@@ -235,6 +234,6 @@ Contributing
 License
 =======
 
-  * Written and copyrighted &copy;2013-2019 by Marcin Orlowski <mail (#) marcinorlowski (.) com>
+  * Written and copyrighted &copy;2013-2020 by Marcin Orlowski <mail (#) marcinorlowski (.) com>
   * `Fonty` is open-sourced library licensed under the Apache 2.0 license
 
