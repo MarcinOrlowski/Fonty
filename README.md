@@ -3,7 +3,6 @@ Fonty
 
  [![Repository](https://img.shields.io/badge/repo-GitHub-blue.svg)](https://github.com/MarcinOrlowski/fonty)
  ![License](https://img.shields.io/github/license/MarcinOrlowski/fonty.svg)
- [![Dependency Status](https://dependencyci.com/github/MarcinOrlowski/Fonty/badge)](https://dependencyci.com/github/MarcinOrlowski/Fonty)
 
  [![Curent Release](https://jitpack.io/v/MarcinOrlowski/fonty.svg)](https://jitpack.io/#MarcinOrlowski/fonty)
  ![jitpack Downloads](https://jitpack.io/v/MarcinOrlowski/Fonty/month.svg)
