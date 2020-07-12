@@ -14,7 +14,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
 
         //noinspection HighAppVersionCode
-        versionCode 2019050801
+        versionCode 2020071101
         versionName '3.1.3'
     }
     buildTypes {
