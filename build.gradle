@@ -1,7 +1,14 @@
 apply plugin: 'com.github.ben-manes.versions'
 
+ext {
+    compileSdkVersion = 30
+    targetSdkVersion = 30
+    minSdkVersion = 16
+    buildToolsVersion = '30.0.1'
+}
+
 buildscript {
-    ext.kotlin_version = '1.3.21'
+    ext.kotlin_version = '1.3.72'
     repositories {
         google()
         jcenter()
@@ -12,19 +19,12 @@ buildscript {
         // https://github.com/ben-manes/gradle-versions-plugin
         // Usage: gradlew dependencyUpdates task to check dependency versions
         // also needs apply plugin: 'com.github.ben-manes.versions'
-        classpath 'com.github.ben-manes:gradle-versions-plugin:0.17.0'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.28.0'
 
         // jitpack.io
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
-}
-
-ext {
-    compileSdkVersion = 28
-    targetSdkVersion = 28
-    minSdkVersion = 16
-    buildToolsVersion = '28.0.3'
 }
 
 allprojects {
