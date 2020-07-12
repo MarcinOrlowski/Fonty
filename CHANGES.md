@@ -1,5 +1,9 @@
 Changelog
 =========
+ * v3.1.5 (2020-07-11)
+   - Converted demo application class to Koltin
+   - Corrected Space widget usage
+
  * v3.1.4 (2019-05-08)
    - Fixed `get()` not being properly exported.
    - Internal library code cleanup.

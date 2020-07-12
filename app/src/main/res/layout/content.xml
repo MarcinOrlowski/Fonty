@@ -23,8 +23,7 @@
                 android:padding="8dp"
                 tools:context="com.marcinorlowski.fonty.demo.MainActivity">
 
-
-                <androidx.legacy.widget.Space
+                <Space
                     android:layout_width="match_parent"
                     android:layout_height="32dp"/>
 
