@@ -1,3 +1,14 @@
+/** ******************************************************************************
+ *
+ * Fonty - Android custom fonts made easy
+ *
+ * @author      Marcin Orlowski <mail (#) marcinOrlowski (.) com>
+ * @copyright   2013-2022 2022 Marcin Orlowski
+ * @license     https://opensource.org/licenses/Apache-2.0
+ * @link        https://github.com/MarcinOrlowski/fonty
+ *
+ ***************************************************************************** **/
+
 apply plugin: 'com.github.ben-manes.versions'
 
 ext {
@@ -8,11 +19,11 @@ ext {
 }
 
 buildscript {
-    ext.kotlin_version = '1.6.20'
+    ext.kotlinVersion = '1.6.20'
+
     repositories {
         google()
         gradlePluginPortal()
-//        jcenter()
     }
 
     dependencies {
@@ -25,7 +36,7 @@ buildscript {
 
         // jitpack.io
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
 

@@ -1,4 +1,13 @@
-import java.util.prefs.Preferences
+/** ******************************************************************************
+ *
+ * Fonty - Android custom fonts made easy
+ *
+ * @author      Marcin Orlowski <mail (#) marcinOrlowski (.) com>
+ * @copyright   2013-2022 2022 Marcin Orlowski
+ * @license     https://opensource.org/licenses/Apache-2.0
+ * @link        https://github.com/MarcinOrlowski/fonty
+ *
+ ***************************************************************************** **/
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
@@ -45,7 +54,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:1.7.0-alpha01"
 
     implementation project(':lib')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 }
 repositories {
     mavenCentral()

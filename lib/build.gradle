@@ -1,9 +1,22 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
+/** ******************************************************************************
+ *
+ * Fonty - Android custom fonts made easy
+ *
+ * @author      Marcin Orlowski <mail (#) marcinOrlowski (.) com>
+ * @copyright   2013-2022 2022 Marcin Orlowski
+ * @license     https://opensource.org/licenses/Apache-2.0
+ * @link        https://github.com/MarcinOrlowski/fonty
+ *
+ ***************************************************************************** **/
+
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'maven-publish'
+}
 
 // jitpack.io
-//apply plugin: 'com.github.dcendents.android-maven'
-//group='com.github.MarcinOrlowski'
+group = 'com.github.MarcinOrlowski'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -32,7 +45,7 @@ android {
 dependencies {
     implementation "androidx.appcompat:appcompat:1.7.0-alpha01"
     implementation "com.google.android.material:material:1.8.0-alpha02"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 }
 repositories {
     mavenCentral()
