@@ -5,20 +5,17 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.Toast
 
 import com.google.android.material.textfield.TextInputLayout
 import com.marcinorlowski.fonty.Fonty
 
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-import butterknife.ButterKnife
-import butterknife.OnClick
-import butterknife.Unbinder
+import com.marcinorlowski.fonty.demo.databinding.ActivityMainBinding
 
 /**
  ******************************************************************************
@@ -33,9 +30,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mDrawerToggle: ActionBarDrawerToggle
 
-    private lateinit var mButterKnifeUnbinder: Unbinder
+    private lateinit var binding: ActivityMainBinding
 
-    private var mHandler = Handler()
+    private var mHandler = Handler(Looper.getMainLooper())
 
     // Runnable that hides TIL's error messages
     private var mRunnable: Runnable = Runnable {
@@ -47,20 +44,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val viewRoot = binding.root
+        setContentView(viewRoot)
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        toolbar.title = getString(R.string.toolbar_title)
-        toolbar.subtitle = getString(R.string.toolbar_subtitle)
-        setSupportActionBar(toolbar)
+        binding.toolbar.title = getString(R.string.toolbar_title)
+        binding.toolbar.subtitle = getString(R.string.toolbar_subtitle)
+        setSupportActionBar(binding.toolbar)
 
         val actionBar = supportActionBar
-
         if (actionBar != null) {
             val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
 
             actionBar.setDisplayHomeAsUpEnabled(true)
-            mDrawerToggle = object : ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.toggle_opend, R.string.toggle_closed) {
+            mDrawerToggle = object : ActionBarDrawerToggle(this, drawerLayout, binding.toolbar, R.string.toggle_opend, R.string.toggle_closed) {
                 override fun onDrawerClosed(drawerView: View) {
                     super.onDrawerClosed(drawerView)
                     invalidateOptionsMenu()
@@ -77,18 +74,13 @@ class MainActivity : AppCompatActivity() {
             mDrawerToggle.syncState()
         }
 
+        binding.content.github.setOnClickListener { clickGithub() }
+        binding.content.button.setOnClickListener { clickButton() }
+
         // apply our fonts now
         Fonty.setFonts(this)
-
-        mButterKnifeUnbinder = ButterKnife.bind(this)
     }
 
-    override fun onDestroy() {
-        mButterKnifeUnbinder.unbind()
-        super.onDestroy()
-    }
-
-    @OnClick(R.id.github)
     fun clickGithub() {
         try {
             startActivity(
@@ -101,7 +93,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    @OnClick(R.id.button)
     fun clickButton() {
         val ids = intArrayOf(R.id.til1, R.id.til2)
         for (id in ids) {

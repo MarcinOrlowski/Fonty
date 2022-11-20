@@ -3,8 +3,8 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 
 // jitpack.io
-apply plugin: 'com.github.dcendents.android-maven'
-group='com.github.MarcinOrlowski'
+//apply plugin: 'com.github.dcendents.android-maven'
+//group='com.github.MarcinOrlowski'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.drawerlayout.widget.DrawerLayout
-    android:id="@+id/drawer_layout"
+<androidx.drawerlayout.widget.DrawerLayout android:id="@+id/drawer_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,10 +23,10 @@
             app:subtitleTextAppearance="@style/ToolbarSubtitleAppearance"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"/>
 
-        <include layout="@layout/content"/>
+        <!-- The android:id is needed for data binding library to export IDs of included widgets -->
+        <include layout="@layout/content" android:id="@id/content" />
 
     </LinearLayout>
-
 
     <include layout="@layout/navigation_view"/>
 

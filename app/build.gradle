@@ -45,11 +45,6 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "androidx.appcompat:appcompat:1.7.0-alpha01"
 
-    // ButterKnife: https://github.com/JakeWharton/butterknife
-    ext.butterknifeVersion = "10.2.3"
-    implementation "com.jakewharton:butterknife:$butterknifeVersion"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
-
     implementation project(':lib')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
