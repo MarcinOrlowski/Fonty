@@ -1,17 +1,19 @@
 package com.marcinorlowski.fonty.demo
 
+/** ******************************************************************************
+ *
+ * Fonty - Android custom fonts made easy
+ *
+ * @author      Marcin Orlowski <mail (#) marcinOrlowski (.) com>
+ * @copyright   2013-2022 2022 Marcin Orlowski
+ * @license     https://opensource.org/licenses/Apache-2.0
+ * @link        https://github.com/MarcinOrlowski/fonty
+ *
+ ***************************************************************************** **/
+
 import android.app.Application
 import com.marcinorlowski.fonty.Fonty.Companion.context
 
-/**
- ******************************************************************************
- *
- * Copyright 2013-2020 Marcin Orlowski <github@MarcinOrlowski.com>
- *
- * Licensed under the Apache License 2.0
- *
- ******************************************************************************
- */
 class Application : Application() {
     override fun onCreate() {
         super.onCreate()

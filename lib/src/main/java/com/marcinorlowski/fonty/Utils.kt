@@ -1,17 +1,19 @@
 package com.marcinorlowski.fonty
 
+/** ******************************************************************************
+ *
+ * Fonty - Android custom fonts made easy
+ *
+ * @author      Marcin Orlowski <mail (#) marcinOrlowski (.) com>
+ * @copyright   2013-2022 2022 Marcin Orlowski
+ * @license     https://opensource.org/licenses/Apache-2.0
+ * @link        https://github.com/MarcinOrlowski/fonty
+ *
+ ***************************************************************************** **/
+
 import android.graphics.Typeface
 import android.util.Log
 
-/**
- ******************************************************************************
- *
- * Copyright 2013-2020 Marcin Orlowski <github@MarcinOrlowski.com>
- *
- * Licensed under the Apache License 2.0
- *
- ******************************************************************************
- */
 object Utils {
 
     private const val widgetLogFmt = "Missing '%s', id: 0x%x, class: '%s'"

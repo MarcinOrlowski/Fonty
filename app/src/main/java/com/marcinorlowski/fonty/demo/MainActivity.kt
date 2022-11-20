@@ -1,5 +1,16 @@
 package com.marcinorlowski.fonty.demo
 
+/** ******************************************************************************
+ *
+ * Fonty - Android custom fonts made easy
+ *
+ * @author      Marcin Orlowski <mail (#) marcinOrlowski (.) com>
+ * @copyright   2013-2022 2022 Marcin Orlowski
+ * @license     https://opensource.org/licenses/Apache-2.0
+ * @link        https://github.com/MarcinOrlowski/fonty
+ *
+ ***************************************************************************** **/
+
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
@@ -17,15 +28,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.marcinorlowski.fonty.demo.databinding.ActivityMainBinding
 
-/**
- ******************************************************************************
- *
- * Copyright 2013-2020 Marcin Orlowski <github@MarcinOrlowski.com>
- *
- * Licensed under the Apache License 2.0
- *
- ******************************************************************************
- */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mDrawerToggle: ActionBarDrawerToggle

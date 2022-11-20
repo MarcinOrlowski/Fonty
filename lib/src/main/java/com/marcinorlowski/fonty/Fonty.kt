@@ -1,5 +1,16 @@
 package com.marcinorlowski.fonty
 
+/** ******************************************************************************
+ *
+ * Fonty - Android custom fonts made easy
+ *
+ * @author      Marcin Orlowski <mail (#) marcinOrlowski (.) com>
+ * @copyright   2013-2022 2022 Marcin Orlowski
+ * @license     https://opensource.org/licenses/Apache-2.0
+ * @link        https://github.com/MarcinOrlowski/fonty
+ *
+ ***************************************************************************** **/
+
 import android.app.Activity
 import android.content.Context
 import android.graphics.Typeface
@@ -17,15 +28,6 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.textfield.TextInputLayout
 import androidx.annotation.StringRes
 
-/**
- ******************************************************************************
- *
- * Copyright 2013-2020 Marcin Orlowski <github@MarcinOrlowski.com>
- *
- * Licensed under the Apache License 2.0
- *
- ******************************************************************************
- */
 class Fonty {
 
     /**
