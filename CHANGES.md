@@ -1,6 +1,7 @@
 Changelog
 =========
- * v3.1.6 (2022-11-20)
+
+ * v3.2.0 (2022-11-20)
    - Updated source to use latest libraries and SDK.
    - Updated demo app to use data-binding instead of ButterKnife.
    - General code cleanup.

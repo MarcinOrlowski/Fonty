@@ -23,7 +23,7 @@ android {
 
         //noinspection HighAppVersionCode
         versionCode 2022112001
-        versionName '3.1.6'
+        versionName '3.2.0'
     }
     buildTypes {
         release {
