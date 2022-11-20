@@ -29,13 +29,11 @@ import com.marcinorlowski.fonty.demo.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mDrawerToggle: ActionBarDrawerToggle
-
     private lateinit var binding: ActivityMainBinding
-
     private var mHandler = Handler(Looper.getMainLooper())
 
     // Runnable that hides TIL's error messages
-    private var mRunnable: Runnable = Runnable {
+    private val mRunnable: Runnable = Runnable {
         val ids = intArrayOf(R.id.til1, R.id.til2)
         for (id in ids) {
             (findViewById<View>(id) as TextInputLayout).error = null
@@ -57,7 +55,8 @@ class MainActivity : AppCompatActivity() {
             val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
 
             actionBar.setDisplayHomeAsUpEnabled(true)
-            mDrawerToggle = object : ActionBarDrawerToggle(this, drawerLayout, binding.toolbar, R.string.toggle_opend, R.string.toggle_closed) {
+            mDrawerToggle = object :
+                ActionBarDrawerToggle(this, drawerLayout, binding.toolbar, R.string.toggle_opend, R.string.toggle_closed) {
                 override fun onDrawerClosed(drawerView: View) {
                     super.onDrawerClosed(drawerView)
                     invalidateOptionsMenu()
@@ -84,9 +83,10 @@ class MainActivity : AppCompatActivity() {
     fun clickGithub() {
         try {
             startActivity(
-                    Intent(Intent.ACTION_VIEW,
-                            Uri.parse("https://github.com/MarcinOrlowski/fonty/")
-                    )
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://github.com/MarcinOrlowski/fonty/")
+                )
             )
         } catch (e: ActivityNotFoundException) {
             Toast.makeText(this@MainActivity, R.string.error_browser_failed, Toast.LENGTH_SHORT).show()
