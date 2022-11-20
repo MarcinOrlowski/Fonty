@@ -73,8 +73,8 @@ class MainActivity : AppCompatActivity() {
             mDrawerToggle.syncState()
         }
 
-        binding.content.github.setOnClickListener { clickGithub() }
-        binding.content.button.setOnClickListener { clickButton() }
+        binding.github.setOnClickListener { clickGithub() }
+        binding.button.setOnClickListener { clickButton() }
 
         // apply our fonts now
         Fonty.setFonts(this)
