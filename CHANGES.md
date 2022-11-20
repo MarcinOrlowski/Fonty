@@ -1,8 +1,14 @@
 Changelog
 =========
+
+ * v3.2.0 (2022-11-20)
+   - Updated source to use latest libraries and SDK.
+   - Updated demo app to use data-binding instead of ButterKnife.
+   - General code cleanup.
+ 
  * v3.1.5 (2020-07-11)
-   - Converted demo application class to Koltin
-   - Corrected Space widget usage
+   - Converted demo application class to Kotlin.
+   - Corrected Space widget usage.
 
  * v3.1.4 (2019-05-08)
    - Fixed `get()` not being properly exported.
@@ -26,11 +32,11 @@ Changelog
    - No longer pulls databinding library.
 
  * v2.2.0 (2018-08-27)
-   - `done()` is now deprecated in favor of commonly used `build()`
+   - `done()` is now deprecated in favor of commonly used `build()`.
 
  * v2.1.0 (2018-02-24)
-   - `regularTypeface()` is now deprecated. Use `normalTypeface()`
-   - Typeface fallback is now enabled by default
+   - `regularTypeface()` is now deprecated. Use `normalTypeface()`.
+   - Typeface fallback is now enabled by default.
    - Fixed navigation drawer's header in demo app not showing any content.
 
  * v2.0.0 (2017-04-24)
@@ -46,7 +52,7 @@ Changelog
    - [#2] Added support for `TextInputLayout`.
 
  * v1.1.0 (2017-03-12)
-   - Default font dir is `fonts/`
+   - Default font dir is `fonts/`.
    - `fontDir()` accepts `null` as argument.
    - `addTypeface()` is now `add()`.
 

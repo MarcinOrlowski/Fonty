@@ -1,19 +1,21 @@
 package com.marcinorlowski.fonty
 
+/** ******************************************************************************
+ *
+ * Fonty - Android custom fonts made easy
+ *
+ * @author      Marcin Orlowski <mail (#) marcinOrlowski (.) com>
+ * @copyright   2013-2022 2022 Marcin Orlowski
+ * @license     https://opensource.org/licenses/Apache-2.0
+ * @link        https://github.com/MarcinOrlowski/fonty
+ *
+ ***************************************************************************** **/
+
 import android.content.Context
 import android.graphics.Typeface
 
 import java.util.Hashtable
 
-/**
- ******************************************************************************
- *
- * Copyright 2013-2020 Marcin Orlowski <github@MarcinOrlowski.com>
- *
- * Licensed under the Apache License 2.0
- *
- ******************************************************************************
- */
 class Cache protected constructor()// singleton
 {
     // we cache used typefaces to avoid memory leaks due to framework bug #9904:
