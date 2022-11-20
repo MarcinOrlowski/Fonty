@@ -147,7 +147,7 @@ Toolbars
  created unless title or subtitle is set (even to empty string), so there's nothing `Fonty` can manipulate
  in advance.
 
- The simples solution is to set toolbar title (and/or subtitle) in `onCreate()` causing `EditText`
+ The simplest solution is to set toolbar title (and/or subtitle) in `onCreate()` causing `EditText`
  creation prior calling `Fonty.setFonts()`:
 
      @Override
@@ -178,7 +178,7 @@ Toolbars
 
      @Override
      public void setTitle(CharSequence title) {
-        ActionBar ab = getSupportActionBar();
+        final var ab = getSupportActionBar();
         if (ab != null) {
            ab.setTitle(title);
            Fonty.setFonts(mActivityActionBarToolbar);
@@ -186,7 +186,7 @@ Toolbars
      }
 
      public void setSubtitle(CharSequence subtitle) {
-        ActionBar ab = getSupportActionBar();
+        final var ab = getSupportActionBar();
         if (ab != null) {
            ab.setSubtitle(subtitle);
            Fonty.setFonts(mActivityActionBarToolbar);
@@ -213,7 +213,7 @@ Limitations
  return `false`. However because this information is gone, and `Fonty` relies on it, calling
  `Fonty.setFonts()` twice on the same layout elements will end up with wrong results (mostly
  all widgets will be using normal typeface). At the moment there's no workaround for this except
- for not calling `setFonts()` more than once. Hopefuly IRL scenarios this should not affect many.
+ for not calling `setFonts()` more than once. Hopefully IRL scenarios this should not affect many.
 
 
 Contributing
@@ -229,7 +229,6 @@ Contributing
   * create new branch
   * do your changes
   * send pull request
-
 
 License
 =======
