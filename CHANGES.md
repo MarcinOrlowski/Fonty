@@ -1,7 +1,10 @@
 Changelog
 =========
+ * dev
+   - Updated source to use latest libraries and SDK
+ 
  * v3.1.5 (2020-07-11)
-   - Converted demo application class to Koltin
+   - Converted demo application class to Kotlin
    - Corrected Space widget usage
 
  * v3.1.4 (2019-05-08)

@@ -70,8 +70,8 @@ Configuration
 
     Fonty
         .context(this)
-	    .normalTypeface("Xenotron.ttf")
-	    .italicTypeface("Carramba.ttf")
+        .normalTypeface("Xenotron.ttf")
+        .italicTypeface("Carramba.ttf")
         .boldTypeface("XPED.ttf")
         .build();
 
@@ -85,8 +85,8 @@ Configuration
     Fonty
         .context(this)
         .fontDir("my-fonts")
-	    .normalTypeface("Xenotron.ttf")
-	    .italicTypeface("Carramba.ttf")
+        .normalTypeface("Xenotron.ttf")
+        .italicTypeface("Carramba.ttf")
         .boldTypeface("XPED.ttf")
         .build();
 
@@ -154,15 +154,15 @@ Toolbars
      protected void onCreate(Bundle state) {
          super.onCreate(bundle);
          setContentView(...);
-         
+
          Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
          toolbar.setTitle(...);
          toolbar.setSubtitle(...);
-         
+
          setSupportActionBar(toolbar);
-         
+
          ...
-         
+
          Fonty.setFonts(this);
      }
 
@@ -234,6 +234,6 @@ Contributing
 License
 =======
 
-  * Written and copyrighted &copy;2013-2020 by Marcin Orlowski <mail (#) marcinorlowski (.) com>
+  * Written and copyrighted &copy;2013-2022 by [Marcin Orlowski](https://marcinOrlowski.com/)
   * `Fonty` is open-sourced library licensed under the Apache 2.0 license
 

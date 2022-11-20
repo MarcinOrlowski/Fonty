@@ -471,7 +471,7 @@ class Fonty {
                     menuItem.title = spannableString
 
                     if (menuItem.hasSubMenu()) {
-                        setFontsMenu(menuItem.subMenu)
+                        setFontsMenu(menuItem.subMenu as Menu)
                     }
                 }
             }
